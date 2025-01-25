@@ -1,0 +1,21 @@
+{
+  "type": "minefantasyreforged:leather_types",
+  "color": {
+    "blue": 53,
+    "green": 92,
+    "red": 198
+  },
+  "materialIngredient": [],
+  "properties": {
+    "crafter_tier": 0,
+    "density": 0.1,
+    "durability": 0.4,
+    "enchantability": 15,
+    "flexibility": 1.2,
+    "hardness": 1.0,
+    "rarity": "common",
+    "resistance": 0.0,
+    "sharpness": 0.5,
+    "tier": 0
+  }
+}

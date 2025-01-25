@@ -1,0 +1,31 @@
+{
+  "type": "minefantasyreforged:metal_types",
+  "armor_stats": {
+    "blunt": 0.8,
+    "cutting": 1.1,
+    "piercing": 1.1
+  },
+  "color": {
+    "blue": 95,
+    "green": 95,
+    "red": 120
+  },
+  "materialIngredient": {
+    "tag": "c:ingots/pig_iron"
+  },
+  "properties": {
+    "craft_time_modifier": 36.0,
+    "crafter_anvil_tier": -1,
+    "crafter_tier": 2,
+    "density": 2.5,
+    "durability": 2.0,
+    "enchantability": 3,
+    "flexibility": 0.8,
+    "hardness": 2.5,
+    "melting_point": 1200,
+    "rarity": "common",
+    "resistance": 20.0,
+    "sharpness": 2.0,
+    "tier": 2
+  }
+}

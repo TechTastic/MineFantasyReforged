@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "minefantasyreforged:item/standard_spade",
+    "layer1": "minefantasyreforged:item/standard_spade_haft",
+    "layer2": "minefantasyreforged:item/standard_spade_detail"
+  }
+}

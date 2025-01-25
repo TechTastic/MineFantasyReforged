@@ -1,0 +1,31 @@
+{
+  "type": "minefantasyreforged:metal_types",
+  "armor_stats": {
+    "blunt": 1.3,
+    "cutting": 1.0,
+    "piercing": 1.0
+  },
+  "color": {
+    "blue": 90,
+    "green": 45,
+    "red": 90
+  },
+  "materialIngredient": {
+    "tag": "c:ingots/obsidian"
+  },
+  "properties": {
+    "craft_time_modifier": 64.0,
+    "crafter_anvil_tier": -1,
+    "crafter_tier": 3,
+    "density": 3.0,
+    "durability": 8.0,
+    "enchantability": 25,
+    "flexibility": 1.0,
+    "hardness": 3.0,
+    "melting_point": 2000,
+    "rarity": "common",
+    "resistance": 35.0,
+    "sharpness": 3.0,
+    "tier": 4
+  }
+}

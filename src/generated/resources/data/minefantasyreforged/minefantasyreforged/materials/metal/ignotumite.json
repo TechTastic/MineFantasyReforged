@@ -1,0 +1,31 @@
+{
+  "type": "minefantasyreforged:metal_types",
+  "armor_stats": {
+    "blunt": 0.8,
+    "cutting": 1.0,
+    "piercing": 1.25
+  },
+  "color": {
+    "blue": 100,
+    "green": 255,
+    "red": 20
+  },
+  "materialIngredient": {
+    "tag": "c:ingots/ignotumite"
+  },
+  "properties": {
+    "craft_time_modifier": 900.0,
+    "crafter_anvil_tier": -1,
+    "crafter_tier": 7,
+    "density": 3.5,
+    "durability": 15.0,
+    "enchantability": 20,
+    "flexibility": 0.8,
+    "hardness": 8.5,
+    "melting_point": 3000,
+    "rarity": "rare",
+    "resistance": 85.0,
+    "sharpness": 14.0,
+    "tier": 8
+  }
+}

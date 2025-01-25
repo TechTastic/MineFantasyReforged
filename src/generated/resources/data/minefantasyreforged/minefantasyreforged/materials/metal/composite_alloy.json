@@ -1,0 +1,31 @@
+{
+  "type": "minefantasyreforged:metal_types",
+  "armor_stats": {
+    "blunt": 0.8,
+    "cutting": 1.0,
+    "piercing": 1.25
+  },
+  "color": {
+    "blue": 65,
+    "green": 75,
+    "red": 65
+  },
+  "materialIngredient": {
+    "tag": "c:ingots/composite_alloy"
+  },
+  "properties": {
+    "craft_time_modifier": 49.0,
+    "crafter_anvil_tier": -1,
+    "crafter_tier": 3,
+    "density": 4.0,
+    "durability": 10.0,
+    "enchantability": 10,
+    "flexibility": 0.8,
+    "hardness": 2.5,
+    "melting_point": 2500,
+    "rarity": "uncommon",
+    "resistance": 75.0,
+    "sharpness": 2.5,
+    "tier": 4
+  }
+}

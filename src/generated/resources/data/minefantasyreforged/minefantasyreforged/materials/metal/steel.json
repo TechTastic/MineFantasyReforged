@@ -1,0 +1,26 @@
+{
+  "type": "minefantasyreforged:metal_types",
+  "color": {
+    "blue": 168,
+    "green": 168,
+    "red": 168
+  },
+  "materialIngredient": {
+    "tag": "c:ingots/steel"
+  },
+  "properties": {
+    "craft_time_modifier": 49.0,
+    "crafter_anvil_tier": -1,
+    "crafter_tier": 3,
+    "density": 2.5,
+    "durability": 3.0,
+    "enchantability": 10,
+    "flexibility": 1.0,
+    "hardness": 2.75,
+    "melting_point": 1500,
+    "rarity": "common",
+    "resistance": 30.0,
+    "sharpness": 2.5,
+    "tier": 3
+  }
+}

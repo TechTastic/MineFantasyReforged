@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "minefantasyreforged:item/standard_plate_boots",
+    "layer1": "minefantasyreforged:item/standard_plate_boots_detail"
+  }
+}

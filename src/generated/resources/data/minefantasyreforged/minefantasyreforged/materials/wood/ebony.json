@@ -1,0 +1,23 @@
+{
+  "type": "minefantasyreforged:wood_types",
+  "color": {
+    "blue": 40,
+    "green": 46,
+    "red": 50
+  },
+  "materialIngredient": {
+    "item": "minefantasyreforged:ebony_planks"
+  },
+  "properties": {
+    "craft_time_modifier": 2.0,
+    "crafter_tier": 3,
+    "density": 1.0,
+    "durability": 4.0,
+    "enchantability": 0,
+    "flexibility": 1.6,
+    "hardness": 1.3,
+    "rarity": "rare",
+    "resistance": 80.0,
+    "tier": 3
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "entries": [
+    {
+      "enum": "net/minecraft/world/item/Rarity",
+      "name": "MINEFANTASYREFORGED_POOR",
+      "constructor": "(ILjava/lang/String;Lnet/minecraft/ChatFormatting;)V",
+      "parameters": {
+        "class": "minefantasy/mfr/extension/EnumExtensions",
+        "field": "POOR_RARITY_PROXY"
+      }
+    }
+  ]
+}

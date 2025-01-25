@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "minefantasyreforged:block/ironbark_log_top",
+    "side": "minefantasyreforged:block/ironbark_log"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "minefantasyreforged:block/ironbark_slab"
+    },
+    "type=double": {
+      "model": "minefantasyreforged:block/ironbark_planks"
+    },
+    "type=top": {
+      "model": "minefantasyreforged:block/ironbark_slab_top"
+    }
+  }
+}

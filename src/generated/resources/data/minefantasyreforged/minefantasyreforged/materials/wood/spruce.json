@@ -1,0 +1,23 @@
+{
+  "type": "minefantasyreforged:wood_types",
+  "color": {
+    "blue": 47,
+    "green": 79,
+    "red": 102
+  },
+  "materialIngredient": {
+    "item": "minecraft:spruce_planks"
+  },
+  "properties": {
+    "craft_time_modifier": 2.0,
+    "crafter_tier": 1,
+    "density": 0.4,
+    "durability": 0.9,
+    "enchantability": 0,
+    "flexibility": 1.0,
+    "hardness": 0.2,
+    "rarity": "common",
+    "resistance": 20.0,
+    "tier": 1
+  }
+}

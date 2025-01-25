@@ -1,0 +1,31 @@
+{
+  "type": "minefantasyreforged:metal_types",
+  "armor_stats": {
+    "blunt": 0.8,
+    "cutting": 1.0,
+    "piercing": 1.25
+  },
+  "color": {
+    "blue": 100,
+    "green": 200,
+    "red": 100
+  },
+  "materialIngredient": {
+    "tag": "c:ingots/adamantium"
+  },
+  "properties": {
+    "craft_time_modifier": 324.0,
+    "crafter_anvil_tier": -1,
+    "crafter_tier": 6,
+    "density": 3.5,
+    "durability": 12.0,
+    "enchantability": 10,
+    "flexibility": 0.8,
+    "hardness": 5.5,
+    "melting_point": 2500,
+    "rarity": "uncommon",
+    "resistance": 80.0,
+    "sharpness": 8.0,
+    "tier": 7
+  }
+}

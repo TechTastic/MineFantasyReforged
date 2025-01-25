@@ -1,0 +1,31 @@
+{
+  "type": "minefantasyreforged:metal_types",
+  "armor_stats": {
+    "blunt": 1.0,
+    "cutting": 1.3,
+    "piercing": 1.3
+  },
+  "color": {
+    "blue": 65,
+    "green": 86,
+    "red": 66
+  },
+  "materialIngredient": {
+    "tag": "c:ingots/tungsten"
+  },
+  "properties": {
+    "craft_time_modifier": 64.0,
+    "crafter_anvil_tier": -1,
+    "crafter_tier": 3,
+    "density": 4.0,
+    "durability": 8.0,
+    "enchantability": 5,
+    "flexibility": 0.5,
+    "hardness": 3.0,
+    "melting_point": 2000,
+    "rarity": "common",
+    "resistance": 35.0,
+    "sharpness": 3.0,
+    "tier": 4
+  }
+}

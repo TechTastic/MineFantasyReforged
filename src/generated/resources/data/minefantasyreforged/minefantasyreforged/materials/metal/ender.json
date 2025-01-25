@@ -1,0 +1,31 @@
+{
+  "type": "minefantasyreforged:metal_types",
+  "armor_stats": {
+    "blunt": 0.8,
+    "cutting": 1.0,
+    "piercing": 1.25
+  },
+  "color": {
+    "blue": 243,
+    "green": 63,
+    "red": 255
+  },
+  "materialIngredient": {
+    "tag": "c:ingots/ender"
+  },
+  "properties": {
+    "craft_time_modifier": 676.0,
+    "crafter_anvil_tier": -1,
+    "crafter_tier": 7,
+    "density": 3.0,
+    "durability": 15.0,
+    "enchantability": 20,
+    "flexibility": 0.8,
+    "hardness": 7.5,
+    "melting_point": 3000,
+    "rarity": "rare",
+    "resistance": 90.0,
+    "sharpness": 12.0,
+    "tier": 8
+  }
+}

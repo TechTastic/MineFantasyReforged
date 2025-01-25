@@ -1,0 +1,23 @@
+{
+  "type": "minefantasyreforged:wood_types",
+  "color": {
+    "blue": 75,
+    "green": 155,
+    "red": 173
+  },
+  "materialIngredient": {
+    "item": "minecraft:bamboo"
+  },
+  "properties": {
+    "craft_time_modifier": 2.0,
+    "crafter_tier": 0,
+    "density": 0.2,
+    "durability": 0.75,
+    "enchantability": 0,
+    "flexibility": 1.5,
+    "hardness": 0.4,
+    "rarity": "common",
+    "resistance": 10.0,
+    "tier": 0
+  }
+}

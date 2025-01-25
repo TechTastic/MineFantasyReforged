@@ -1,0 +1,26 @@
+{
+  "type": "minefantasyreforged:metal_types",
+  "color": {
+    "blue": 118,
+    "green": 165,
+    "red": 207
+  },
+  "materialIngredient": {
+    "tag": "c:ingots/bronze"
+  },
+  "properties": {
+    "craft_time_modifier": 25.0,
+    "crafter_anvil_tier": -1,
+    "crafter_tier": 1,
+    "density": 3.0,
+    "durability": 1.5,
+    "enchantability": 5,
+    "flexibility": 1.0,
+    "hardness": 2.25,
+    "melting_point": 1200,
+    "rarity": "common",
+    "resistance": 20.0,
+    "sharpness": 1.5,
+    "tier": 1
+  }
+}

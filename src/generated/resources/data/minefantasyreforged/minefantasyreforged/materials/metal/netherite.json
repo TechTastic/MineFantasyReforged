@@ -1,0 +1,31 @@
+{
+  "type": "minefantasyreforged:metal_types",
+  "armor_stats": {
+    "blunt": 0.6,
+    "cutting": 1.0,
+    "piercing": 1.6666666
+  },
+  "color": {
+    "blue": 115,
+    "green": 113,
+    "red": 115
+  },
+  "materialIngredient": {
+    "tag": "c:ingots/netherite"
+  },
+  "properties": {
+    "craft_time_modifier": 342.0,
+    "crafter_anvil_tier": -1,
+    "crafter_tier": 6,
+    "density": 3.0,
+    "durability": 10.0,
+    "enchantability": 25,
+    "flexibility": 0.6,
+    "hardness": 5.5,
+    "melting_point": 4950,
+    "rarity": "rare",
+    "resistance": 95.0,
+    "sharpness": 8.5,
+    "tier": 7
+  }
+}

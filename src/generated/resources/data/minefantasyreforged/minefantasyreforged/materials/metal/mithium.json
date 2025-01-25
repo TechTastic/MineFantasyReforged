@@ -1,0 +1,31 @@
+{
+  "type": "minefantasyreforged:metal_types",
+  "armor_stats": {
+    "blunt": 0.8,
+    "cutting": 1.0,
+    "piercing": 1.25
+  },
+  "color": {
+    "blue": 255,
+    "green": 200,
+    "red": 60
+  },
+  "materialIngredient": {
+    "tag": "c:ingots/mithium"
+  },
+  "properties": {
+    "craft_time_modifier": 484.0,
+    "crafter_anvil_tier": -1,
+    "crafter_tier": 7,
+    "density": 2.0,
+    "durability": 15.0,
+    "enchantability": 40,
+    "flexibility": 0.8,
+    "hardness": 6.5,
+    "melting_point": 2500,
+    "rarity": "rare",
+    "resistance": 95.0,
+    "sharpness": 10.0,
+    "tier": 8
+  }
+}

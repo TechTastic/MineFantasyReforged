@@ -1,0 +1,31 @@
+{
+  "type": "minefantasyreforged:metal_types",
+  "armor_stats": {
+    "blunt": 0.8,
+    "cutting": 1.0,
+    "piercing": 1.25
+  },
+  "color": {
+    "blue": 250,
+    "green": 140,
+    "red": 250
+  },
+  "materialIngredient": {
+    "tag": "c:ingots/mithril"
+  },
+  "properties": {
+    "craft_time_modifier": 256.0,
+    "crafter_anvil_tier": -1,
+    "crafter_tier": 6,
+    "density": 2.0,
+    "durability": 10.0,
+    "enchantability": 30,
+    "flexibility": 0.8,
+    "hardness": 5.0,
+    "melting_point": 2500,
+    "rarity": "uncommon",
+    "resistance": 90.0,
+    "sharpness": 7.0,
+    "tier": 7
+  }
+}
