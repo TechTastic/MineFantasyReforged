@@ -5,12 +5,9 @@ import minefantasy.mfr.material.CustomMaterial;
 import minefantasy.mfr.registry.CustomMaterialRegistry;
 import minefantasy.mfr.util.CustomToolHelper;
 import net.minecraft.ChatFormatting;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.PickaxeItem;
-import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -26,6 +23,13 @@ public class MFRPickaxeItem extends PickaxeItem implements IToolMaterial {
     @Override
     public Tier getMaterial() {
         return this.getTier();
+    }
+
+    @Override
+    public ItemStack construct(ResourceLocation main, ResourceLocation haft) {
+        ItemStack stack = CustomToolHelper.construct(this, main, haft);
+
+        return stack;
     }
 
     @Override

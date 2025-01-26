@@ -1007,73 +1007,69 @@ public class MFRLanguageDatagen extends LanguageProvider {
         // You can move the main tier to the tooltip if this is true, make sure to remove "%1$s " instnaces if you do this
 
         addItem(MFRItems.STANDARD_PICK, "%1$s Pickaxe");
-        /*
-        item.standard_axe.name=%1$s Axe
-        item.standard_spade.name=%1$s Shovel
-        item.standard_hoe.name=%1$s Hoe
+        addItem(MFRItems.STANDARD_AXE, "%1$s Axe");
+        addItem(MFRItems.STANDARD_SHOVEL, "%1$s Shovel");
+        addItem(MFRItems.STANDARD_HOE, "%1$s Hoe");
 
-        item.standard_shears.name=%1$s Shears
-        item.standard_knife.name=%1$s Knife
-        item.standard_needle.name=%1$s Needle
-        */
+        addItem(MFRItems.STANDARD_SHEARS, "%1$s Shears");
+        addItem(MFRItems.STANDARD_KNIFE, "%1$s Knife");
+        addItem(MFRItems.STANDARD_NEEDLE, "%1$s Needle");
         addItem(MFRItems.STANDARD_HAMMMER, "%1$s Hammer");
-        /*
-        item.standard_heavy_hammer.name=Heavy %1$s Hammer
-        item.standard_tongs.name=%1$s Tongs
-        item.standard_saw.name=%1$s Saw
-        item.standard_spanner.name=%1$s Spanner
+        addItem(MFRItems.STANDARD_HEAVY_HAMMMER, "Heavy %1$s Hammer");
+        addItem(MFRItems.STANDARD_TONGS, "%1$s Tongs");
+        addItem(MFRItems.STANDARD_SAW, "%1$s Saw");
+        addItem(MFRItems.STANDARD_SPANNER, "%1$s Spanner");
 
 
-        item.standard_dagger.name=%1$s Dagger
-        item.standard_sword.name=%1$s Sword
-        item.standard_mace.name=%1$s Mace
-        item.standard_waraxe.name=%1$s Waraxe
-        item.standard_spear.name=%1$s Spear
+        addItem(MFRItems.STANDARD_DAGGER, "%1$s Dagger");
+        addItem(MFRItems.STANDARD_SWORD, "%1$s Sword");
+        addItem(MFRItems.STANDARD_MACE, "%1$s Mace");
+        addItem(MFRItems.STANDARD_WARAXE, "%1$s Waraxe");
+        addItem(MFRItems.STANDARD_SPEAR, "%1$s Spear");
 
-        item.standard_katana.name=%1$s Katana
-        item.standard_greatsword.name=%1$s Greatsword
-        item.standard_warhammer.name=%1$s Warhammer
-        item.standard_battleaxe.name=%1$s Battleaxe
-        item.standard_halbeard.name=%1$s Halbeard
-        item.standard_lance.name=%1$s Lance
+        addItem(MFRItems.STANDARD_KATANA, "%1$s Katana");
+        addItem(MFRItems.STANDARD_GREATSWORD, "%1$s Greatsword");
+        addItem(MFRItems.STANDARD_WARHAMMER, "%1$s Warhammer");
+        addItem(MFRItems.STANDARD_BATTLEAXE, "%1$s Battleaxe");
+        addItem(MFRItems.STANDARD_HALBEARD, "%1$s Halbeard");
+        addItem(MFRItems.STANDARD_LANCE, "%1$s Lance");
 
-        item.standard_handpick.name=%1$s Handpick
-        item.standard_heavy_pick.name=Heavy %1$s Pickaxe
-        item.standard_trow.name=%1$s Trow
-        item.standard_heavy_shovel.name=Heavy %1$s Shovel
-        item.standard_scythe.name=%1$s Scythe
-        item.standard_mattock.name=%1$s Mattock
-        item.standard_lumber.name=%1$s Lumber Axe
+        addItem(MFRItems.STANDARD_HANDPICK, "%1$s Handpick");
+        addItem(MFRItems.STANDARD_HEAVY_PICK, "Heavy %1$s Pickaxe");
+        addItem(MFRItems.STANDARD_TROW, "%1$s Trow");
+        addItem(MFRItems.STANDARD_HEAVY_SHOVEL, "Heavy %1$s Shovel");
+        addItem(MFRItems.STANDARD_SCYTHE, "%1$s Scythe");
+        addItem(MFRItems.STANDARD_MATTOCK, "%1$s Mattock");
+        addItem(MFRItems.STANDARD_LUMBER, "%1$s Lumber Axe");
 
-        item.standard_scale_helmet.name=%1$s Scale Helmet
-        item.standard_scale_chestplate.name=%1$s Scale Suit
-        item.standard_scale_leggings.name=%1$s Scale Leggings
-        item.standard_scale_boots.name=%1$s Scale Boots
+        addItem(MFRItems.STANDARD_SCALE_HELMET, "%1$s Scale Helmet");
+        addItem(MFRItems.STANDARD_SCALE_CHESTPLATE, "%1$s Scale Suit");
+        addItem(MFRItems.STANDARD_SCALE_LEGGINGS, "%1$s Scale Leggings");
+        addItem(MFRItems.STANDARD_SCALE_BOOTS, "%1$s Scale Boots");
 
-        item.standard_chain_helmet.name=%1$s Coif
-        item.standard_chain_chestplate.name=%1$s Mail Suit
-        item.standard_chain_leggings.name=%1$s Mail Leggings
-        item.standard_chain_boots.name=%1$s Mail Boots
+        addItem(MFRItems.STANDARD_CHAIN_HELMET, "%1$s Coif");
+        addItem(MFRItems.STANDARD_CHAIN_CHESTPLATE, "%1$s Mail Suit");
+        addItem(MFRItems.STANDARD_CHAIN_LEGGINGS, "%1$s Mail Leggings");
+        addItem(MFRItems.STANDARD_CHAIN_BOOTS, "%1$s Mail Boots");
 
-        item.standard_splint_helmet.name=%1$s Splint Helmet
-        item.standard_splint_chestplate.name=%1$s Splint Suit
-        item.standard_splint_leggings.name=%1$s Splint Leggings
-        item.standard_splint_boots.name=%1$s Splint Boots
+        addItem(MFRItems.STANDARD_SPLINT_HELMET, "%1$s Splint Helmet");
+        addItem(MFRItems.STANDARD_SPLINT_CHESTPLATE, "%1$s Splint Suit");
+        addItem(MFRItems.STANDARD_SPLINT_LEGGINGS, "%1$s Splint Leggings");
+        addItem(MFRItems.STANDARD_SPLINT_BOOTS, "%1$s Splint Boots");
 
-        item.standard_plate_helmet.name=%1$s Great Helm
-        item.standard_plate_chestplate.name=%1$s Curiass
-        item.standard_plate_leggings.name=%1$s Greaves
-        item.standard_plate_boots.name=%1$s Sabatons
+        addItem(MFRItems.STANDARD_PLATE_HELMET, "%1$s Great Helm");
+        addItem(MFRItems.STANDARD_PLATE_CHESTPLATE, "%1$s Curiass");
+        addItem(MFRItems.STANDARD_PLATE_LEGGINGS, "%1$s Greaves");
+        addItem(MFRItems.STANDARD_PLATE_BOOTS, "%1$s Sabatons");
 
-        item.standard_bow.name=%1$s Bow
-        item.standard_arrow.name=%1$s Arrow
-        item.standard_arrow_bodkin.name=%1$s Bodkin Arrow
-        item.standard_arrow_broad.name=%1$s Broadhead Arrow
-        item.standard_bolt.name=%1$s Quarrel
+        addItem(MFRItems.STANDARD_BOW, "%1$s Bow");
+        addItem(MFRItems.STANDARD_ARROW, "%1$s Arrow");
+        addItem(MFRItems.STANDARD_ARROW_BODKIN, "%1$s Bodkin Arrow");
+        addItem(MFRItems.STANDARD_ARROW_BROAD, "%1$s Broadhead Arrow");
+        addItem(MFRItems.STANDARD_BOLT, "%1$s Quarrel");
 
-        item.standard_mallet.name=%1$s Mallet
-        item.standard_spoon.name=%1$s Spoon
-         */
+        addItem(MFRItems.STANDARD_MALLET, "%1$s Mallet");
+        addItem(MFRItems.STANDARD_SPOON, "%1$s Spoon");
 
         // DRAGONFORGE
 

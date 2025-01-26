@@ -1,8 +1,30 @@
 {
-  "parent": "minecraft:item/handheld",
+  "parent": "minecraft:item/bow",
+  "overrides": [
+    {
+      "model": "minefantasyreforged:item/standard_bow_pulling_0",
+      "predicate": {
+        "minecraft:pulling": 1.0
+      }
+    },
+    {
+      "model": "minefantasyreforged:item/standard_bow_pulling_1",
+      "predicate": {
+        "minecraft:pull": 0.65,
+        "minecraft:pulling": 1.0
+      }
+    },
+    {
+      "model": "minefantasyreforged:item/standard_bow_pulling_2",
+      "predicate": {
+        "minecraft:pull": 0.9,
+        "minecraft:pulling": 1.0
+      }
+    }
+  ],
   "textures": {
-    "layer0": "minefantasyreforged:item/standard_bow_standby",
-    "layer1": "minefantasyreforged:item/standard_bow_standby_haft",
-    "layer2": "minefantasyreforged:item/standard_bow_standby_detail"
+    "layer0": "minefantasyreforged:item/standard_bow",
+    "layer1": "minefantasyreforged:item/standard_bow_haft",
+    "layer2": "minefantasyreforged:item/standard_bow_detail"
   }
 }

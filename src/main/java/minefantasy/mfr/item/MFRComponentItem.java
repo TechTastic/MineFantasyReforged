@@ -26,16 +26,6 @@ public abstract class MFRComponentItem extends Item implements ITieredComponent 
         this(properties, false);
     }
 
-    @Override
-    public void verifyComponentsAfterLoad(ItemStack itemStack) {
-        super.verifyComponentsAfterLoad(itemStack);
-
-        Rarity rarity = itemStack.get(DataComponents.RARITY);
-        if (rarity == null)
-            rarity = Rarity.COMMON;
-        itemStack.set(DataComponents.RARITY, CustomToolHelper.getRarity(CustomMaterialRegistry.ACCESS, itemStack, rarity));
-    }
-
     public boolean canDamage() {
         return false;
     }

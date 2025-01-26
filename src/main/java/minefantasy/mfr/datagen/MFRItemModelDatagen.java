@@ -7,7 +7,9 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -101,38 +103,49 @@ public class MFRItemModelDatagen extends ItemModelProvider {
         threePieceTools(MFRItems.STANDARD_SPANNER);
         withExistingParent(MFRItems.WASH_CLOTH_WOOL.getId().toString(), mcLoc("item/generated"))
                 .texture("layer0", modLoc("item/wash_cloth_dry_0"));
-        threePieceTools(MFRItems.STANDARD_BOW, "_standby");
+        bow(MFRItems.STANDARD_BOW);
         twoPieceTools(MFRItems.STANDARD_ARROW);
         twoPieceTools(MFRItems.STANDARD_BOLT);
         twoPieceTools(MFRItems.STANDARD_ARROW_BODKIN);
         twoPieceTools(MFRItems.STANDARD_ARROW_BROAD);
     }
 
-    public void threePieceTools(DeferredItem<? extends Item> tool, String suffix) {
-        withExistingParent(tool.getId().toString(), mcLoc("item/handheld"))
+    public void bow(DeferredItem<? extends Item> tool) {
+        threePieceTools(tool, "", "item/bow")
+                .override().predicate(mcLoc("pulling"), 1).model(threePieceTools(tool, "_pulling_0", "item/bow")).end()
+                .override().predicate(mcLoc("pulling"), 1).predicate(mcLoc("pull"), 0.65f).model(threePieceTools(tool, "_pulling_1", "item/bow")).end()
+                .override().predicate(mcLoc("pulling"), 1).predicate(mcLoc("pull"), 0.9f).model(threePieceTools(tool, "_pulling_2", "item/bow")).end();
+    }
+
+    public ItemModelBuilder threePieceTools(DeferredItem<? extends Item> tool, String suffix, String parent) {
+        return withExistingParent(tool.getId() + suffix, mcLoc(parent))
                 .texture("layer0", "item/" + tool.getId().getPath() + suffix)
                 .texture("layer1", "item/" + tool.getId().getPath() + suffix + "_haft")
                 .texture("layer2", "item/" + tool.getId().getPath() + suffix + "_detail");
     }
 
-    public void threePieceTools(DeferredItem<? extends Item> tool) {
-        threePieceTools(tool, "");
+    public ItemModelBuilder threePieceTools(DeferredItem<? extends Item> tool, String suffix) {
+        return threePieceTools(tool, suffix, "item/handheld");
     }
 
-    public void twoPieceTools(DeferredItem<? extends Item> tool) {
-        withExistingParent(tool.getId().toString(), mcLoc("item/handheld"))
+    public ItemModelBuilder threePieceTools(DeferredItem<? extends Item> tool) {
+        return threePieceTools(tool, "");
+    }
+
+    public ItemModelBuilder twoPieceTools(DeferredItem<? extends Item> tool) {
+        return withExistingParent(tool.getId().toString(), mcLoc("item/handheld"))
                 .texture("layer0", "item/" + tool.getId().getPath())
                 .texture("layer1", "item/" + tool.getId().getPath() + "_detail");
     }
 
     public void buttonItem(DeferredBlock<?> block, DeferredBlock<Block> baseBlock) {
-        this.withExistingParent(block.getId().getPath(), mcLoc("block/button_inventory"))
+        withExistingParent(block.getId().getPath(), mcLoc("block/button_inventory"))
                 .texture("texture",  ResourceLocation.fromNamespaceAndPath(MineFantasyReforged.MOD_ID,
                         "block/" + baseBlock.getId().getPath()));
     }
 
     public void fenceItem(DeferredBlock<?> block, DeferredBlock<Block> baseBlock) {
-        this.withExistingParent(block.getId().getPath(), mcLoc("block/fence_inventory"))
+        withExistingParent(block.getId().getPath(), mcLoc("block/fence_inventory"))
                 .texture("texture",  ResourceLocation.fromNamespaceAndPath(MineFantasyReforged.MOD_ID,
                         "block/" + baseBlock.getId().getPath()));
     }

@@ -7,10 +7,8 @@ import minefantasy.mfr.constants.Tool;
 import minefantasy.mfr.registry.CustomMaterialRegistry;
 import minefantasy.mfr.util.CustomToolHelper;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.TieredItem;
-import net.minecraft.world.item.Tiers;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.*;
 import org.jetbrains.annotations.NotNull;
 
 public class BasicCraftToolItem extends TieredItem implements IToolMaterial, IToolMFR, IDamageType {
@@ -34,6 +32,11 @@ public class BasicCraftToolItem extends TieredItem implements IToolMaterial, ITo
     @Override
     public Tier getMaterial() {
         return this.getTier();
+    }
+
+    @Override
+    public ItemStack construct(ResourceLocation main, ResourceLocation haft) {
+        return CustomToolHelper.construct(this, main, haft);
     }
 
     @Override

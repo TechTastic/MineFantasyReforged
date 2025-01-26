@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:item/bow",
+  "textures": {
+    "layer0": "minefantasyreforged:item/standard_bow_pulling_2",
+    "layer1": "minefantasyreforged:item/standard_bow_pulling_2_haft",
+    "layer2": "minefantasyreforged:item/standard_bow_pulling_2_detail"
+  }
+}

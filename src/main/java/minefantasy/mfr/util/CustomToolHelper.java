@@ -12,6 +12,7 @@ import minefantasy.mfr.registry.types.CustomMaterialTypeRegistry;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -53,6 +54,12 @@ public class CustomToolHelper {
         if (haft != null) {
             CustomMaterialRegistry.addMaterial(item, MaterialDataComponent.SLOT_HAFT, haft);
         }
+
+        Rarity rarity = item.get(DataComponents.RARITY);
+        if (rarity == null)
+            rarity = Rarity.COMMON;
+        item.set(DataComponents.RARITY, getRarity(CustomMaterialRegistry.ACCESS, item, rarity));
+
         return item;
     }
 
@@ -63,6 +70,12 @@ public class CustomToolHelper {
     public static ItemStack constructSingleColoredLayer(Item base, ResourceLocation main, int stacksize) {
         ItemStack item = new ItemStack(base, stacksize);
         CustomMaterialRegistry.addMaterial(item, MaterialDataComponent.SLOT_MAIN, main);
+
+        Rarity rarity = item.get(DataComponents.RARITY);
+        if (rarity == null)
+            rarity = Rarity.COMMON;
+        item.set(DataComponents.RARITY, CustomToolHelper.getRarity(CustomMaterialRegistry.ACCESS, item, rarity));
+
         return item;
     }
 

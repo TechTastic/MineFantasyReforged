@@ -15,6 +15,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.SimpleTier;
@@ -98,15 +99,37 @@ public class CustomMaterial {
     }
 
     /**
-     * Gets a new Tier for the Material
+     * Gets or Creates a "incorrect_for_[material]_tool" tag for the given material
+     * @return "incorrect_for_[material]_tool" tag key
      */
-    public Tier getToolTier() {
+    public TagKey<Block> getOrCreateIncorrectBlocksTag() {
         ResourceLocation name = this.getName(CustomMaterialRegistry.ACCESS);
         String path = name.getPath();
 
+        return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(
+                name.getNamespace(), "incorrect_for_" + (path.contains("/") ?
+                        path.split("/")[1] : path) + "_tool"));
+    }
+
+    /**
+     * Gets or Creates a "needs_[material]_tool" tag for the given material
+     * @return "needs_[material]_tool" tag key
+     */
+    public TagKey<Block> getOrCreateNeedsBlocksTag() {
+        ResourceLocation name = this.getName(CustomMaterialRegistry.ACCESS);
+        String path = name.getPath();
+
+        return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(
+                name.getNamespace(), "needs_" + (path.contains("/") ?
+                        path.split("/")[1] : path) + "_tool"));
+    }
+
+    /**
+     * Gets a new Tier for the Material
+     */
+    public Tier getToolTier() {
         return new SimpleTier(
-                TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(
-                        name.getNamespace(), "incorrect_for_" + (path.contains("/") ? path.split("/")[1] : path) + "_tool")),
+                this.getOrCreateIncorrectBlocksTag(),
                 (int) this.getDurability(),
                 2.0F + (this.getSharpness() * 2F),
                 this.getSharpness(),

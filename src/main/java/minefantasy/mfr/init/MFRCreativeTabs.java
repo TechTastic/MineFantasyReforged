@@ -55,8 +55,8 @@ public class MFRCreativeTabs {
                             List<CustomMaterial> metals = CustomMaterialRegistry.getList(CustomMaterialRegistry.ACCESS,
                                     CustomMaterialTypeRegistry.METAL_TYPES.get());
 
-                            output.acceptAll(metals.stream().map(mat ->
-                                    constructTool(MFRItems.STANDARD_PICK.get(), mat)).toList());
+                            output.acceptAll(metals.stream().map(mat -> MFRItems.STANDARD_PICK.get()
+                                    .construct(mat.getName(CustomMaterialRegistry.ACCESS))).toList());
                             output.acceptAll(metals.stream().map(mat ->
                                     constructTool(MFRItems.STANDARD_AXE.get(), mat)).toList());
                             output.acceptAll(metals.stream().map(mat ->
@@ -262,15 +262,15 @@ public class MFRCreativeTabs {
         
         CRAFTING_TOOLS_TAB = TABS.register("crafting_tools", () ->
                 CreativeModeTab.builder()
-                        .icon(() -> constructTool(MFRItems.STANDARD_HAMMMER.get(), MFRMaterials.TIN_METAL))
+                        .icon(() -> MFRItems.STANDARD_HAMMMER.get().construct(MFRMaterials.TIN_METAL))
                         .displayItems((param, output) -> {
                             List<CustomMaterial> metals = CustomMaterialRegistry.getList(CustomMaterialRegistry.ACCESS,
                                     CustomMaterialTypeRegistry.METAL_TYPES.get());
 
-                            output.acceptAll(metals.stream().map(mat ->
-                                    constructTool(MFRItems.STANDARD_HAMMMER.get(), mat)).toList());
-                            output.acceptAll(metals.stream().map(mat ->
-                                    constructTool(MFRItems.STANDARD_HEAVY_HAMMMER.get(), mat)).toList());
+                            output.acceptAll(metals.stream().map(mat -> MFRItems.STANDARD_HAMMMER.get()
+                                    .construct(mat.getName(CustomMaterialRegistry.ACCESS))).toList());
+                            output.acceptAll(metals.stream().map(mat -> MFRItems.STANDARD_HEAVY_HAMMMER.get()
+                                    .construct(mat.getName(CustomMaterialRegistry.ACCESS))).toList());
                             output.acceptAll(metals.stream().map(mat ->
                                     constructTool(MFRItems.STANDARD_TONGS.get(), mat)).toList());
                             output.acceptAll(metals.stream().map(mat ->
@@ -283,12 +283,12 @@ public class MFRCreativeTabs {
                                     constructTool(MFRItems.STANDARD_SAW.get(), mat)).toList());
 
                             output.acceptAll(List.of(
-                                    constructTool(MFRItems.STANDARD_SPOON.get(), MFRMaterials.OAK_WOOD),
-                                    constructTool(MFRItems.STANDARD_SPOON.get(), MFRMaterials.IRONBARK_WOOD),
-                                    constructTool(MFRItems.STANDARD_SPOON.get(), MFRMaterials.EBONY_WOOD),
-                                    constructTool(MFRItems.STANDARD_MALLET.get(), MFRMaterials.OAK_WOOD),
-                                    constructTool(MFRItems.STANDARD_MALLET.get(), MFRMaterials.IRONBARK_WOOD),
-                                    constructTool(MFRItems.STANDARD_MALLET.get(), MFRMaterials.EBONY_WOOD)
+                                    MFRItems.STANDARD_SPOON.get().construct(MFRMaterials.OAK_WOOD),
+                                    MFRItems.STANDARD_SPOON.get().construct(MFRMaterials.IRONBARK_WOOD),
+                                    MFRItems.STANDARD_SPOON.get().construct(MFRMaterials.EBONY_WOOD),
+                                    MFRItems.STANDARD_MALLET.get().construct(MFRMaterials.OAK_WOOD),
+                                    MFRItems.STANDARD_MALLET.get().construct(MFRMaterials.IRONBARK_WOOD),
+                                    MFRItems.STANDARD_MALLET.get().construct(MFRMaterials.EBONY_WOOD)
                             ));
 
                             output.acceptAll(metals.stream().map(mat ->
