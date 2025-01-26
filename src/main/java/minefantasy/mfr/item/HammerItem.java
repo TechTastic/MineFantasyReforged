@@ -43,38 +43,19 @@ public class HammerItem extends TieredItem implements IToolMaterial, IToolMFR, I
     public ItemStack construct(ResourceLocation main, ResourceLocation haft) {
         ItemStack stack = CustomToolHelper.construct(this, main, haft);
 
-        ItemAttributeModifiers modifiers = stack.get(DataComponents.ATTRIBUTE_MODIFIERS);
-        if (modifiers != null) {
-            stack.set(DataComponents.ATTRIBUTE_MODIFIERS, modifiers
-                    .withModifierAdded(Attributes.ATTACK_DAMAGE, new AttributeModifier(
-                                    BASE_ATTACK_DAMAGE_ID, CustomToolHelper.getMeleeDamage(CustomMaterialRegistry.ACCESS, stack,
-                                    getMaterial().getAttackDamageBonus()), AttributeModifier.Operation.ADD_VALUE),
-                            EquipmentSlotGroup.MAINHAND)
-
-                    .withModifierAdded(Attributes.ATTACK_SPEED, new AttributeModifier(
-                                    BASE_ATTACK_SPEED_ID, -3f, AttributeModifier.Operation.ADD_VALUE),
-                            EquipmentSlotGroup.MAINHAND)
-
-                    .withModifierAdded(Attributes.MINING_EFFICIENCY, new AttributeModifier(
-                                    ResourceLocation.withDefaultNamespace("mining_efficiency"), CustomToolHelper
-                                    .getEfficiency(CustomMaterialRegistry.ACCESS, stack, getMaterial().getSpeed(),
-                                            1.0F), AttributeModifier.Operation.ADD_VALUE),
-                            EquipmentSlotGroup.MAINHAND));
-        }
-
-        net.minecraft.world.item.component.Tool tool = new net.minecraft.world.item.component.Tool(List.of(
-                net.minecraft.world.item.component.Tool.Rule.deniesDrops(getMaterial().getIncorrectBlocksForDrops()),
-                net.minecraft.world.item.component.Tool.Rule.minesAndDrops(MFRTags.Blocks.MINEABLE_WITH_HAMMER,
-                        CustomToolHelper.getEfficiency(CustomMaterialRegistry.ACCESS, stack, getMaterial().getSpeed(),
-                                1.0F / 2f))),
-                getMaterial().getSpeed(), 1);
+        //net.minecraft.world.item.component.Tool tool = new net.minecraft.world.item.component.Tool(List.of(
+        //        net.minecraft.world.item.component.Tool.Rule.deniesDrops(getMaterial().getIncorrectBlocksForDrops()),
+        //        net.minecraft.world.item.component.Tool.Rule.minesAndDrops(MFRTags.Blocks.MINEABLE_WITH_HAMMER,
+        //                CustomToolHelper.getEfficiency(CustomMaterialRegistry.ACCESS, stack, getMaterial().getSpeed(),
+        //                        1.0F / 2f))),
+        //        getMaterial().getSpeed(), 1);
 
         //if (isCustom) {
         //    tool = CustomToolHelper.getCustomPrimaryMaterial(CustomMaterialRegistry.ACCESS, stack)
         //            .getToolTier().createToolProperties(MFRTags.Blocks.MINEABLE_WITH_HAMMER);
         //}
 
-        stack.set(DataComponents.TOOL, tool);
+        //stack.set(DataComponents.TOOL, tool);
 
         return stack;
     }

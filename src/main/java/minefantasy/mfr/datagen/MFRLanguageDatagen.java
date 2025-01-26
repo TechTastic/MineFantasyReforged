@@ -997,9 +997,7 @@ public class MFRLanguageDatagen extends LanguageProvider {
 
         // WASH
 
-        /*
-        item.wash_cloth_wool.name=Wool Wash Cloth
-         */
+        addItem(MFRItems.WASH_CLOTH_WOOL, "Wool Wash Cloth");
 
         // STANDARD
 

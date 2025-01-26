@@ -6,6 +6,7 @@ import minefantasy.mfr.api.tool.IToolMFR;
 import minefantasy.mfr.api.weapon.ISharpenable;
 import minefantasy.mfr.constants.Tool;
 import minefantasy.mfr.init.MFRDataComponents;
+import minefantasy.mfr.item.WashClothItem;
 import minefantasy.mfr.item.component.CraftQualityDataComponent;
 import minefantasy.mfr.item.component.SharpnessDataComponent;
 import minefantasy.mfr.item.component.SpecialTypeDataComponent;
@@ -49,8 +50,7 @@ public class ToolHelper {
         return CustomCrafterEntry.getEntryTier(tool);
     }
 
-    // TODO(ItemWashCloth)
-    /*public static boolean isStackValidWashTool(ItemStack stack) {
+    public static boolean isStackValidWashTool(ItemStack stack) {
         return ToolHelper.getToolTypeFromStack(stack) == Tool.WASH && stack.getDamageValue() != ToolHelper.getWashMaxUses(stack);
     }
 
@@ -58,11 +58,11 @@ public class ToolHelper {
         if (stack.isEmpty()) {
             return 0;
         }
-        if (stack.getItem() instanceof ItemWashCloth clotch) {
-            return cloth.getMaxUses();
+        if (stack.getItem() instanceof WashClothItem cloth) {
+            return cloth.getMaxDamage(stack);
         }
         return 0; //Todo add Custom Wash Entry
-    }*/
+    }
 
     /**
      * Conduct Block Transformation on {@link Item#useOn(UseOnContext useOnContext)}

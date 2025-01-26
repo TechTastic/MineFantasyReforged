@@ -3,6 +3,7 @@ package minefantasy.mfr.util;
 import minefantasy.mfr.MineFantasyReforged;
 import minefantasy.mfr.api.crafting.ITieredComponent;
 import minefantasy.mfr.api.crafting.exotic.ISpecialDesign;
+import minefantasy.mfr.api.tier.IToolMaterial;
 import minefantasy.mfr.init.MFRMaterials;
 import minefantasy.mfr.item.component.MaterialDataComponent;
 import minefantasy.mfr.material.CustomMaterial;
@@ -16,9 +17,13 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -55,10 +60,8 @@ public class CustomToolHelper {
             CustomMaterialRegistry.addMaterial(item, MaterialDataComponent.SLOT_HAFT, haft);
         }
 
-        Rarity rarity = item.get(DataComponents.RARITY);
-        if (rarity == null)
-            rarity = Rarity.COMMON;
-        item.set(DataComponents.RARITY, getRarity(CustomMaterialRegistry.ACCESS, item, rarity));
+        updateRarity(item);
+        updateComponents(item);
 
         return item;
     }
@@ -71,12 +74,40 @@ public class CustomToolHelper {
         ItemStack item = new ItemStack(base, stacksize);
         CustomMaterialRegistry.addMaterial(item, MaterialDataComponent.SLOT_MAIN, main);
 
-        Rarity rarity = item.get(DataComponents.RARITY);
-        if (rarity == null)
-            rarity = Rarity.COMMON;
-        item.set(DataComponents.RARITY, CustomToolHelper.getRarity(CustomMaterialRegistry.ACCESS, item, rarity));
+        updateRarity(item);
 
         return item;
+    }
+
+    public static void updateRarity(ItemStack stack) {
+        Rarity rarity = stack.get(DataComponents.RARITY);
+        if (rarity == null)
+            rarity = Rarity.COMMON;
+        stack.set(DataComponents.RARITY, CustomToolHelper.getRarity(CustomMaterialRegistry.ACCESS, stack, rarity));
+    }
+
+    public static void updateComponents(ItemStack stack) {
+        if (stack.getItem() instanceof IToolMaterial toolMaterial ) {
+            ItemAttributeModifiers modifiers = stack.get(DataComponents.ATTRIBUTE_MODIFIERS);
+            if (modifiers == null)
+                modifiers = ItemAttributeModifiers.builder().build();
+
+            stack.set(DataComponents.ATTRIBUTE_MODIFIERS, modifiers
+                    .withModifierAdded(Attributes.ATTACK_DAMAGE, new AttributeModifier(
+                                    Item.BASE_ATTACK_DAMAGE_ID, getMeleeDamage(CustomMaterialRegistry.ACCESS, stack,
+                                    toolMaterial.getMaterial().getAttackDamageBonus()), AttributeModifier.Operation.ADD_VALUE),
+                            EquipmentSlotGroup.MAINHAND)
+
+                    .withModifierAdded(Attributes.ATTACK_SPEED, new AttributeModifier(
+                                    Item.BASE_ATTACK_SPEED_ID, -3f, AttributeModifier.Operation.ADD_VALUE),
+                            EquipmentSlotGroup.MAINHAND)
+
+                    .withModifierAdded(Attributes.MINING_EFFICIENCY, new AttributeModifier(
+                                    ResourceLocation.withDefaultNamespace("mining_efficiency"),
+                                    getEfficiency(CustomMaterialRegistry.ACCESS, stack, toolMaterial.getMaterial().getSpeed(),
+                                            0.5F), AttributeModifier.Operation.ADD_VALUE),
+                            EquipmentSlotGroup.MAINHAND));
+        }
     }
 
     /**
