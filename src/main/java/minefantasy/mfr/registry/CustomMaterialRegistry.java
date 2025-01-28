@@ -74,10 +74,10 @@ public class CustomMaterialRegistry {
         MaterialDataComponent comp = getOrCreateComponent(item);
         if (Objects.equals(slot, MaterialDataComponent.SLOT_HAFT))
             item.set(MFRDataComponents.MATERIAL_DATA_COMPONENT_TYPE.get(),
-                    new MaterialDataComponent(comp.mainMaterial(), Optional.of(material)));
+                    new MaterialDataComponent(comp.mainMaterial().orElse(null), material));
         else
             item.set(MFRDataComponents.MATERIAL_DATA_COMPONENT_TYPE.get(),
-                    new MaterialDataComponent(Optional.of(material), comp.haftMaterial()));
+                    new MaterialDataComponent(material, comp.haftMaterial().orElse(null)));
     }
 
     /**

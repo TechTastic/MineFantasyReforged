@@ -1,13 +1,18 @@
 package minefantasy.mfr.datagen;
 
 import minefantasy.mfr.MineFantasyReforged;
-import minefantasy.mfr.constants.Tool;
 import minefantasy.mfr.init.MFRBlocks;
+import minefantasy.mfr.init.MFRMaterials;
 import minefantasy.mfr.init.MFRTags;
+import minefantasy.mfr.material.CustomMaterial;
+import minefantasy.mfr.registry.CustomMaterialRegistry;
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -119,5 +124,34 @@ public class MFRBlockTagsDatagen extends BlockTagsProvider {
         // WALL SIGNS
         // CEILING SIGNS
         // WALL_HANGING_SIGNS
+
+        this.tag(MFRTags.Blocks.INCORRECT_FOR_TIN_TOOL).addTag(BlockTags.INCORRECT_FOR_WOODEN_TOOL);
+
+        this.tag(MFRTags.Blocks.INCORRECT_FOR_COPPER_TOOL).addTag(BlockTags.INCORRECT_FOR_STONE_TOOL);
+
+        this.tag(MFRTags.Blocks.INCORRECT_FOR_SILVER_TOOL).addTag(BlockTags.INCORRECT_FOR_GOLD_TOOL);
+        this.tag(MFRTags.Blocks.INCORRECT_FOR_GOLD_TOOL).addTag(BlockTags.INCORRECT_FOR_GOLD_TOOL);
+
+        this.tag(MFRTags.Blocks.INCORRECT_FOR_BRONZE_TOOL).addTag(BlockTags.INCORRECT_FOR_IRON_TOOL).remove(BlockTags.DIAMOND_ORES);
+        this.tag(MFRTags.Blocks.INCORRECT_FOR_IRON_TOOL).addTag(BlockTags.INCORRECT_FOR_IRON_TOOL);
+        this.tag(MFRTags.Blocks.INCORRECT_FOR_PIG_IRON_TOOL).addTag(BlockTags.INCORRECT_FOR_IRON_TOOL);
+        this.tag(MFRTags.Blocks.INCORRECT_FOR_STEEL_TOOL).addTag(BlockTags.INCORRECT_FOR_IRON_TOOL);
+
+        this.tag(MFRTags.Blocks.INCORRECT_FOR_ENCRUSTED_TOOL).addTag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL);
+        this.tag(MFRTags.Blocks.INCORRECT_FOR_OBSIDIAN_TOOL).addTag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL);
+        this.tag(MFRTags.Blocks.INCORRECT_FOR_TUNGSTEN_TOOL).addTag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL);
+
+        this.tag(MFRTags.Blocks.INCORRECT_FOR_BLACK_STEEL_TOOL).addTag(BlockTags.INCORRECT_FOR_NETHERITE_TOOL);
+        this.tag(MFRTags.Blocks.INCORRECT_FOR_BLUE_STEEL_TOOL).addTag(BlockTags.INCORRECT_FOR_NETHERITE_TOOL);
+        this.tag(MFRTags.Blocks.INCORRECT_FOR_RED_STEEL_TOOL).addTag(BlockTags.INCORRECT_FOR_NETHERITE_TOOL);
+        this.tag(MFRTags.Blocks.INCORRECT_FOR_NETHERITE_TOOL).addTag(BlockTags.INCORRECT_FOR_NETHERITE_TOOL);
+
+        this.tag(MFRTags.Blocks.INCORRECT_FOR_MITHRIL_TOOL);
+        this.tag(MFRTags.Blocks.INCORRECT_FOR_ADAMANTIUM_TOOL);
+        this.tag(MFRTags.Blocks.INCORRECT_FOR_MITHIUM_TOOL);
+        this.tag(MFRTags.Blocks.INCORRECT_FOR_IGNOTUMITE_TOOL);
+        this.tag(MFRTags.Blocks.INCORRECT_FOR_ENDER_TOOL);
+        this.tag(MFRTags.Blocks.INCORRECT_FOR_COMPOSITE_ALLOY_TOOL);
+        this.tag(MFRTags.Blocks.INCORRECT_FOR_BLACK_STEEL_TOOL);
     }
 }

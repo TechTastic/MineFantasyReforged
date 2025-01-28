@@ -296,7 +296,7 @@ public class MFRMaterialsDatagen extends DatapackBuiltinEntriesProvider {
                 new Float[] { 1f, 1f, 1f },
                 false
         ));
-        context.register(createMaterialKey(MineFantasyReforged.MOD_ID, "metal/copper"), new MetalMaterial(
+        context.register(createMaterialKey(MFRMaterials.COPPER_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/copper"))),
                 new int[] { 255, 255, 132, 66 },
@@ -315,7 +315,7 @@ public class MFRMaterialsDatagen extends DatapackBuiltinEntriesProvider {
                 new Float[] { 1f, 1f, 1f },
                 false
         ));
-        context.register(createMaterialKey(MineFantasyReforged.MOD_ID, "metal/bronze"), new MetalMaterial(
+        context.register(createMaterialKey(MFRMaterials.BRONZE_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/bronze"))),
                 new int[] { 255, 207, 165, 118 },
@@ -334,7 +334,7 @@ public class MFRMaterialsDatagen extends DatapackBuiltinEntriesProvider {
                 new Float[] { 1f, 1f, 1f },
                 false
         ));
-        context.register(createMaterialKey(MineFantasyReforged.MOD_ID, "metal/iron"), new MetalMaterial(
+        context.register(createMaterialKey(MFRMaterials.IRON_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/iron"))),
                 new int[] { 255, 140, 120, 100 },
@@ -353,7 +353,7 @@ public class MFRMaterialsDatagen extends DatapackBuiltinEntriesProvider {
                 new Float[] { 1f, 1f, 1f },
                 false
         ));
-        context.register(createMaterialKey(MineFantasyReforged.MOD_ID, "metal/pig_iron"), new MetalMaterial(
+        context.register(createMaterialKey(MFRMaterials.PIG_IRON_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/pig_iron"))),
                 new int[] { 255, 120, 95, 95 },
@@ -372,7 +372,7 @@ public class MFRMaterialsDatagen extends DatapackBuiltinEntriesProvider {
                 new Float[] { 1.1f, 0.8f, 1.1f },
                 false
         ));
-        context.register(createMaterialKey(MineFantasyReforged.MOD_ID, "metal/steel"), new MetalMaterial(
+        context.register(createMaterialKey(MFRMaterials.STEEL_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/steel"))),
                 new int[] { 255, 168, 168, 168 },
@@ -391,7 +391,7 @@ public class MFRMaterialsDatagen extends DatapackBuiltinEntriesProvider {
                 new Float[] { 1f, 1f, 1f },
                 false
         ));
-        context.register(createMaterialKey(MineFantasyReforged.MOD_ID, "metal/encrusted"), new MetalMaterial(
+        context.register(createMaterialKey(MFRMaterials.ENCRUSTED_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/encrusted"))),
                 new int[] { 255, 64, 255, 255 },
@@ -410,7 +410,7 @@ public class MFRMaterialsDatagen extends DatapackBuiltinEntriesProvider {
                 new Float[] { 1f, 1f, 1.2f },
                 false
         ));
-        context.register(createMaterialKey(MineFantasyReforged.MOD_ID, "metal/obsidian"), new MetalMaterial(
+        context.register(createMaterialKey(MFRMaterials.OBSIDIAN_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/obsidian"))),
                 new int[] { 255, 90, 45, 90 },
@@ -429,7 +429,7 @@ public class MFRMaterialsDatagen extends DatapackBuiltinEntriesProvider {
                 new Float[] { 1f, 1.3f, 1f },
                 false
         ));
-        context.register(createMaterialKey(MineFantasyReforged.MOD_ID, "metal/tungsten"), new MetalMaterial(
+        context.register(createMaterialKey(MFRMaterials.TUNGSTEN_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/tungsten"))),
                 new int[] { 255, 66, 86, 65 },
@@ -448,7 +448,7 @@ public class MFRMaterialsDatagen extends DatapackBuiltinEntriesProvider {
                 new Float[] { 1.3f, 1f, 1.3f },
                 false
         ));
-        context.register(createMaterialKey(MineFantasyReforged.MOD_ID, "metal/black_steel"), new MetalMaterial(
+        context.register(createMaterialKey(MFRMaterials.BLACK_STEEL_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/black_steel"))),
                 new int[] { 255, 80, 80, 80 },
@@ -467,7 +467,7 @@ public class MFRMaterialsDatagen extends DatapackBuiltinEntriesProvider {
                 new Float[] { 1f, 1f, 1f },
                 false
         ));
-        context.register(createMaterialKey(MineFantasyReforged.MOD_ID, "metal/blue_steel"), new MetalMaterial(
+        context.register(createMaterialKey(MFRMaterials.BLUE_STEEL_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/blue_steel"))),
                 new int[] { 255, 28, 31, 159 },
@@ -486,7 +486,7 @@ public class MFRMaterialsDatagen extends DatapackBuiltinEntriesProvider {
                 new Float[] { 1f, 1.2f, 0.8f },
                 false
         ));
-        context.register(createMaterialKey(MineFantasyReforged.MOD_ID, "metal/red_steel"), new MetalMaterial(
+        context.register(createMaterialKey(MFRMaterials.RED_STEEL_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/red_steel"))),
                 new int[] { 255, 219, 56, 58 },
@@ -505,7 +505,7 @@ public class MFRMaterialsDatagen extends DatapackBuiltinEntriesProvider {
                 new Float[] { 0.9f, 0.9f, 1.2f },
                 false
         ));
-        context.register(createMaterialKey(MineFantasyReforged.MOD_ID, "metal/silver"), new MetalMaterial(
+        context.register(createMaterialKey(MFRMaterials.SILVER_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/silver"))),
                 new int[] { 255, 155, 206, 205 },
@@ -524,7 +524,7 @@ public class MFRMaterialsDatagen extends DatapackBuiltinEntriesProvider {
                 new Float[] { 1f, 1f, 1f },
                 false
         ));
-        context.register(createMaterialKey(MineFantasyReforged.MOD_ID, "metal/gold"), new MetalMaterial(
+        context.register(createMaterialKey(MFRMaterials.GOLD_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/gold"))),
                 new int[] { 255, 243, 222, 49 },
@@ -543,7 +543,7 @@ public class MFRMaterialsDatagen extends DatapackBuiltinEntriesProvider {
                 new Float[] { 1f, 1f, 1f },
                 false
         ));
-        context.register(createMaterialKey(MineFantasyReforged.MOD_ID, "metal/mithril"), new MetalMaterial(
+        context.register(createMaterialKey(MFRMaterials.MITHRIL_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/mithril"))),
                 new int[] { 255, 250, 140, 250 },
@@ -562,7 +562,7 @@ public class MFRMaterialsDatagen extends DatapackBuiltinEntriesProvider {
                 new Float[] { 1f, 1f, 1f },
                 false
         ));
-        context.register(createMaterialKey(MineFantasyReforged.MOD_ID, "metal/adamantium"), new MetalMaterial(
+        context.register(createMaterialKey(MFRMaterials.ADAMANTIUM_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/adamantium"))),
                 new int[] { 255, 100, 200, 100 },
@@ -581,7 +581,7 @@ public class MFRMaterialsDatagen extends DatapackBuiltinEntriesProvider {
                 new Float[] { 1f, 1f, 1f },
                 false
         ));
-        context.register(createMaterialKey(MineFantasyReforged.MOD_ID, "metal/mithium"), new MetalMaterial(
+        context.register(createMaterialKey(MFRMaterials.MITHIUM_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/mithium"))),
                 new int[] { 255, 60, 200, 255 },
@@ -600,7 +600,7 @@ public class MFRMaterialsDatagen extends DatapackBuiltinEntriesProvider {
                 new Float[] { 1f, 1f, 1f },
                 false
         ));
-        context.register(createMaterialKey(MineFantasyReforged.MOD_ID, "metal/ignotumite"), new MetalMaterial(
+        context.register(createMaterialKey(MFRMaterials.IGNOTUMITE_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/ignotumite"))),
                 new int[] { 255, 20, 255, 100 },
@@ -619,7 +619,7 @@ public class MFRMaterialsDatagen extends DatapackBuiltinEntriesProvider {
                 new Float[] { 1f, 1f, 1f },
                 false
         ));
-        context.register(createMaterialKey(MineFantasyReforged.MOD_ID, "metal/ender"), new MetalMaterial(
+        context.register(createMaterialKey(MFRMaterials.ENDER_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/ender"))),
                 new int[] { 255, 255, 63, 243 },
@@ -638,7 +638,7 @@ public class MFRMaterialsDatagen extends DatapackBuiltinEntriesProvider {
                 new Float[] { 1f, 1f, 1f },
                 false
         ));
-        context.register(createMaterialKey(MineFantasyReforged.MOD_ID, "metal/composite_alloy"), new MetalMaterial(
+        context.register(createMaterialKey(MFRMaterials.COMPOSITE_ALLOY_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/composite_alloy"))),
                 new int[] { 255, 65, 75, 65 },
@@ -657,7 +657,7 @@ public class MFRMaterialsDatagen extends DatapackBuiltinEntriesProvider {
                 new Float[] { 1f, 1f, 1f },
                 false
         ));
-        context.register(createMaterialKey(MineFantasyReforged.MOD_ID, "metal/netherite"), new MetalMaterial(
+        context.register(createMaterialKey(MFRMaterials.NETHERITE_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/netherite"))),
                 new int[] { 255, 115, 113, 115 },

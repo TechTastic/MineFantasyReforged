@@ -1,6 +1,7 @@
 package minefantasy.mfr;
 
 import minefantasy.mfr.datagen.*;
+import minefantasy.mfr.events.MFREvents;
 import minefantasy.mfr.init.*;
 import minefantasy.mfr.item.color.ArmorMaterialItemColor;
 import minefantasy.mfr.item.color.OneLayerMaterialItemColor;

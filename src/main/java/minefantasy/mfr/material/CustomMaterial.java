@@ -3,12 +3,12 @@ package minefantasy.mfr.material;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import minefantasy.mfr.init.MFRMaterials;
 import minefantasy.mfr.registry.CustomMaterialRegistry;
 import minefantasy.mfr.registry.factories.CustomMaterialFactory;
 import minefantasy.mfr.registry.types.CustomMaterialType;
 import minefantasy.mfr.registry.types.CustomMaterialTypeRegistry;
 import net.minecraft.client.resources.language.I18n;
-import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -19,6 +19,8 @@ import net.minecraft.world.level.block.Block;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.SimpleTier;
+
+import java.util.concurrent.atomic.AtomicReference;
 
 public class CustomMaterial {
     /**
@@ -142,7 +144,9 @@ public class CustomMaterial {
      * Gets material name
      */
     public ResourceLocation getName() {
-        return CustomMaterialRegistry.ACCESS.registry(CustomMaterialRegistry.MATERIAL_REGISTRY_KEY).get().getKey(this);
+        AtomicReference<ResourceLocation> name = new AtomicReference<>(MFRMaterials.ANY);
+        CustomMaterialRegistry.ACCESS.registry(CustomMaterialRegistry.MATERIAL_REGISTRY_KEY).ifPresent(reg -> name.set(reg.getKey(this)));
+        return name.get();
     }
 
     /**

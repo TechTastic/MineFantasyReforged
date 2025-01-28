@@ -19,14 +19,17 @@ public record MaterialDataComponent(Optional<ResourceLocation> mainMaterial, Opt
     public static final String SLOT_HAFT = "haft_material";
 
     public MaterialDataComponent(ResourceLocation mainMaterial, ResourceLocation haftMaterial) {
-        this(Optional.of(mainMaterial), Optional.of(haftMaterial));
+        this(
+                mainMaterial == null ? Optional.empty() : Optional.of(mainMaterial),
+                haftMaterial  == null ? Optional.empty() : Optional.of(haftMaterial)
+        );
     }
 
     public static final MaterialDataComponent TOOL_DEFAULT =
             new MaterialDataComponent(MFRMaterials.ANY, MFRMaterials.OAK_WOOD);
 
     public static final MaterialDataComponent ITEM_DEFAULT =
-            new MaterialDataComponent(MFRMaterials.ANY, MFRMaterials.ANY);
+            new MaterialDataComponent(MFRMaterials.ANY, null);
 
     public static final Codec<MaterialDataComponent> CODEC = RecordCodecBuilder.create(instance ->
             instance.group(

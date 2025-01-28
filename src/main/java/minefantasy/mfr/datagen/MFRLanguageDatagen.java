@@ -54,8 +54,8 @@ public class MFRLanguageDatagen extends LanguageProvider {
 
         add("item.engin_anvil_tools.name", "Engineering Tools");
 
-        add("prospect.canmine", "You can mine this! (Tool: %1$s | Block: %2$s)");
-        add("prospect.cannotmine", "This cannot be mined with this tool! (Tool: %1$s | Block: %2$s)");
+        add("prospect.canmine", "You can mine this! (Tool: %1$s)");
+        add("prospect.cannotmine", "This cannot be mined with this tool! (Tool: %1$s)");
         add("gui.information", "Research");
         add("information.discovered", "Researched");
         add("information.buy", "Click for Research");

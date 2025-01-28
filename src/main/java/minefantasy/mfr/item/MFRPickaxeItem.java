@@ -4,19 +4,25 @@ import minefantasy.mfr.api.tier.IToolMaterial;
 import minefantasy.mfr.material.CustomMaterial;
 import minefantasy.mfr.registry.CustomMaterialRegistry;
 import minefantasy.mfr.util.CustomToolHelper;
+import minefantasy.mfr.util.Utils;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.PlayerChatMessage;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -70,7 +76,36 @@ public class MFRPickaxeItem extends PickaxeItem implements IToolMaterial {
     }
 
     @Override
-    public InteractionResult useOn(UseOnContext context) {
+    public @NotNull InteractionResult useOn(@NotNull UseOnContext context) {
+        Level level = context.getLevel();
+        Player player = context.getPlayer();
+        BlockPos pos = context.getClickedPos();
+        BlockState state = level.getBlockState(pos);
+        ItemStack stack = context.getItemInHand();
+
+        if (!level.isClientSide)
+            return super.useOn(context);
+
+        if (player == null || !player.canInteractWithBlock(pos, player.getEyePosition()
+                .distanceTo(context.getClickLocation())))
+            return super.useOn(context);
+
+        if (state.is(BlockTags.MINEABLE_WITH_PICKAXE)) {
+            CustomMaterial material = CustomToolHelper.getCustomPrimaryMaterial(stack);
+
+            String name = material.getName().getPath();
+            if (name.contains("/"))
+                name = name.split("/")[1];
+            name = Utils.convertSnakeCaseToSplitCapitalized(name);
+
+            if (state.is(material.getOrCreateIncorrectBlocksTag()))
+                player.displayClientMessage(Component.translatable("prospect.cannotmine",
+                        name).withStyle(ChatFormatting.RED), true);
+            else
+                player.displayClientMessage(Component.translatable("prospect.canmine",
+                        name).withStyle(ChatFormatting.GREEN), true);
+        }
+
         // TODO: Inform player about mine-ability of block
         return super.useOn(context);
     }
