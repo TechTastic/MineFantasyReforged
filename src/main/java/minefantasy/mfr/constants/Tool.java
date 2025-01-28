@@ -1,6 +1,11 @@
 package minefantasy.mfr.constants;
 
+import minefantasy.mfr.MineFantasyReforged;
 import net.minecraft.client.resources.language.I18n;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.block.Block;
 
 public enum Tool {
     HANDS("hands", false),

@@ -10,9 +10,17 @@ import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
 
-public record MaterialDataComponent(ResourceLocation mainMaterial, ResourceLocation haftMaterial) {
+import java.util.Optional;
+import java.util.function.Function;
+import java.util.function.Supplier;
+
+public record MaterialDataComponent(Optional<ResourceLocation> mainMaterial, Optional<ResourceLocation> haftMaterial) {
     public static final String SLOT_MAIN = "main_material";
     public static final String SLOT_HAFT = "haft_material";
+
+    public MaterialDataComponent(ResourceLocation mainMaterial, ResourceLocation haftMaterial) {
+        this(Optional.of(mainMaterial), Optional.of(haftMaterial));
+    }
 
     public static final MaterialDataComponent TOOL_DEFAULT =
             new MaterialDataComponent(MFRMaterials.ANY, MFRMaterials.OAK_WOOD);
@@ -22,14 +30,14 @@ public record MaterialDataComponent(ResourceLocation mainMaterial, ResourceLocat
 
     public static final Codec<MaterialDataComponent> CODEC = RecordCodecBuilder.create(instance ->
             instance.group(
-                    ResourceLocation.CODEC.optionalFieldOf(SLOT_MAIN, MFRMaterials.ANY).forGetter(MaterialDataComponent::mainMaterial),
-                    ResourceLocation.CODEC.optionalFieldOf(SLOT_HAFT, MFRMaterials.ANY).forGetter(MaterialDataComponent::haftMaterial)
+                    ResourceLocation.CODEC.optionalFieldOf(SLOT_MAIN).forGetter(MaterialDataComponent::mainMaterial),
+                    ResourceLocation.CODEC.optionalFieldOf(SLOT_HAFT).forGetter(MaterialDataComponent::haftMaterial)
             ).apply(instance, MaterialDataComponent::new)
     );
 
     public static final StreamCodec<ByteBuf, MaterialDataComponent> STREAM_CODEC = StreamCodec.composite(
-            ByteBufCodecs.fromCodec(ResourceLocation.CODEC), MaterialDataComponent::mainMaterial,
-            ByteBufCodecs.fromCodec(ResourceLocation.CODEC), MaterialDataComponent::haftMaterial,
+            ByteBufCodecs.fromCodec(ResourceLocation.CODEC), comp -> comp.mainMaterial().orElse(MFRMaterials.ANY),
+            ByteBufCodecs.fromCodec(ResourceLocation.CODEC), comp -> comp.haftMaterial().orElse(MFRMaterials.ANY),
             MaterialDataComponent::new
     );
 }

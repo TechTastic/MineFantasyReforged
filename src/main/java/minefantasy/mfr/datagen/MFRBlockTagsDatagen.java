@@ -1,14 +1,17 @@
 package minefantasy.mfr.datagen;
 
 import minefantasy.mfr.MineFantasyReforged;
+import minefantasy.mfr.constants.Tool;
 import minefantasy.mfr.init.MFRBlocks;
 import minefantasy.mfr.init.MFRTags;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
@@ -19,10 +22,7 @@ public class MFRBlockTagsDatagen extends BlockTagsProvider {
     }
 
     @Override
-    protected void addTags(HolderLookup.Provider provider) {
-        this.tag(MFRTags.Blocks.MINEABLE_WITH_HAMMER)
-                .addTag(BlockTags.NEEDS_STONE_TOOL);
-
+    protected void addTags(HolderLookup.@NotNull Provider provider) {
         this.tag(MFRTags.Blocks.YEW_LOGS).add(
                 MFRBlocks.YEW_LOG.get(),
                 MFRBlocks.YEW_WOOD.get(),

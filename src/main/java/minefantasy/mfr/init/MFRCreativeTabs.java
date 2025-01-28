@@ -38,7 +38,7 @@ public class MFRCreativeTabs {
     }
 
     public static ItemStack constructTool(Item item, CustomMaterial material) {
-        return constructTool(item, material.getName(CustomMaterialRegistry.ACCESS));
+        return constructTool(item, material.getName());
     }
 
     public static void register(IEventBus bus) {
@@ -52,11 +52,11 @@ public class MFRCreativeTabs {
                 CreativeModeTab.builder()
                         .icon(() -> constructTool(MFRItems.STANDARD_AXE.get(), MFRMaterials.TIN_METAL))
                         .displayItems((param, output) -> {
-                            List<CustomMaterial> metals = CustomMaterialRegistry.getList(CustomMaterialRegistry.ACCESS,
-                                    CustomMaterialTypeRegistry.METAL_TYPES.get());
+                            List<ResourceLocation> metals = CustomMaterialRegistry.getList(CustomMaterialRegistry.ACCESS,
+                                    CustomMaterialTypeRegistry.METAL_TYPES.get()).stream().map(CustomMaterial::getName).toList();
 
-                            output.acceptAll(metals.stream().map(mat -> MFRItems.STANDARD_PICK.get()
-                                    .construct(mat.getName(CustomMaterialRegistry.ACCESS))).toList());
+                            output.acceptAll(metals.stream().map(mat ->
+                                    MFRItems.STANDARD_PICK.get().construct(mat)).toList());
                             output.acceptAll(metals.stream().map(mat ->
                                     constructTool(MFRItems.STANDARD_AXE.get(), mat)).toList());
                             output.acceptAll(metals.stream().map(mat ->
@@ -72,8 +72,8 @@ public class MFRCreativeTabs {
                 CreativeModeTab.builder()
                         .icon(() -> constructTool(MFRItems.STANDARD_SWORD.get(), MFRMaterials.TIN_METAL))
                         .displayItems((param, output) -> {
-                            List<CustomMaterial> metals = CustomMaterialRegistry.getList(CustomMaterialRegistry.ACCESS,
-                                    CustomMaterialTypeRegistry.METAL_TYPES.get());
+                            List<ResourceLocation> metals = CustomMaterialRegistry.getList(CustomMaterialRegistry.ACCESS,
+                                    CustomMaterialTypeRegistry.METAL_TYPES.get()).stream().map(CustomMaterial::getName).toList();
 
                             output.acceptAll(metals.stream().map(mat ->
                                     constructTool(MFRItems.STANDARD_SWORD.get(), mat)).toList());
@@ -111,8 +111,8 @@ public class MFRCreativeTabs {
                 CreativeModeTab.builder()
                         .icon(() -> constructTool(MFRItems.STANDARD_PLATE_HELMET.get(), MFRMaterials.TIN_METAL))
                         .displayItems((param, output) -> {
-                            List<CustomMaterial> metals = CustomMaterialRegistry.getList(CustomMaterialRegistry.ACCESS,
-                                    CustomMaterialTypeRegistry.METAL_TYPES.get());
+                            List<ResourceLocation> metals = CustomMaterialRegistry.getList(CustomMaterialRegistry.ACCESS,
+                                    CustomMaterialTypeRegistry.METAL_TYPES.get()).stream().map(CustomMaterial::getName).toList();
 
                             metals.forEach(mat -> output.acceptAll(List.of(
                                     constructTool(MFRItems.STANDARD_CHAIN_HELMET.get(), mat),
@@ -145,14 +145,13 @@ public class MFRCreativeTabs {
                 CreativeModeTab.builder()
                         .icon(() -> CustomToolHelper.construct(MFRItems.STANDARD_BOW.get(), MFRMaterials.IRON_METAL, MFRMaterials.OAK_WOOD))
                         .displayItems((param, output) -> {
-                            List<CustomMaterial> metals = CustomMaterialRegistry.getList(CustomMaterialRegistry.ACCESS,
-                                    CustomMaterialTypeRegistry.METAL_TYPES.get());
-                            List<CustomMaterial> woods = CustomMaterialRegistry.getList(CustomMaterialRegistry.ACCESS,
-                                    CustomMaterialTypeRegistry.WOOD_TYPES.get());
+                            List<ResourceLocation> metals = CustomMaterialRegistry.getList(CustomMaterialRegistry.ACCESS,
+                                    CustomMaterialTypeRegistry.METAL_TYPES.get()).stream().map(CustomMaterial::getName).toList();
+                            List<ResourceLocation> woods = CustomMaterialRegistry.getList(CustomMaterialRegistry.ACCESS,
+                                    CustomMaterialTypeRegistry.WOOD_TYPES.get()).stream().map(CustomMaterial::getName).toList();
 
-                            output.acceptAll(woods.stream().map(mat ->
-                                    CustomToolHelper.construct(MFRItems.STANDARD_BOW.get(), MFRMaterials.IRON_METAL,
-                                            mat.getName(CustomMaterialRegistry.ACCESS))).toList());
+                            output.acceptAll(woods.stream().map(mat -> CustomToolHelper
+                                    .construct(MFRItems.STANDARD_BOW.get(), MFRMaterials.IRON_METAL, mat)).toList());
 
                             output.acceptAll(metals.stream().map(mat ->
                                     constructTool(MFRItems.STANDARD_ARROW.get(), mat)).toList());
@@ -173,13 +172,6 @@ public class MFRCreativeTabs {
                         .icon(() -> CustomToolHelper.constructSingleColoredLayer(
                                 MFRItems.TIMBER.get(), MFRMaterials.OAK_WOOD))
                         .displayItems((param, output) -> {
-                            List<CustomMaterial> metals = CustomMaterialRegistry.getList(CustomMaterialRegistry.ACCESS,
-                                    CustomMaterialTypeRegistry.METAL_TYPES.get());
-
-                            //output.acceptAll(metals.stream().map(mat ->
-                            //        constructTool(MFRItems.STANDARD_PICK.get(), mat)).toList());
-
-                            output.accept(Items.IRON_INGOT);
                         })
                         .title(Component.translatable("itemGroup.minefantasyreforged.utility_blocks"))
                         .withTabsBefore(ARCHERY_TAB.getId())
@@ -191,13 +183,6 @@ public class MFRCreativeTabs {
                         .icon(() -> CustomToolHelper.constructSingleColoredLayer(
                                 MFRItems.TIMBER.get(), MFRMaterials.OAK_WOOD))
                         .displayItems((param, output) -> {
-                            List<CustomMaterial> metals = CustomMaterialRegistry.getList(CustomMaterialRegistry.ACCESS,
-                                    CustomMaterialTypeRegistry.METAL_TYPES.get());
-
-                            //output.acceptAll(metals.stream().map(mat ->
-                            //        constructTool(MFRItems.STANDARD_PICK.get(), mat)).toList());
-
-                            output.accept(Items.IRON_INGOT);
                         })
                         .title(Component.translatable("itemGroup.minefantasyreforged.gadgets"))
                         .withTabsBefore(UTILITY_BLOCKS_TAB.getId())
@@ -209,24 +194,21 @@ public class MFRCreativeTabs {
                         .icon(() -> CustomToolHelper.constructSingleColoredLayer(
                                 MFRItems.TIMBER.get(), MFRMaterials.OAK_WOOD))
                         .displayItems((param, output) -> {
-                            List<CustomMaterial> woods = CustomMaterialRegistry.getList(CustomMaterialRegistry.ACCESS,
-                                    CustomMaterialTypeRegistry.WOOD_TYPES.get());
-                            List<CustomMaterial> metals = CustomMaterialRegistry.getList(CustomMaterialRegistry.ACCESS,
-                                    CustomMaterialTypeRegistry.METAL_TYPES.get());
+                            List<ResourceLocation> metals = CustomMaterialRegistry.getList(CustomMaterialRegistry.ACCESS,
+                                    CustomMaterialTypeRegistry.METAL_TYPES.get()).stream().map(CustomMaterial::getName).toList();
+                            List<ResourceLocation> woods = CustomMaterialRegistry.getList(CustomMaterialRegistry.ACCESS,
+                                    CustomMaterialTypeRegistry.WOOD_TYPES.get()).stream().map(CustomMaterial::getName).toList();
 
                             output.acceptAll(metals.stream().map(mat ->
                                     CustomToolHelper.constructSingleColoredLayer(MFRItems.BAR.get(),
-                                            mat.getName(CustomMaterialRegistry.ACCESS))).toList());
+                                            mat)).toList());
 
-                            output.acceptAll(woods.stream().map(mat ->
-                                    CustomToolHelper.constructSingleColoredLayer(MFRItems.TIMBER.get(),
-                                            mat.getName(CustomMaterialRegistry.ACCESS))).toList());
-                            output.acceptAll(woods.stream().map(mat ->
-                                    CustomToolHelper.constructSingleColoredLayer(MFRItems.TIMBER_CUT.get(),
-                                            mat.getName(CustomMaterialRegistry.ACCESS))).toList());
-                            output.acceptAll(woods.stream().map(mat ->
-                                    CustomToolHelper.constructSingleColoredLayer(MFRItems.TIMBER_PANE.get(),
-                                            mat.getName(CustomMaterialRegistry.ACCESS))).toList());
+                            output.acceptAll(woods.stream().map(mat -> CustomToolHelper
+                                    .constructSingleColoredLayer(MFRItems.TIMBER.get(), mat)).toList());
+                            output.acceptAll(woods.stream().map(mat -> CustomToolHelper
+                                    .constructSingleColoredLayer(MFRItems.TIMBER_CUT.get(), mat)).toList());
+                            output.acceptAll(woods.stream().map(mat -> CustomToolHelper
+                                    .constructSingleColoredLayer(MFRItems.TIMBER_PANE.get(), mat)).toList());
                         })
                         .title(Component.translatable("itemGroup.minefantasyreforged.materials"))
                         .withTabsBefore(GADGETS_TAB.getId())
@@ -237,15 +219,15 @@ public class MFRCreativeTabs {
                 CreativeModeTab.builder()
                         .icon(() -> constructTool(MFRItems.STANDARD_HANDPICK.get(), MFRMaterials.TIN_METAL))
                         .displayItems((param, output) -> {
-                            List<CustomMaterial> metals = CustomMaterialRegistry.getList(CustomMaterialRegistry.ACCESS,
-                                    CustomMaterialTypeRegistry.METAL_TYPES.get());
+                            List<ResourceLocation> metals = CustomMaterialRegistry.getList(CustomMaterialRegistry.ACCESS,
+                                    CustomMaterialTypeRegistry.METAL_TYPES.get()).stream().map(CustomMaterial::getName).toList();
 
                             output.acceptAll(metals.stream().map(mat ->
-                                    constructTool(MFRItems.STANDARD_HEAVY_PICK.get(), mat)).toList());
+                                    MFRItems.STANDARD_HEAVY_PICK.get().construct(mat)).toList());
                             output.acceptAll(metals.stream().map(mat ->
                                     constructTool(MFRItems.STANDARD_HEAVY_SHOVEL.get(), mat)).toList());
                             output.acceptAll(metals.stream().map(mat ->
-                                    constructTool(MFRItems.STANDARD_HANDPICK.get(), mat)).toList());
+                                    MFRItems.STANDARD_HANDPICK.get().construct(mat)).toList());
                             output.acceptAll(metals.stream().map(mat ->
                                     constructTool(MFRItems.STANDARD_TROW.get(), mat)).toList());
                             output.acceptAll(metals.stream().map(mat ->
@@ -264,13 +246,13 @@ public class MFRCreativeTabs {
                 CreativeModeTab.builder()
                         .icon(() -> MFRItems.STANDARD_HAMMMER.get().construct(MFRMaterials.TIN_METAL))
                         .displayItems((param, output) -> {
-                            List<CustomMaterial> metals = CustomMaterialRegistry.getList(CustomMaterialRegistry.ACCESS,
-                                    CustomMaterialTypeRegistry.METAL_TYPES.get());
+                            List<ResourceLocation> metals = CustomMaterialRegistry.getList(CustomMaterialRegistry.ACCESS,
+                                    CustomMaterialTypeRegistry.METAL_TYPES.get()).stream().map(CustomMaterial::getName).toList();
 
-                            output.acceptAll(metals.stream().map(mat -> MFRItems.STANDARD_HAMMMER.get()
-                                    .construct(mat.getName(CustomMaterialRegistry.ACCESS))).toList());
-                            output.acceptAll(metals.stream().map(mat -> MFRItems.STANDARD_HEAVY_HAMMMER.get()
-                                    .construct(mat.getName(CustomMaterialRegistry.ACCESS))).toList());
+                            output.acceptAll(metals.stream().map(mat ->
+                                    MFRItems.STANDARD_HAMMMER.get().construct(mat)).toList());
+                            output.acceptAll(metals.stream().map(mat ->
+                                    MFRItems.STANDARD_HEAVY_HAMMMER.get().construct(mat)).toList());
                             output.acceptAll(metals.stream().map(mat ->
                                     constructTool(MFRItems.STANDARD_TONGS.get(), mat)).toList());
                             output.acceptAll(metals.stream().map(mat ->
@@ -308,9 +290,6 @@ public class MFRCreativeTabs {
                         .icon(() -> CustomToolHelper.constructSingleColoredLayer(
                                 MFRItems.TIMBER.get(), MFRMaterials.OAK_WOOD))
                         .displayItems((param, output) -> {
-                            List<CustomMaterial> metals = CustomMaterialRegistry.getList(CustomMaterialRegistry.ACCESS,
-                                    CustomMaterialTypeRegistry.METAL_TYPES.get());
-
                             //output.acceptAll(metals.stream().map(mat ->
                             //        constructTool(MFRItems.STANDARD_PICK.get(), mat)).toList());
                         })
@@ -324,9 +303,6 @@ public class MFRCreativeTabs {
                         .icon(() -> CustomToolHelper.constructSingleColoredLayer(
                                 MFRItems.TIMBER.get(), MFRMaterials.OAK_WOOD))
                         .displayItems((param, output) -> {
-                            List<CustomMaterial> metals = CustomMaterialRegistry.getList(CustomMaterialRegistry.ACCESS,
-                                    CustomMaterialTypeRegistry.METAL_TYPES.get());
-
                             //output.acceptAll(metals.stream().map(mat ->
                             //        constructTool(MFRItems.STANDARD_PICK.get(), mat)).toList());
                         })
@@ -340,9 +316,6 @@ public class MFRCreativeTabs {
                         .icon(() -> CustomToolHelper.constructSingleColoredLayer(
                                 MFRItems.TIMBER.get(), MFRMaterials.OAK_WOOD))
                         .displayItems((param, output) -> {
-                            List<CustomMaterial> metals = CustomMaterialRegistry.getList(CustomMaterialRegistry.ACCESS,
-                                    CustomMaterialTypeRegistry.METAL_TYPES.get());
-
                             //output.acceptAll(metals.stream().map(mat ->
                             //        constructTool(MFRItems.STANDARD_PICK.get(), mat)).toList());
                         })
@@ -356,9 +329,6 @@ public class MFRCreativeTabs {
                         .icon(() -> CustomToolHelper.constructSingleColoredLayer(
                                 MFRItems.TIMBER.get(), MFRMaterials.OAK_WOOD))
                         .displayItems((param, output) -> {
-                            List<CustomMaterial> metals = CustomMaterialRegistry.getList(CustomMaterialRegistry.ACCESS,
-                                    CustomMaterialTypeRegistry.METAL_TYPES.get());
-
                             //output.acceptAll(metals.stream().map(mat ->
                             //        constructTool(MFRItems.STANDARD_PICK.get(), mat)).toList());
                         })
@@ -372,9 +342,6 @@ public class MFRCreativeTabs {
                         .icon(() -> CustomToolHelper.constructSingleColoredLayer(
                                 MFRItems.TIMBER.get(), MFRMaterials.OAK_WOOD))
                         .displayItems((param, output) -> {
-                            List<CustomMaterial> metals = CustomMaterialRegistry.getList(CustomMaterialRegistry.ACCESS,
-                                    CustomMaterialTypeRegistry.METAL_TYPES.get());
-
                             //output.acceptAll(metals.stream().map(mat ->
                             //        constructTool(MFRItems.STANDARD_PICK.get(), mat)).toList());
                         })

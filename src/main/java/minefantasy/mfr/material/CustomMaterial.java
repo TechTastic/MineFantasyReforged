@@ -103,7 +103,7 @@ public class CustomMaterial {
      * @return "incorrect_for_[material]_tool" tag key
      */
     public TagKey<Block> getOrCreateIncorrectBlocksTag() {
-        ResourceLocation name = this.getName(CustomMaterialRegistry.ACCESS);
+        ResourceLocation name = this.getName();
         String path = name.getPath();
 
         return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(
@@ -116,7 +116,7 @@ public class CustomMaterial {
      * @return "needs_[material]_tool" tag key
      */
     public TagKey<Block> getOrCreateNeedsBlocksTag() {
-        ResourceLocation name = this.getName(CustomMaterialRegistry.ACCESS);
+        ResourceLocation name = this.getName();
         String path = name.getPath();
 
         return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(
@@ -141,8 +141,8 @@ public class CustomMaterial {
     /**
      * Gets material name
      */
-    public ResourceLocation getName(RegistryAccess access) {
-        return access.registry(CustomMaterialRegistry.MATERIAL_REGISTRY_KEY).get().getKey(this);
+    public ResourceLocation getName() {
+        return CustomMaterialRegistry.ACCESS.registry(CustomMaterialRegistry.MATERIAL_REGISTRY_KEY).get().getKey(this);
     }
 
     /**

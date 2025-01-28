@@ -4,7 +4,6 @@ import minefantasy.mfr.api.tier.IToolMaterial;
 import minefantasy.mfr.api.tool.IToolMFR;
 import minefantasy.mfr.api.weapon.IDamageType;
 import minefantasy.mfr.constants.Tool;
-import minefantasy.mfr.registry.CustomMaterialRegistry;
 import minefantasy.mfr.util.CustomToolHelper;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -26,12 +25,17 @@ public class BasicCraftToolItem extends TieredItem implements IToolMaterial, ITo
     @Override
     public @NotNull Component getName(ItemStack item) {
         String unlocalName = super.getDescriptionId(item);
-        return CustomToolHelper.getLocalisedName(CustomMaterialRegistry.ACCESS, item, unlocalName);
+        return CustomToolHelper.getLocalisedName(item, unlocalName);
     }
 
     @Override
     public Tier getMaterial() {
         return this.getTier();
+    }
+
+    @Override
+    public float getEfficiencyModifier() {
+        return 1f;
     }
 
     @Override
@@ -41,13 +45,12 @@ public class BasicCraftToolItem extends TieredItem implements IToolMaterial, ITo
 
     @Override
     public float getEfficiency(ItemStack item) {
-        float efficiencyMod = 1.0F;
-        return CustomToolHelper.getEfficiencyForHds(CustomMaterialRegistry.ACCESS, item, getMaterial().getSpeed(), efficiencyMod);
+        return CustomToolHelper.getEfficiencyForHds(item, getMaterial().getSpeed(), getEfficiencyModifier());
     }
 
     @Override
     public int getTier(ItemStack item) {
-        return CustomToolHelper.getCrafterTier(CustomMaterialRegistry.ACCESS, item, this.tier);
+        return CustomToolHelper.getCrafterTier(item, this.tier);
     }
 
     @Override

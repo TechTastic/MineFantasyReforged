@@ -10,9 +10,6 @@ import net.minecraft.world.level.block.Block;
 public class MFRTags {
 
     public static class Blocks {
-        public static TagKey<Block> MINEABLE_WITH_HAMMER = TagKey.create(Registries.BLOCK,
-                ResourceLocation.fromNamespaceAndPath(MineFantasyReforged.MOD_ID, "mineable/hammer"));
-
         public static TagKey<Block> YEW_LOGS = TagKey.create(Registries.BLOCK,
                 ResourceLocation.fromNamespaceAndPath(MineFantasyReforged.MOD_ID, "yew_logs"));
         public static TagKey<Block> IRONBARK_LOGS = TagKey.create(Registries.BLOCK,

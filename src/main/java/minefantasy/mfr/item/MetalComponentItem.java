@@ -1,6 +1,5 @@
 package minefantasy.mfr.item;
 
-import minefantasy.mfr.MineFantasyReforged;
 import minefantasy.mfr.init.MFRDataComponents;
 import minefantasy.mfr.init.MFRMaterials;
 import minefantasy.mfr.item.component.MaterialDataComponent;
@@ -9,7 +8,6 @@ import minefantasy.mfr.registry.CustomMaterialRegistry;
 import minefantasy.mfr.registry.types.CustomMaterialType;
 import minefantasy.mfr.registry.types.CustomMaterialTypeRegistry;
 import minefantasy.mfr.util.CustomToolHelper;
-import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -35,7 +33,7 @@ public class MetalComponentItem extends MFRComponentItem {
     }
 
     public float getWeightInKg(ItemStack tool) {
-        CustomMaterial base = getBase(CustomMaterialRegistry.ACCESS, tool);
+        CustomMaterial base = getBase(tool);
         if (base != MFRMaterials.NONE.get()) {
             return base.getDensity() * mass;
         }
@@ -47,7 +45,7 @@ public class MetalComponentItem extends MFRComponentItem {
         super.appendHoverText(itemStack, tooltipContext, list, tooltipFlag);
 
         if (!canDamage()) {
-			CustomToolHelper.addComponentString(list, getBase(CustomMaterialRegistry.ACCESS, itemStack), mass);
+			CustomToolHelper.addComponentString(list, getBase(itemStack), mass);
 		}
         // TODO: EntityCogwork
 		/*if (this == MineFantasyItems.COGWORK_ARMOUR) {
@@ -60,12 +58,12 @@ public class MetalComponentItem extends MFRComponentItem {
 
     @Override
     public @NotNull Component getName(ItemStack itemStack) {
-        return CustomToolHelper.getLocalisedName(CustomMaterialRegistry.ACCESS,
-                itemStack, "item.commodity_" + BuiltInRegistries.ITEM.getKey(this).getPath() + ".name");
+        return CustomToolHelper.getLocalisedName(itemStack,
+                "item.commodity_" + BuiltInRegistries.ITEM.getKey(this).getPath() + ".name");
     }
 
-    public CustomMaterial getBase(RegistryAccess access, ItemStack component) {
-        return CustomToolHelper.getCustomPrimaryMaterial(access, component);
+    public CustomMaterial getBase(ItemStack component) {
+        return CustomToolHelper.getCustomPrimaryMaterial(component);
     }
 
     @OnlyIn(Dist.CLIENT)

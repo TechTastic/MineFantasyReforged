@@ -18,7 +18,7 @@ public class ArmorMaterialItemColor implements ItemColor {
                     return CustomToolHelper.getColourFromItemStack(stack, tintIndex);
                 }
             }*/
-            return CustomToolHelper.getColourFromItemStack(CustomMaterialRegistry.ACCESS, itemStack, i);
+            return CustomToolHelper.getColourFromItemStack(itemStack, i);
         }
         return 0xFFFFFFFF;
     }

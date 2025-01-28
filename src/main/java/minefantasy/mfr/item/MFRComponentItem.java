@@ -8,7 +8,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import org.jetbrains.annotations.NotNull;
 
@@ -34,15 +33,15 @@ public abstract class MFRComponentItem extends Item implements ITieredComponent 
     public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
         super.appendHoverText(itemStack, tooltipContext, list, tooltipFlag);
         if (isCustom)
-            CustomToolHelper.addComponentString(list, CustomToolHelper.getCustomPrimaryMaterial(CustomMaterialRegistry.ACCESS, itemStack));
+            CustomToolHelper.addComponentString(list, CustomToolHelper.getCustomPrimaryMaterial(itemStack));
     }
 
     @Override
     public @NotNull Component getName(ItemStack itemStack) {
         if (isCustom)
-			return CustomToolHelper.getLocalisedName(CustomMaterialRegistry.ACCESS, itemStack, "item.commodity_" + BuiltInRegistries.ITEM.getKey(this).getPath() + ".name");
+			return CustomToolHelper.getLocalisedName(itemStack, "item.commodity_" + BuiltInRegistries.ITEM.getKey(this).getPath() + ".name");
 
         String unlocalizedName = super.getDescriptionId(itemStack);
-		return CustomToolHelper.getLocalisedName(CustomMaterialRegistry.ACCESS, itemStack, unlocalizedName);
+		return CustomToolHelper.getLocalisedName(itemStack, unlocalizedName);
     }
 }

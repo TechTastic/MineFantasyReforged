@@ -5,21 +5,14 @@ import minefantasy.mfr.init.MFRDataComponents;
 import minefantasy.mfr.init.MFRMaterials;
 import minefantasy.mfr.item.component.MaterialDataComponent;
 import minefantasy.mfr.material.CustomMaterial;
-import minefantasy.mfr.registry.factories.CustomMaterialFactory;
 import minefantasy.mfr.registry.types.CustomMaterialType;
-import minefantasy.mfr.registry.types.CustomMaterialTypeRegistry;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
-import net.minecraft.core.RegistrySetBuilder;
-import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -46,12 +39,12 @@ public class CustomMaterialRegistry {
     /**
      * Gets a Material by name
      */
-    public static CustomMaterial getMaterial(RegistryAccess access, ResourceLocation name) {
+    public static CustomMaterial getMaterial(ResourceLocation name) {
         if (name == null)
             return MFRMaterials.NONE.get();
 
         Optional<Holder.Reference<CustomMaterial>> optMaterial =
-                access.lookup(MATERIAL_REGISTRY_KEY).flatMap(lookup ->
+                ACCESS.lookup(MATERIAL_REGISTRY_KEY).flatMap(lookup ->
                         lookup.get(ResourceKey.create(MATERIAL_REGISTRY_KEY, name)));
 
         return optMaterial.map(Holder.Reference::value).orElse(MFRMaterials.NONE.get());
@@ -81,10 +74,10 @@ public class CustomMaterialRegistry {
         MaterialDataComponent comp = getOrCreateComponent(item);
         if (Objects.equals(slot, MaterialDataComponent.SLOT_HAFT))
             item.set(MFRDataComponents.MATERIAL_DATA_COMPONENT_TYPE.get(),
-                    new MaterialDataComponent(comp.mainMaterial(), material));
+                    new MaterialDataComponent(comp.mainMaterial(), Optional.of(material)));
         else
             item.set(MFRDataComponents.MATERIAL_DATA_COMPONENT_TYPE.get(),
-                    new MaterialDataComponent(material, comp.haftMaterial()));
+                    new MaterialDataComponent(Optional.of(material), comp.haftMaterial()));
     }
 
     /**
@@ -93,11 +86,11 @@ public class CustomMaterialRegistry {
      * @param slot The 'position' of the Material
      * @return The Custom Material
      */
-    public static CustomMaterial getMaterialFor(RegistryAccess access, ItemStack item, String slot) {
+    public static CustomMaterial getMaterialFor(ItemStack item, String slot) {
         MaterialDataComponent comp = getOrCreateComponent(item);
         if (Objects.equals(slot, MaterialDataComponent.SLOT_HAFT))
-            return getMaterial(access, comp.haftMaterial());
-        return getMaterial(access, comp.mainMaterial());
+            return getMaterial(comp.haftMaterial().orElse(MFRMaterials.ANY));
+        return getMaterial(comp.mainMaterial().orElse(MFRMaterials.ANY));
     }
 
     public static MaterialDataComponent getOrCreateComponent(ItemStack item) {

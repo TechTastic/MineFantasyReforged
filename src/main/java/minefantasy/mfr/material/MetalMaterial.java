@@ -65,11 +65,11 @@ public class MetalMaterial extends CustomMaterial {
         }
     }
 
-    public static void addHeatables(RegistryAccess access) {
-        List<CustomMaterial> metal = CustomMaterialRegistry.getList(access, CustomMaterialTypeRegistry.METAL_TYPES.get());
+    public static void addHeatables() {
+        List<CustomMaterial> metal = CustomMaterialRegistry.getList(CustomMaterialRegistry.ACCESS, CustomMaterialTypeRegistry.METAL_TYPES.get());
         for (CustomMaterial customMat : metal) {
             int[] stats = customMat.getHeatableStats();
-            MFRLogUtil.logDebug("Set Heatable Stats for " + customMat.getName(access) + ": " + stats[0] + "," + stats[1] + "," + stats[2]);
+            MFRLogUtil.logDebug("Set Heatable Stats for " + customMat.getName() + ": " + stats[0] + "," + stats[1] + "," + stats[2]);
 
             MineFantasyReforgedAPI.setHeatableStats(customMat.materialIngredient, stats[0], stats[1], stats[2]);
             //MineFantasyReforgedAPI.setHeatableStats("hunk" + CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, customMat.getName(access).getPath().split("/")[1]), stats[0], stats[1], stats[2]);

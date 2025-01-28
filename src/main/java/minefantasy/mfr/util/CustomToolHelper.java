@@ -3,7 +3,6 @@ package minefantasy.mfr.util;
 import minefantasy.mfr.MineFantasyReforged;
 import minefantasy.mfr.api.crafting.ITieredComponent;
 import minefantasy.mfr.api.crafting.exotic.ISpecialDesign;
-import minefantasy.mfr.api.tier.IToolMaterial;
 import minefantasy.mfr.init.MFRMaterials;
 import minefantasy.mfr.item.component.MaterialDataComponent;
 import minefantasy.mfr.material.CustomMaterial;
@@ -12,18 +11,11 @@ import minefantasy.mfr.registry.types.CustomMaterialType;
 import minefantasy.mfr.registry.types.CustomMaterialTypeRegistry;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.resources.language.I18n;
-import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EquipmentSlotGroup;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -35,18 +27,18 @@ public class CustomToolHelper {
     /**
      * A bit of the new system, gets custom materials for the head
      */
-    public static CustomMaterial getCustomPrimaryMaterial(RegistryAccess access, ItemStack item) {
+    public static CustomMaterial getCustomPrimaryMaterial(ItemStack item) {
         if (item.isEmpty())
             return MFRMaterials.NONE.get();
 
-        return CustomMaterialRegistry.getMaterialFor(access, item, MaterialDataComponent.SLOT_MAIN);
+        return CustomMaterialRegistry.getMaterialFor(item, MaterialDataComponent.SLOT_MAIN);
     }
 
-    public static CustomMaterial getCustomSecondaryMaterial(RegistryAccess access, ItemStack item) {
+    public static CustomMaterial getCustomSecondaryMaterial(ItemStack item) {
         if (item.isEmpty())
             return MFRMaterials.NONE.get();
 
-        return CustomMaterialRegistry.getMaterialFor(access, item, MaterialDataComponent.SLOT_HAFT);
+        return CustomMaterialRegistry.getMaterialFor(item, MaterialDataComponent.SLOT_HAFT);
     }
 
     public static ItemStack construct(Item base, ResourceLocation main) {
@@ -61,7 +53,6 @@ public class CustomToolHelper {
         }
 
         updateRarity(item);
-        updateComponents(item);
 
         return item;
     }
@@ -83,31 +74,7 @@ public class CustomToolHelper {
         Rarity rarity = stack.get(DataComponents.RARITY);
         if (rarity == null)
             rarity = Rarity.COMMON;
-        stack.set(DataComponents.RARITY, CustomToolHelper.getRarity(CustomMaterialRegistry.ACCESS, stack, rarity));
-    }
-
-    public static void updateComponents(ItemStack stack) {
-        if (stack.getItem() instanceof IToolMaterial toolMaterial ) {
-            ItemAttributeModifiers modifiers = stack.get(DataComponents.ATTRIBUTE_MODIFIERS);
-            if (modifiers == null)
-                modifiers = ItemAttributeModifiers.builder().build();
-
-            stack.set(DataComponents.ATTRIBUTE_MODIFIERS, modifiers
-                    .withModifierAdded(Attributes.ATTACK_DAMAGE, new AttributeModifier(
-                                    Item.BASE_ATTACK_DAMAGE_ID, getMeleeDamage(CustomMaterialRegistry.ACCESS, stack,
-                                    toolMaterial.getMaterial().getAttackDamageBonus()), AttributeModifier.Operation.ADD_VALUE),
-                            EquipmentSlotGroup.MAINHAND)
-
-                    .withModifierAdded(Attributes.ATTACK_SPEED, new AttributeModifier(
-                                    Item.BASE_ATTACK_SPEED_ID, -3f, AttributeModifier.Operation.ADD_VALUE),
-                            EquipmentSlotGroup.MAINHAND)
-
-                    .withModifierAdded(Attributes.MINING_EFFICIENCY, new AttributeModifier(
-                                    ResourceLocation.withDefaultNamespace("mining_efficiency"),
-                                    getEfficiency(CustomMaterialRegistry.ACCESS, stack, toolMaterial.getMaterial().getSpeed(),
-                                            0.5F), AttributeModifier.Operation.ADD_VALUE),
-                            EquipmentSlotGroup.MAINHAND));
-        }
+        stack.set(DataComponents.RARITY, CustomToolHelper.getRarity(stack, rarity));
     }
 
     /**
@@ -115,9 +82,9 @@ public class CustomToolHelper {
      *
      * @param itemRarity is the default id
      */
-    public static Rarity getRarity(RegistryAccess access, ItemStack item, Rarity itemRarity) {
+    public static Rarity getRarity(ItemStack item, Rarity itemRarity) {
         int lvl = itemRarity.ordinal();
-        CustomMaterial material = getCustomPrimaryMaterial(access, item);
+        CustomMaterial material = getCustomPrimaryMaterial(item);
         if (material != MFRMaterials.NONE.get())
             lvl = material.getRarity().ordinal();
 
@@ -136,9 +103,9 @@ public class CustomToolHelper {
      *
      * @param dura is the default dura
      */
-    public static int getMaxDamage(RegistryAccess access, ItemStack stack, int dura) {
-        CustomMaterial head = getCustomPrimaryMaterial(access, stack);
-        CustomMaterial haft = getCustomSecondaryMaterial(access, stack);
+    public static int getMaxDamage(ItemStack stack, int dura) {
+        CustomMaterial head = getCustomPrimaryMaterial(stack);
+        CustomMaterial haft = getCustomSecondaryMaterial(stack);
         if (head != MFRMaterials.NONE.get())
             dura = (int) (head.getDurability() * 100);
         if (haft != MFRMaterials.NONE.get())
@@ -151,14 +118,14 @@ public class CustomToolHelper {
      *
      * @param layer 0 is base, haft is 1, 2 is detail
      */
-    public static int getColourFromItemStack(RegistryAccess access, ItemStack item, int layer) {
+    public static int getColourFromItemStack(ItemStack item, int layer) {
         if (layer == 0) {
-            CustomMaterial material = getCustomPrimaryMaterial(access, item);
+            CustomMaterial material = getCustomPrimaryMaterial(item);
             if (material != MFRMaterials.NONE.get())
                 return material.getColourInt();
         }
         if (layer == 1) {
-            CustomMaterial material = getCustomSecondaryMaterial(access, item);
+            CustomMaterial material = getCustomSecondaryMaterial(item);
             if (material != MFRMaterials.NONE.get())
                 return material.getColourInt();
         }
@@ -166,9 +133,9 @@ public class CustomToolHelper {
         return MFRMaterials.NONE.get().getColourInt();
     }
 
-    public static float getWeightModifier(RegistryAccess access, ItemStack item, float base) {
-        CustomMaterial metal = getCustomPrimaryMaterial(access, item);
-        CustomMaterial wood = getCustomSecondaryMaterial(access, item);
+    public static float getWeightModifier(ItemStack item, float base) {
+        CustomMaterial metal = getCustomPrimaryMaterial(item);
+        CustomMaterial wood = getCustomSecondaryMaterial(item);
 
         if (metal != MFRMaterials.NONE.get())
             base = (metal.getDensity() / 2.5F) * base;
@@ -182,16 +149,16 @@ public class CustomToolHelper {
      *
      * @param defaultModifier default if no material exists
      */
-    public static float getMeleeDamage(RegistryAccess access, ItemStack item, float defaultModifier) {
-        CustomMaterial custom = getCustomPrimaryMaterial(access, item);
+    public static float getMeleeDamage(ItemStack item, float defaultModifier) {
+        CustomMaterial custom = getCustomPrimaryMaterial(item);
         if (custom != MFRMaterials.NONE.get())
             return custom.getSharpness();
         return defaultModifier;
     }
 
-    public static float getBowDamage(RegistryAccess access, ItemStack item, float defaultModifier) {
-        CustomMaterial base = getCustomSecondaryMaterial(access, item);
-        CustomMaterial joints = getCustomPrimaryMaterial(access, item);
+    public static float getBowDamage(ItemStack item, float defaultModifier) {
+        CustomMaterial base = getCustomSecondaryMaterial(item);
+        CustomMaterial joints = getCustomPrimaryMaterial(item);
 
         if (base != MFRMaterials.NONE.get())
             defaultModifier = base.getFlexibility();
@@ -203,8 +170,8 @@ public class CustomToolHelper {
     /**
      * The total damage of a bow and arrow
      */
-    public static float getBaseDamages(RegistryAccess access, ItemStack item, float defaultModifier) {
-        CustomMaterial custom = getCustomPrimaryMaterial(access, item);
+    public static float getBaseDamages(ItemStack item, float defaultModifier) {
+        CustomMaterial custom = getCustomPrimaryMaterial(item);
         if (custom != MFRMaterials.NONE.get())
             return getBaseDamage(custom.getSharpness() * custom.getFlexibility());
         return getBaseDamage(defaultModifier);
@@ -217,33 +184,33 @@ public class CustomToolHelper {
         return 4F + modifier;
     }
 
-    public static float getEfficiencyForHds(RegistryAccess access, ItemStack item, float value, float mod) {
-        CustomMaterial custom = getCustomPrimaryMaterial(access, item);
+    public static float getEfficiencyForHds(ItemStack item, float value, float mod) {
+        CustomMaterial custom = getCustomPrimaryMaterial(item);
         if (custom != MFRMaterials.NONE.get())
             value = 2.0F + (custom.getHardness() * 4F);// Efficiency starts at 2 and each point of sharpness adds 2
         return ToolHelper.modifyDigOnQuality(item, value) * mod;
     }
 
-    public static float getEfficiency(RegistryAccess access, ItemStack item, float value, float mod) {
-        CustomMaterial custom = getCustomPrimaryMaterial(access, item);
+    public static float getEfficiency(ItemStack item, float value, float mod) {
+        CustomMaterial custom = getCustomPrimaryMaterial(item);
         if (custom != MFRMaterials.NONE.get())
             value = 2.0F + (custom.getSharpness() * 2F);// Efficiency starts at 2 and each point of sharpness adds 2
         return ToolHelper.modifyDigOnQuality(item, value) * mod;
     }
 
-    public static int getCrafterTier(RegistryAccess access, ItemStack item, int value) {
-        CustomMaterial custom = getCustomPrimaryMaterial(access, item);
+    public static int getCrafterTier(ItemStack item, int value) {
+        CustomMaterial custom = getCustomPrimaryMaterial(item);
         if (custom != MFRMaterials.NONE.get())
             return custom.getCrafterTier();
         return value;
     }
 
-    public static int getHarvestLevel(RegistryAccess access, ItemStack item, int value) {
+    public static int getHarvestLevel(ItemStack item, int value) {
         if (value <= 0) {
             return value;// If its not effective
         }
 
-        CustomMaterial custom = getCustomPrimaryMaterial(access, item);
+        CustomMaterial custom = getCustomPrimaryMaterial(item);
         if (custom != MFRMaterials.NONE.get()) {
             if (custom.getTier() == 0)
                 return 1;
@@ -255,13 +222,13 @@ public class CustomToolHelper {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static void addInformation(RegistryAccess access, ItemStack item, List<Component> list) {
-        CustomMaterial secondaryMaterial = getCustomSecondaryMaterial(access, item);
+    public static void addInformation(ItemStack item, List<Component> list) {
+        CustomMaterial secondaryMaterial = getCustomSecondaryMaterial(item);
 
         if (materialOnTooltip()) {
-            CustomMaterial mainMaterial = getCustomPrimaryMaterial(access, item);
+            CustomMaterial mainMaterial = getCustomPrimaryMaterial(item);
             if (mainMaterial != null && mainMaterial != MFRMaterials.NONE.get()) {
-                String matName = I18n.get(I18n.get(Utils.convertSnakeCaseToSplitCapitalized(mainMaterial.getName(access).getPath().split("/")[1])));
+                String matName = I18n.get(I18n.get(Utils.convertSnakeCaseToSplitCapitalized(mainMaterial.getName().getPath().split("/")[1])));
                 list.add(Component.literal(matName).withStyle(ChatFormatting.GOLD));
             }
         }
@@ -269,7 +236,7 @@ public class CustomToolHelper {
         if (secondaryMaterial != MFRMaterials.NONE.get()) {
             String name;
             String localized_material;
-            name = secondaryMaterial.getName(access).getPath();
+            name = secondaryMaterial.getName().getPath();
             if (name.contains("/"))
                 name = name.split("/")[1];
             localized_material = I18n.get("material." + name + ".name");
@@ -293,13 +260,13 @@ public class CustomToolHelper {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static void addBowInformation(RegistryAccess access, ItemStack item, List<Component> list) {
+    public static void addBowInformation(ItemStack item, List<Component> list) {
 
-        CustomMaterial material = getCustomPrimaryMaterial(access, item);
+        CustomMaterial material = getCustomPrimaryMaterial(item);
         if (material != MFRMaterials.NONE.get()) {
             String name;
             String localized_material;
-            name = material.getName(access).getPath();
+            name = material.getName().getPath();
             if (name.contains("/"))
                 name = name.split("/")[1];
             localized_material = I18n.get("material." + name + ".name");
@@ -314,16 +281,16 @@ public class CustomToolHelper {
 
     }
 
-    public static String getSecondaryLocalisedName(RegistryAccess access, ItemStack item, String unlocalizedName) {
+    public static String getSecondaryLocalisedName(ItemStack item, String unlocalizedName) {
         if (materialOnTooltip()) {
             I18n.get(unlocalizedName);
         }
 
-        CustomMaterial material = getCustomSecondaryMaterial(access, item);
+        CustomMaterial material = getCustomSecondaryMaterial(item);
         String name = "any";
         String localized_material = null;
         if (material != MFRMaterials.NONE.get()) {
-            name = material.getName(access).getPath();
+            name = material.getName().getPath();
             if (name.contains("/"))
                 name = name.split("/")[1];
             localized_material = I18n.get("material." + name + ".name");
@@ -336,16 +303,16 @@ public class CustomToolHelper {
                 I18n.get(Utils.convertSnakeCaseToSplitCapitalized(name)));
     }
 
-    public static Component getLocalisedName(RegistryAccess access, ItemStack item, String unlocalizedName) {
+    public static Component getLocalisedName(ItemStack item, String unlocalizedName) {
         if (materialOnTooltip()) {
             return Component.translatable(unlocalizedName);
         }
 
-        CustomMaterial material = getCustomPrimaryMaterial(access, item);
+        CustomMaterial material = getCustomPrimaryMaterial(item);
         String name = "any";
         String localized_material = null;
         if (material != MFRMaterials.NONE.get()) {
-            name = material.getName(access).getPath();
+            name = material.getName().getPath();
             if (name.contains("/"))
                 name = name.split("/")[1];
             localized_material = I18n.get("material." + name + ".name");
@@ -359,34 +326,34 @@ public class CustomToolHelper {
                 I18n.get(Utils.convertSnakeCaseToSplitCapitalized(name)));
     }
 
-    public static boolean areEqual(RegistryAccess access, ItemStack recipeItem, ItemStack inputItem) {
+    public static boolean areEqual(ItemStack recipeItem, ItemStack inputItem) {
         if (recipeItem.isEmpty())
             return inputItem.isEmpty();
         if (inputItem.isEmpty())
             return false;
 
-        return ItemStack.isSameItem(recipeItem, inputItem) && doesMainMatchForRecipe(access, recipeItem, inputItem)
-                && doesHaftMatchForRecipe(access, recipeItem, inputItem);
+        return ItemStack.isSameItem(recipeItem, inputItem) && doesMainMatchForRecipe(recipeItem, inputItem)
+                && doesHaftMatchForRecipe(recipeItem, inputItem);
     }
 
     /**
      * Checks if two items' materials match
      */
-    public static boolean doesMatchForRecipe(RegistryAccess access, ItemStack recipeItem, ItemStack inputItem) {
-        return doesMainMatchForRecipe(access, recipeItem, inputItem) && doesHaftMatchForRecipe(access, recipeItem, inputItem);
+    public static boolean doesMatchForRecipe(ItemStack recipeItem, ItemStack inputItem) {
+        return doesMainMatchForRecipe(recipeItem, inputItem) && doesHaftMatchForRecipe(recipeItem, inputItem);
     }
 
     /**
      * Checks if two items' materials match
      */
-    public static boolean doesMatchForRecipe(RegistryAccess access, Ingredient ingredient, ItemStack inputItem) {
+    public static boolean doesMatchForRecipe(Ingredient ingredient, ItemStack inputItem) {
         return Arrays.stream(ingredient.getItems())
-                .anyMatch(itemStack -> doesMainMatchForRecipe(access, itemStack, inputItem) && doesHaftMatchForRecipe(access, itemStack, inputItem));
+                .anyMatch(itemStack -> doesMainMatchForRecipe(itemStack, inputItem) && doesHaftMatchForRecipe(itemStack, inputItem));
     }
 
-    public static boolean doesMainMatchForRecipe(RegistryAccess access, ItemStack recipeItem, ItemStack inputItem) {
-        CustomMaterial recipeMat = CustomToolHelper.getCustomPrimaryMaterial(access, recipeItem);
-        CustomMaterial inputMat = CustomToolHelper.getCustomPrimaryMaterial(access, inputItem);
+    public static boolean doesMainMatchForRecipe(ItemStack recipeItem, ItemStack inputItem) {
+        CustomMaterial recipeMat = CustomToolHelper.getCustomPrimaryMaterial(recipeItem);
+        CustomMaterial inputMat = CustomToolHelper.getCustomPrimaryMaterial(inputItem);
 
         if (recipeMat == MFRMaterials.NONE.get()) {
             return true;
@@ -398,9 +365,9 @@ public class CustomToolHelper {
         return recipeMat == inputMat;
     }
 
-    public static boolean doesHaftMatchForRecipe(RegistryAccess access, ItemStack recipeItem, ItemStack inputItem) {
-        CustomMaterial recipeMat = CustomToolHelper.getCustomSecondaryMaterial(access, recipeItem);
-        CustomMaterial inputMat = CustomToolHelper.getCustomSecondaryMaterial(access, inputItem);
+    public static boolean doesHaftMatchForRecipe(ItemStack recipeItem, ItemStack inputItem) {
+        CustomMaterial recipeMat = CustomToolHelper.getCustomSecondaryMaterial(recipeItem);
+        CustomMaterial inputMat = CustomToolHelper.getCustomSecondaryMaterial(inputItem);
 
         if (recipeMat == MFRMaterials.NONE.get()) {
             return true;
@@ -432,30 +399,30 @@ public class CustomToolHelper {
         }
     }
 
-    public static float getBurnModifier(RegistryAccess access, ItemStack fuel) {
-        CustomMaterial mat = getCustomPrimaryMaterial(access, fuel);
+    public static float getBurnModifier(ItemStack fuel) {
+        CustomMaterial mat = getCustomPrimaryMaterial(fuel);
         if (mat != MFRMaterials.NONE.get() && mat.getType() == CustomMaterialTypeRegistry.WOOD_TYPES.get()) {
             return (2 * mat.getDensity()) + 0.5F;
         }
         return 1.0F;
     }
 
-    public static String getReferenceName(RegistryAccess access, ItemStack item) {
-        return getReferenceName(access, item, true);
+    public static String getReferenceName(ItemStack item) {
+        return getReferenceName(item, true);
     }
 
-    public static String getReferenceName(RegistryAccess access, ItemStack item, boolean tiered) {
+    public static String getReferenceName(ItemStack item, boolean tiered) {
         String reference = getSimpleReferenceName(item.getItem());
 
         if (tiered) {
-            CustomMaterial base = getCustomPrimaryMaterial(access, item);
-            CustomMaterial haft = getCustomSecondaryMaterial(access, item);
+            CustomMaterial base = getCustomPrimaryMaterial(item);
+            CustomMaterial haft = getCustomSecondaryMaterial(item);
 
             if (base != MFRMaterials.NONE.get()) {
-                reference += "_" + base.getName(access);
+                reference += "_" + base.getName();
             }
             if (haft != MFRMaterials.NONE.get()) {
-                reference += "_" + haft.getName(access);
+                reference += "_" + haft.getName();
             }
         }
 
@@ -469,11 +436,11 @@ public class CustomToolHelper {
         return reference.toLowerCase();
     }
 
-    public static boolean areToolsSame(RegistryAccess access, ItemStack item1, ItemStack item2) {
-        CustomMaterial mainMaterial1 = getCustomPrimaryMaterial(access, item1);
-        CustomMaterial secondaryMaterial1 = getCustomSecondaryMaterial(access, item2);
-        CustomMaterial mainMaterial2 = getCustomPrimaryMaterial(access, item1);
-        CustomMaterial secondaryMaterial2 = getCustomSecondaryMaterial(access, item2);
+    public static boolean areToolsSame(ItemStack item1, ItemStack item2) {
+        CustomMaterial mainMaterial1 = getCustomPrimaryMaterial(item1);
+        CustomMaterial secondaryMaterial1 = getCustomSecondaryMaterial(item2);
+        CustomMaterial mainMaterial2 = getCustomPrimaryMaterial(item1);
+        CustomMaterial secondaryMaterial2 = getCustomSecondaryMaterial(item2);
         if ((mainMaterial1 == MFRMaterials.NONE.get() && secondaryMaterial1 != MFRMaterials.NONE.get()) || (secondaryMaterial1 == MFRMaterials.NONE.get() && mainMaterial1 != MFRMaterials.NONE.get()))
             return false;
         if ((mainMaterial2 == MFRMaterials.NONE.get() && secondaryMaterial2 != MFRMaterials.NONE.get()) || (secondaryMaterial2 == MFRMaterials.NONE.get() && mainMaterial2 != MFRMaterials.NONE.get()))
@@ -484,16 +451,16 @@ public class CustomToolHelper {
         return mainMaterial2 == secondaryMaterial2;
     }
 
-    public static boolean isMythic(RegistryAccess access, ItemStack result) {
-        CustomMaterial main1 = getCustomPrimaryMaterial(access, result);
-        CustomMaterial haft1 = getCustomPrimaryMaterial(access, result);
+    public static boolean isMythic(ItemStack result) {
+        CustomMaterial main1 = getCustomPrimaryMaterial(result);
+        CustomMaterial haft1 = getCustomPrimaryMaterial(result);
         if (main1 != null  && main1 != MFRMaterials.NONE.get() && main1.isUnbreakable()) {
             return true;
         }
         return haft1 != null && haft1 != MFRMaterials.NONE.get() && haft1.isUnbreakable();
     }
 
-    public static String getComponentMaterial(RegistryAccess access, ItemStack item, CustomMaterialType type) {
+    public static String getComponentMaterial(ItemStack item, CustomMaterialType type) {
         if (item.isEmpty() || type == null)
             return null;
 
@@ -502,32 +469,32 @@ public class CustomToolHelper {
         //    return getComponentMaterial(ItemHeated.getStack(item), type);
         //}
 
-        CustomMaterial material = CustomToolHelper.getCustomPrimaryMaterial(access, item);
+        CustomMaterial material = CustomToolHelper.getCustomPrimaryMaterial(item);
         if (material != MFRMaterials.NONE.get()) {
-            return material.getType() == type ? material.getName(access).getPath().split("/")[1] : null;
+            return material.getType() == type ? material.getName().getPath().split("/")[1] : null;
         }
         return null;
     }
 
-    public static boolean hasAnyMaterial(RegistryAccess access, ItemStack item) {
-        return getCustomPrimaryMaterial(access, item) != MFRMaterials.NONE.get() || getCustomSecondaryMaterial(access, item) != MFRMaterials.NONE.get();
+    public static boolean hasAnyMaterial(ItemStack item) {
+        return getCustomPrimaryMaterial(item) != MFRMaterials.NONE.get() || getCustomSecondaryMaterial(item) != MFRMaterials.NONE.get();
     }
 
-    public static void tryDeconstruct(RegistryAccess access, ItemStack newitem, ItemStack mainItem) {
+    public static void tryDeconstruct(ItemStack newitem, ItemStack mainItem) {
         CustomMaterialType type = null;
         if (!newitem.isEmpty() && newitem.getItem() instanceof ITieredComponent tiered) {
             type = tiered.getMaterialType(newitem);
         }
 
         if (type != null) {
-            CustomMaterial primary = CustomToolHelper.getCustomPrimaryMaterial(access, mainItem);
-            CustomMaterial secondary = CustomToolHelper.getCustomSecondaryMaterial(access, mainItem);
+            CustomMaterial primary = CustomToolHelper.getCustomPrimaryMaterial(mainItem);
+            CustomMaterial secondary = CustomToolHelper.getCustomSecondaryMaterial(mainItem);
 
             if (primary != MFRMaterials.NONE.get() && primary.getType() == type) {
-                CustomMaterialRegistry.addMaterial(newitem, MaterialDataComponent.SLOT_MAIN, primary.getName(access));
+                CustomMaterialRegistry.addMaterial(newitem, MaterialDataComponent.SLOT_MAIN, primary.getName());
             } else {
                 if (secondary != MFRMaterials.NONE.get() && secondary.getType() == type) {
-                    CustomMaterialRegistry.addMaterial(newitem, MaterialDataComponent.SLOT_MAIN, secondary.getName(access));
+                    CustomMaterialRegistry.addMaterial(newitem, MaterialDataComponent.SLOT_MAIN, secondary.getName());
                 }
             }
         }

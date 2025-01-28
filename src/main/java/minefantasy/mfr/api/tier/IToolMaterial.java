@@ -11,6 +11,8 @@ public interface IToolMaterial {
      */
     Tier getMaterial();
 
+    float getEfficiencyModifier();
+
     /**
      * Constructs the given item with the given main and haft materials
      */

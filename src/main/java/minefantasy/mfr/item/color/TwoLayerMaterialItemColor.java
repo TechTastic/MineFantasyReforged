@@ -9,6 +9,6 @@ import org.jetbrains.annotations.NotNull;
 public class TwoLayerMaterialItemColor implements ItemColor {
     @Override
     public int getColor(@NotNull ItemStack itemStack, int i) {
-        return CustomToolHelper.getColourFromItemStack(CustomMaterialRegistry.ACCESS, itemStack, i);
+        return CustomToolHelper.getColourFromItemStack(itemStack, i);
     }
 }

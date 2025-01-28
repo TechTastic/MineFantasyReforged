@@ -46,7 +46,7 @@ public class MFRItems {
 
     // STANDARD CUSTOM TOOLS
 
-    public static final DeferredItem<SwordItem> STANDARD_SWORD;
+    public static final DeferredItem<MFRSwordItem> STANDARD_SWORD;
     public static final DeferredItem<WaraxeItem> STANDARD_WARAXE;
     public static final DeferredItem<MaceItem> STANDARD_MACE;
     public static final DeferredItem<DaggerItem> STANDARD_DAGGER;
@@ -137,7 +137,7 @@ public class MFRItems {
         // STANDARD CUSTOM TOOLS
 
         STANDARD_SWORD = ITEMS.register("standard_sword", () ->
-                new SwordItem(Tiers.IRON, new Item.Properties(), true));
+                new MFRSwordItem(Tiers.IRON, new Item.Properties(), true));
         STANDARD_WARAXE = ITEMS.register("standard_waraxe", () ->
                 new WaraxeItem(Tiers.IRON, new Item.Properties(), true));
         STANDARD_MACE = ITEMS.register("standard_mace", () ->
@@ -159,7 +159,7 @@ public class MFRItems {
         STANDARD_LANCE = ITEMS.register("standard_lance", () ->
                 new LanceItem(Tiers.IRON, new Item.Properties(), true));
         STANDARD_PICK = ITEMS.register("standard_pick", () ->
-                new MFRPickaxeItem(Tiers.IRON, new Item.Properties(), true));
+                new MFRPickaxeItem(Tiers.IRON, new Item.Properties(), 1f, true));
         STANDARD_AXE = ITEMS.register("standard_axe", () ->
                 new MFRAxeItem(Tiers.IRON, new Item.Properties(), true));
         STANDARD_SHOVEL = ITEMS.register("standard_spade", () ->
@@ -167,11 +167,11 @@ public class MFRItems {
         STANDARD_HOE = ITEMS.register("standard_hoe", () ->
                 new MFRHoeItem(Tiers.IRON, new Item.Properties(), true));
         STANDARD_HEAVY_PICK = ITEMS.register("standard_heavy_pick", () ->
-                new HeavyPickaxeItem(Tiers.IRON, new Item.Properties(), true));
+                new HeavyPickaxeItem(Tiers.IRON, new Item.Properties(), 1f, true));
         STANDARD_HEAVY_SHOVEL = ITEMS.register("standard_heavy_shovel", () ->
                 new HeavyShovelItem(Tiers.IRON, new Item.Properties(), true));
         STANDARD_HANDPICK = ITEMS.register("standard_handpick", () ->
-                new HandpickItem(Tiers.IRON, new Item.Properties(), true));
+                new HandpickItem(Tiers.IRON, new Item.Properties(), 1f, true));
         STANDARD_TROW = ITEMS.register("standard_trow", () ->
                 new TrowItem(Tiers.IRON, new Item.Properties(), true));
         STANDARD_SCYTHE = ITEMS.register("standard_scythe", () ->
@@ -181,9 +181,9 @@ public class MFRItems {
         STANDARD_LUMBER = ITEMS.register("standard_lumber", () ->
                 new LumberAxeItem(Tiers.IRON, new Item.Properties(), true));
         STANDARD_HAMMMER = ITEMS.register("standard_hammer", () ->
-                new HammerItem(Tiers.IRON, false, 0, new Item.Properties(), true));
+                new HammerItem(Tiers.IRON, false, 0, new Item.Properties(), 1f, true));
         STANDARD_HEAVY_HAMMMER = ITEMS.register("standard_heavy_hammer", () ->
-                new HammerItem(Tiers.IRON, true, 0, new Item.Properties(), true));
+                new HammerItem(Tiers.IRON, true, 0, new Item.Properties(), 1f, true));
         STANDARD_TONGS = ITEMS.register("standard_tongs", () ->
                 new TongsItem(Tiers.IRON, new Item.Properties(), true));
         STANDARD_SHEARS = ITEMS.register("standard_shears", () ->
