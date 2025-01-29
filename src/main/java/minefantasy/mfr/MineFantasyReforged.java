@@ -1,7 +1,6 @@
 package minefantasy.mfr;
 
 import minefantasy.mfr.datagen.*;
-import minefantasy.mfr.events.MFREvents;
 import minefantasy.mfr.init.*;
 import minefantasy.mfr.item.color.ArmorMaterialItemColor;
 import minefantasy.mfr.item.color.OneLayerMaterialItemColor;
@@ -113,7 +112,7 @@ public class MineFantasyReforged {
 
         // Server Datagen
         gen.addProvider(event.includeServer(),
-                new MFRMaterialsDatagen(packOutput, lookup, Set.of(MineFantasyReforged.MOD_ID)));
+                new MFRDatapackDatagen(packOutput, lookup));
         BlockTagsProvider blockTags = gen.addProvider(event.includeServer(),
                 new MFRBlockTagsDatagen(packOutput, lookup, fileHelper));
         gen.addProvider(event.includeServer(),

@@ -21,6 +21,30 @@ public class MFRBlockModelDatagen extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
+        simpleBlock(MFRBlocks.TIN_ORE.get());
+        //simpleBlock(MFRBlocks.DEEPSLATE_TIN_ORE.get());
+        simpleBlock(MFRBlocks.SILVER_ORE.get());
+        //simpleBlock(MFRBlocks.DEEPSLATE_SILVER_ORE.get());
+        simpleBlock(MFRBlocks.MYTHIC_ORE.get());
+
+        simpleBlock(MFRBlocks.KAOLINITE_ORE.get());
+        //simpleBlock(MFRBlocks.DEEPSLATE_KAOLINITE_ORE.get());
+        simpleBlock(MFRBlocks.NITRE_ORE.get());
+        simpleBlock(MFRBlocks.SULFUR_ORE.get());
+        simpleBlock(MFRBlocks.BORAX_ORE.get());
+        //simpleBlock(MFRBlocks.DEEPSLATE_BORAX_ORE.get());
+        simpleBlock(MFRBlocks.TUNGSTEN_ORE.get());
+        simpleBlock(MFRBlocks.RICH_COAL_ORE.get());
+        //simpleBlock(MFRBlocks.DEEPSLATE_RICH_COAL_ORE.get());
+
+
+
+        blockFamily(MFRBlocks.LIMESTONE_FAMILY.get());
+        blockFamily(MFRBlocks.COBBLE_LIMESTONE_FAMILY.get());
+        blockFamily(MFRBlocks.LIMESTONE_BRICK_FAMILY.get());
+
+
+
         logBlock(MFRBlocks.YEW_LOG.get());
         axisBlock(MFRBlocks.YEW_WOOD.get(), blockTexture(MFRBlocks.YEW_LOG.get()), blockTexture(MFRBlocks.YEW_LOG.get()));
         //logBlock(MFRBlocks.STRIPPED_YEW_LOG.get());
@@ -106,6 +130,10 @@ public class MFRBlockModelDatagen extends BlockStateProvider {
         //    trapdoorBlockWithRenderType(trapdoor, modLoc("block/" + name), true, "cutout");
         //    blockItem(trapdoor, "_bottom");
         //}
+
+        if (variants.get(BlockFamily.Variant.WALL) instanceof WallBlock wall) {
+            wallBlock(wall, blockTexture(family.getBaseBlock()));
+        }
     }
 
     private void saplingBlock(DeferredBlock<Block> blockRegistryObject) {

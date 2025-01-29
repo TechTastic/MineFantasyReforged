@@ -15,6 +15,39 @@ public class MFRBlockLootTableDatagen extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
+        dropSelf(MFRBlocks.TIN_ORE.get());
+        dropSelf(MFRBlocks.DEEPSLATE_TIN_ORE.get());
+        dropSelf(MFRBlocks.SILVER_ORE.get());
+        dropSelf(MFRBlocks.DEEPSLATE_SILVER_ORE.get());
+        dropSelf(MFRBlocks.MYTHIC_ORE.get());
+
+        dropSelf(MFRBlocks.KAOLINITE_ORE.get());
+        dropSelf(MFRBlocks.DEEPSLATE_KAOLINITE_ORE.get());
+        dropSelf(MFRBlocks.NITRE_ORE.get());
+        dropSelf(MFRBlocks.SULFUR_ORE.get());
+        dropSelf(MFRBlocks.BORAX_ORE.get());
+        dropSelf(MFRBlocks.DEEPSLATE_BORAX_ORE.get());
+        dropSelf(MFRBlocks.TUNGSTEN_ORE.get());
+        dropSelf(MFRBlocks.RICH_COAL_ORE.get());
+        dropSelf(MFRBlocks.DEEPSLATE_RICH_COAL_ORE.get());
+
+        //createOreDrop()
+
+        dropOther(MFRBlocks.LIMESTONE.get(), MFRBlocks.COBBLE_LIMESTONE.asItem());
+        dropWhenSilkTouch(MFRBlocks.LIMESTONE.get());
+        dropSelf(MFRBlocks.LIMESTONE_STAIRS.get());
+        dropSelf(MFRBlocks.LIMESTONE_SLAB.get());
+        dropSelf(MFRBlocks.LIMESTONE_WALL.get());
+
+        dropSelf(MFRBlocks.COBBLE_LIMESTONE.get());
+        dropSelf(MFRBlocks.COBBLE_LIMESTONE_STAIRS.get());
+        dropSelf(MFRBlocks.COBBLE_LIMESTONE_SLAB.get());
+        dropSelf(MFRBlocks.COBBLE_LIMESTONE_WALL.get());
+        dropSelf(MFRBlocks.LIMESTONE_BRICKS.get());
+        dropSelf(MFRBlocks.LIMESTONE_BRICK_STAIRS.get());
+        dropSelf(MFRBlocks.LIMESTONE_BRICK_SLAB.get());
+        dropSelf(MFRBlocks.LIMESTONE_BRICK_WALL.get());
+
         dropSelf(MFRBlocks.YEW_LOG.get());
         dropSelf(MFRBlocks.YEW_WOOD.get());
         dropSelf(MFRBlocks.STRIPPED_YEW_LOG.get());

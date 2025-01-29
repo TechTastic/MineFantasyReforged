@@ -2,18 +2,10 @@ package minefantasy.mfr.datagen;
 
 import minefantasy.mfr.MineFantasyReforged;
 import minefantasy.mfr.init.MFRBlocks;
-import minefantasy.mfr.init.MFRMaterials;
 import minefantasy.mfr.init.MFRTags;
-import minefantasy.mfr.material.CustomMaterial;
-import minefantasy.mfr.registry.CustomMaterialRegistry;
-import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
@@ -124,6 +116,18 @@ public class MFRBlockTagsDatagen extends BlockTagsProvider {
         // WALL SIGNS
         // CEILING SIGNS
         // WALL_HANGING_SIGNS
+
+        this.tag(BlockTags.WALLS).add(
+                MFRBlocks.LIMESTONE_WALL.get(),
+                MFRBlocks.COBBLE_LIMESTONE_WALL.get(),
+                MFRBlocks.LIMESTONE_BRICK_WALL.get()
+        );
+
+        this.tag(BlockTags.BASE_STONE_OVERWORLD)
+                .add(MFRBlocks.LIMESTONE.get());
+
+        this.tag(BlockTags.STONE_BRICKS)
+                .add(MFRBlocks.LIMESTONE_BRICKS.get());
 
         this.tag(MFRTags.Blocks.INCORRECT_FOR_TIN_TOOL).addTag(BlockTags.INCORRECT_FOR_WOODEN_TOOL);
 

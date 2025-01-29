@@ -24,6 +24,33 @@ public class MFRRecipesDatagen extends RecipeProvider {
 
     @Override
     protected void buildRecipes(@NotNull RecipeOutput recipeOutput) {
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, MFRBlocks.LIMESTONE_STAIRS, MFRBlocks.LIMESTONE);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, MFRBlocks.LIMESTONE_SLAB, MFRBlocks.LIMESTONE, 2);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, MFRBlocks.LIMESTONE_WALL, MFRBlocks.LIMESTONE);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, MFRBlocks.LIMESTONE_BRICKS, MFRBlocks.LIMESTONE);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, MFRBlocks.LIMESTONE_BRICK_STAIRS, MFRBlocks.LIMESTONE);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, MFRBlocks.LIMESTONE_BRICK_SLAB, MFRBlocks.LIMESTONE, 2);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, MFRBlocks.LIMESTONE_BRICK_WALL, MFRBlocks.LIMESTONE);
+
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, MFRBlocks.COBBLE_LIMESTONE_STAIRS, MFRBlocks.COBBLE_LIMESTONE);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, MFRBlocks.COBBLE_LIMESTONE_SLAB, MFRBlocks.COBBLE_LIMESTONE, 2);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, MFRBlocks.COBBLE_LIMESTONE_WALL, MFRBlocks.COBBLE_LIMESTONE);
+
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, MFRBlocks.LIMESTONE_BRICK_STAIRS, MFRBlocks.LIMESTONE_BRICKS);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, MFRBlocks.LIMESTONE_BRICK_SLAB, MFRBlocks.LIMESTONE_BRICKS, 2);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, MFRBlocks.LIMESTONE_BRICK_WALL, MFRBlocks.LIMESTONE_BRICKS);
+
+        smeltingResultFromBase(recipeOutput, MFRBlocks.LIMESTONE, MFRBlocks.COBBLE_LIMESTONE);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, MFRBlocks.LIMESTONE_BRICKS, 4)
+                .pattern("##")
+                .pattern("##")
+                .define('#', MFRBlocks.LIMESTONE)
+                .unlockedBy("has_limestone", has(MFRBlocks.LIMESTONE))
+                .save(recipeOutput);
+
+
+
         generateRecipes(recipeOutput, MFRBlocks.YEW_FAMILY.get(), FeatureFlags.REGISTRY.allFlags());
         woodFromLogs(recipeOutput, MFRBlocks.YEW_WOOD, MFRBlocks.YEW_LOG);
         woodFromLogs(recipeOutput, MFRBlocks.STRIPPED_YEW_WOOD, MFRBlocks.STRIPPED_YEW_LOG);

@@ -21,6 +21,14 @@ public class MFRItemModelDatagen extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
+        wallInventory(MFRBlocks.LIMESTONE_WALL.getId().toString(),
+                modLoc("block/limestone"));
+        wallInventory(MFRBlocks.COBBLE_LIMESTONE_WALL.getId().toString(),
+                modLoc("block/cobble_limestone"));
+        wallInventory(MFRBlocks.LIMESTONE_BRICK_WALL.getId().toString(),
+                modLoc("block/limestone_bricks"));
+
+
 
         withExistingParent(MFRBlocks.YEW_SAPLING.getId().toString(), mcLoc("item/generated"))
                 .texture("layer0", modLoc("block/yew_sapling"));

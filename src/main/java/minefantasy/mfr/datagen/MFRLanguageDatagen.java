@@ -660,21 +660,23 @@ public class MFRLanguageDatagen extends LanguageProvider {
 
         // ORES
 
+        addBlock(MFRBlocks.TIN_ORE, "Tin Ore");
+        addBlock(MFRBlocks.DEEPSLATE_TIN_ORE, "Deepslate Tin Ore");
+        addBlock(MFRBlocks.SILVER_ORE, "Silver Ore");
+        addBlock(MFRBlocks.DEEPSLATE_SILVER_ORE, "Deepslate Silver Ore");
+        addBlock(MFRBlocks.MYTHIC_ORE, "Mythic Ore");
+
+        addBlock(MFRBlocks.KAOLINITE_ORE, "Kaolinite Deposit");
+        addBlock(MFRBlocks.DEEPSLATE_KAOLINITE_ORE, "Deepslate Kaolinite Deposit");
+        addBlock(MFRBlocks.NITRE_ORE, "Nitre Deposit");
+        addBlock(MFRBlocks.SULFUR_ORE, "Sulfur Deposit");
+        addBlock(MFRBlocks.BORAX_ORE, "Borax Deposit");
+        addBlock(MFRBlocks.DEEPSLATE_BORAX_ORE, "Deepslate Borax Deposit");
+        addBlock(MFRBlocks.TUNGSTEN_ORE, "Wolframite Ore");
+        addBlock(MFRBlocks.RICH_COAL_ORE, "Rich Coal Deposit");
+        addBlock(MFRBlocks.DEEPSLATE_RICH_COAL_ORE, "Deepslate Rich Coal Deposit");
+
         /*
-        tile.copper_ore.name=Copper Ore
-        tile.tin_ore.name=Tin Ore
-        tile.silver_ore.name=Silver Ore
-        tile.tungsten_ore.name=Wolframite Ore
-        tile.mythic_ore.name=Mythic Ore
-        tile.mythic_pure_ore.name=Pure Mythic Ore
-
-        tile.clay_ore.name=Clay Bearing Dirt
-        tile.borax_ore.name=Borax Deposit
-        tile.kaolinite_ore.name=Kaolinite Deposit
-        tile.nitre_ore.name=Niter Deposit
-        tile.sulfur_ore.name=Sulfur Deposit
-        tile.coal_rich_ore.name=Rich Coal Deposit
-
         tile.window.name=Window
         tile.window_pane.name=Window Pane
         tile.mud_road.name=Mud Road
@@ -686,20 +688,24 @@ public class MFRLanguageDatagen extends LanguageProvider {
         tile.thatch.name=Thatch
         tile.thatch_slab.name=Thatch Slab
         tile.thatch_stairs.name=Thatch Stairs
-        tile.component.name=Component
+        tile.component.name=Component*/
 
-        tile.limestone.name=Limestone
-        tile.limestone_slab.name=Limestone Slab
-        tile.limestone_cobble.name=Limestone Cobblestone
-        tile.limestone_cobble_slab.name=Limestone Cobblestone Slab
-        tile.limestone_brick.name=Limestone Brick
-        tile.limestone_brick_slab.name=Limestone Brick Slab
-        tile.limestone_road.name=Limestone Road
+        addBlock(MFRBlocks.LIMESTONE, "Limestone");
+        addBlock(MFRBlocks.LIMESTONE_STAIRS, "Limestone Stairs");
+        addBlock(MFRBlocks.LIMESTONE_SLAB, "Limestone Slab");
+        addBlock(MFRBlocks.LIMESTONE_WALL, "Limestone Wall");
+        addBlock(MFRBlocks.COBBLE_LIMESTONE, "Cobbled Limestone");
+        addBlock(MFRBlocks.COBBLE_LIMESTONE_STAIRS, "Cobbled Limestone Stairs");
+        addBlock(MFRBlocks.COBBLE_LIMESTONE_SLAB, "Cobbled Limestone Slab");
+        addBlock(MFRBlocks.COBBLE_LIMESTONE_WALL, "Cobbled Limestone Wall");
+        addBlock(MFRBlocks.LIMESTONE_BRICKS, "Limestone Bricks");
+        addBlock(MFRBlocks.LIMESTONE_BRICK_STAIRS, "Limestone Brick Stairs");
+        addBlock(MFRBlocks.LIMESTONE_BRICK_SLAB, "Limestone Brick Slab");
+        addBlock(MFRBlocks.LIMESTONE_BRICK_WALL, "Limestone Brick Wall");
+
+        /*tile.limestone_road.name=Limestone Road
         tile.limestone_road_block.name=Limestone Road Block
         tile.limestone_road_block_slab.name=Limestone Road Slab
-        tile.limestone_stairs.name=Limestone Stairs
-        tile.limestone_cobble_stairs.name=Limestone Cobblestone Stairs
-        tile.limestone_brick_stairs.name=Limestone Brick Stairs
 
         tile.slate.name=Slate
         tile.slate_cobblestone.name=Slate Cobblestone

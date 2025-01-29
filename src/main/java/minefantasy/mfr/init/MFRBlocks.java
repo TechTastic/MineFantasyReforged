@@ -2,10 +2,12 @@ package minefantasy.mfr.init;
 
 import minefantasy.mfr.MineFantasyReforged;
 import minefantasy.mfr.block.FlammableRotatedPillarBlock;
+import minefantasy.mfr.worldgen.tree.MFRTreeGrowers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.data.BlockFamily;
+import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
@@ -27,6 +29,39 @@ public class MFRBlocks {
     private static final DeferredRegister.Blocks BLOCKS;
     private static final DeferredRegister.Blocks BLOCKS_WITHOUT_ITEMS;
     private static final DeferredRegister.Items BLOCK_ITEMS;
+
+    public static final DeferredBlock<Block> TIN_ORE;
+    public static final DeferredBlock<Block> DEEPSLATE_TIN_ORE;
+    public static final DeferredBlock<Block> SILVER_ORE;
+    public static final DeferredBlock<Block> DEEPSLATE_SILVER_ORE;
+    public static final DeferredBlock<Block> MYTHIC_ORE;
+
+    public static final DeferredBlock<Block> KAOLINITE_ORE;
+    public static final DeferredBlock<Block> DEEPSLATE_KAOLINITE_ORE;
+    public static final DeferredBlock<Block> NITRE_ORE;
+    public static final DeferredBlock<Block> SULFUR_ORE;
+    public static final DeferredBlock<Block> BORAX_ORE;
+    public static final DeferredBlock<Block> DEEPSLATE_BORAX_ORE;
+    public static final DeferredBlock<Block> TUNGSTEN_ORE;
+    public static final DeferredBlock<Block> RICH_COAL_ORE;
+    public static final DeferredBlock<Block> DEEPSLATE_RICH_COAL_ORE;
+
+    public static final DeferredBlock<Block> LIMESTONE;
+    public static final DeferredBlock<StairBlock> LIMESTONE_STAIRS;
+    public static final DeferredBlock<SlabBlock> LIMESTONE_SLAB;
+    public static final DeferredBlock<WallBlock> LIMESTONE_WALL;
+    public static final Supplier<BlockFamily> LIMESTONE_FAMILY;
+
+    public static final DeferredBlock<Block> COBBLE_LIMESTONE;
+    public static final DeferredBlock<StairBlock> COBBLE_LIMESTONE_STAIRS;
+    public static final DeferredBlock<SlabBlock> COBBLE_LIMESTONE_SLAB;
+    public static final DeferredBlock<WallBlock> COBBLE_LIMESTONE_WALL;
+    public static final Supplier<BlockFamily> COBBLE_LIMESTONE_FAMILY;
+    public static final DeferredBlock<Block> LIMESTONE_BRICKS;
+    public static final DeferredBlock<StairBlock> LIMESTONE_BRICK_STAIRS;
+    public static final DeferredBlock<SlabBlock> LIMESTONE_BRICK_SLAB;
+    public static final DeferredBlock<WallBlock> LIMESTONE_BRICK_WALL;
+    public static final Supplier<BlockFamily> LIMESTONE_BRICK_FAMILY;
 
     public static final DeferredBlock<FlammableRotatedPillarBlock> YEW_LOG;
     public static final DeferredBlock<FlammableRotatedPillarBlock> YEW_WOOD;
@@ -101,6 +136,82 @@ public class MFRBlocks {
         BLOCKS = DeferredRegister.Blocks.createBlocks(MineFantasyReforged.MOD_ID);
         BLOCKS_WITHOUT_ITEMS = DeferredRegister.Blocks.createBlocks(MineFantasyReforged.MOD_ID);
         BLOCK_ITEMS = DeferredRegister.Items.createItems(MineFantasyReforged.MOD_ID);
+        
+
+        TIN_ORE = BLOCKS.register("tin_ore", () -> new DropExperienceBlock(ConstantInt.of(0),
+                BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_ORE)));
+        DEEPSLATE_TIN_ORE = BLOCKS.register("deepslate_tin_ore", () -> new DropExperienceBlock(ConstantInt.of(0),
+                BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_COPPER_ORE)));
+        SILVER_ORE = BLOCKS.register("silver_ore", () -> new DropExperienceBlock(ConstantInt.of(0),
+                BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_ORE)));
+        DEEPSLATE_SILVER_ORE = BLOCKS.register("deepslate_silver_ore", () -> new DropExperienceBlock(ConstantInt.of(0),
+                BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_GOLD_ORE)));
+        MYTHIC_ORE = BLOCKS.register("mythic_ore", () -> new DropExperienceBlock(ConstantInt.of(0),
+                BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_DIAMOND_ORE)));
+        
+
+        KAOLINITE_ORE = BLOCKS.register("kaolinite_ore", () -> new DropExperienceBlock(ConstantInt.of(1),
+                BlockBehaviour.Properties.ofFullCopy(Blocks.COAL_ORE)));
+        DEEPSLATE_KAOLINITE_ORE = BLOCKS.register("deepslate_kaolinite_ore", () -> new DropExperienceBlock(ConstantInt.of(1),
+                BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_COAL_ORE)));
+        NITRE_ORE = BLOCKS.register("nitre_ore", () -> new DropExperienceBlock(ConstantInt.of(1),
+                BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_COAL_ORE)));
+        SULFUR_ORE = BLOCKS.register("sulfur_ore", () -> new DropExperienceBlock(ConstantInt.of(2),
+                BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_GOLD_ORE)));
+        BORAX_ORE = BLOCKS.register("borax_ore", () -> new DropExperienceBlock(ConstantInt.of(4),
+                BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_ORE)));
+        DEEPSLATE_BORAX_ORE = BLOCKS.register("deepslate_borax_ore", () -> new DropExperienceBlock(ConstantInt.of(4),
+                BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_DIAMOND_ORE)));
+        TUNGSTEN_ORE = BLOCKS.register("tungsten_ore", () -> new DropExperienceBlock(ConstantInt.of(4),
+                BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_DIAMOND_ORE)));
+        RICH_COAL_ORE = BLOCKS.register("rich_coal_ore", () -> new DropExperienceBlock(ConstantInt.of(2),
+                BlockBehaviour.Properties.ofFullCopy(Blocks.COAL_ORE)));
+        DEEPSLATE_RICH_COAL_ORE = BLOCKS.register("deepslate_rich_coal_ore", () -> new DropExperienceBlock(ConstantInt.of(2),
+                BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_COAL_ORE)));
+        
+        
+        LIMESTONE = BLOCKS.register("limestone", () -> 
+                new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
+        LIMESTONE_STAIRS = BLOCKS.register("limestone_stairs", () ->
+                new StairBlock(LIMESTONE.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_STAIRS)));
+        LIMESTONE_SLAB = BLOCKS.register("limestone_slab", () ->
+                new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_SLAB)));
+        LIMESTONE_WALL = BLOCKS.register("limestone_wall", () ->
+                new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_WALL)));
+        LIMESTONE_FAMILY = () -> new BlockFamily.Builder(LIMESTONE.get())
+                .stairs(LIMESTONE_STAIRS.get())
+                .slab(LIMESTONE_SLAB.get())
+                .wall(LIMESTONE_WALL.get())
+                .getFamily();
+        
+
+        COBBLE_LIMESTONE = BLOCKS.register("cobble_limestone", () ->
+                new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
+        COBBLE_LIMESTONE_STAIRS = BLOCKS.register("cobble_limestone_stairs", () ->
+                new StairBlock(LIMESTONE.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_STAIRS)));
+        COBBLE_LIMESTONE_SLAB = BLOCKS.register("cobble_limestone_slab", () ->
+                new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_SLAB)));
+        COBBLE_LIMESTONE_WALL = BLOCKS.register("cobble_limestone_wall", () ->
+                new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_WALL)));
+        COBBLE_LIMESTONE_FAMILY = () -> new BlockFamily.Builder(COBBLE_LIMESTONE.get())
+                .stairs(COBBLE_LIMESTONE_STAIRS.get())
+                .slab(COBBLE_LIMESTONE_SLAB.get())
+                .wall(COBBLE_LIMESTONE_WALL.get())
+                .getFamily();
+        LIMESTONE_BRICKS = BLOCKS.register("limestone_bricks", () ->
+                new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
+        LIMESTONE_BRICK_STAIRS = BLOCKS.register("limestone_brick_stairs", () ->
+                new StairBlock(LIMESTONE_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_STAIRS)));
+        LIMESTONE_BRICK_SLAB = BLOCKS.register("limestone_brick_slab", () ->
+                new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_SLAB)));
+        LIMESTONE_BRICK_WALL = BLOCKS.register("limestone_brick_wall", () ->
+                new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_WALL)));
+        LIMESTONE_BRICK_FAMILY = () -> new BlockFamily.Builder(LIMESTONE_BRICKS.get())
+                .stairs(LIMESTONE_BRICK_STAIRS.get())
+                .slab(LIMESTONE_BRICK_SLAB.get())
+                .wall(LIMESTONE_BRICK_WALL.get())
+                .getFamily();
+        
 
         YEW_LOG = BLOCKS.register("yew_log", () ->
                 new FlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)));
@@ -145,7 +256,7 @@ public class MFRBlocks {
                     }
                 });
         YEW_SAPLING = BLOCKS.register("yew_sapling", () ->
-                new SaplingBlock(null, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
+                new SaplingBlock(MFRTreeGrowers.YEW, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
         POTTED_YEW_SAPLING = BLOCKS_WITHOUT_ITEMS.register("potted_yew_sapling", () ->
                 new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), YEW_SAPLING,
                         BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_OAK_SAPLING)));
@@ -237,6 +348,7 @@ public class MFRBlocks {
                 // SIGN
                 .recipeGroupPrefix("wooden")
                 .getFamily();
+        
 
         IRONBARK_LOG = BLOCKS.register("ironbark_log", () ->
                 new FlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)));
@@ -281,7 +393,7 @@ public class MFRBlocks {
                     }
                 });
         IRONBARK_SAPLING = BLOCKS.register("ironbark_sapling", () ->
-                new SaplingBlock(null, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
+                new SaplingBlock(MFRTreeGrowers.IRONBARK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
         POTTED_IRONBARK_SAPLING = BLOCKS_WITHOUT_ITEMS.register("potted_ironbark_sapling", () ->
                 new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, IRONBARK_SAPLING,
                         BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_OAK_SAPLING)));
@@ -373,6 +485,7 @@ public class MFRBlocks {
                 // SIGN
                 .recipeGroupPrefix("wooden")
                 .getFamily();
+        
 
         EBONY_LOG = BLOCKS.register("ebony_log", () ->
                 new FlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)));
@@ -417,7 +530,7 @@ public class MFRBlocks {
                     }
                 });
         EBONY_SAPLING = BLOCKS.register("ebony_sapling", () ->
-                new SaplingBlock(null, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
+                new SaplingBlock(MFRTreeGrowers.EBONY, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
         POTTED_EBONY_SAPLING = BLOCKS_WITHOUT_ITEMS.register("potted_ebony_sapling", () ->
                 new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, EBONY_SAPLING,
                         BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_OAK_SAPLING)));

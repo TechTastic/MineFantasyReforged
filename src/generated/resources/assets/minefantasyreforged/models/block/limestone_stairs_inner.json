@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "minefantasyreforged:block/limestone",
+    "side": "minefantasyreforged:block/limestone",
+    "top": "minefantasyreforged:block/limestone"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minefantasyreforged:limestone"
+  },
+  "result": {
+    "count": 1,
+    "id": "minefantasyreforged:limestone_brick_stairs"
+  }
+}

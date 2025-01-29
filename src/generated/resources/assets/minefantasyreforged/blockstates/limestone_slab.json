@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "minefantasyreforged:block/limestone_slab"
+    },
+    "type=double": {
+      "model": "minefantasyreforged:block/limestone"
+    },
+    "type=top": {
+      "model": "minefantasyreforged:block/limestone_slab_top"
+    }
+  }
+}
