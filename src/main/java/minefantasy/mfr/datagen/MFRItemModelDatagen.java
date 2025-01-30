@@ -6,6 +6,7 @@ import minefantasy.mfr.init.MFRItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
@@ -81,13 +82,13 @@ public class MFRItemModelDatagen extends ItemModelProvider {
         threePieceTools(MFRItems.STANDARD_WARAXE);
         threePieceTools(MFRItems.STANDARD_MACE);
         threePieceTools(MFRItems.STANDARD_DAGGER);
-        threePieceTools(MFRItems.STANDARD_SPEAR);
-        threePieceTools(MFRItems.STANDARD_GREATSWORD);
-        threePieceTools(MFRItems.STANDARD_BATTLEAXE);
-        threePieceTools(MFRItems.STANDARD_WARHAMMER);
-        threePieceTools(MFRItems.STANDARD_KATANA);
-        threePieceTools(MFRItems.STANDARD_HALBEARD);
-        threePieceTools(MFRItems.STANDARD_LANCE);
+        tripleScaledThreePieceTools(MFRItems.STANDARD_SPEAR);
+        doubleScaledThreePieceTools(MFRItems.STANDARD_GREATSWORD);
+        doubleScaledThreePieceTools(MFRItems.STANDARD_BATTLEAXE);
+        doubleScaledThreePieceTools(MFRItems.STANDARD_WARHAMMER);
+        doubleScaledThreePieceTools(MFRItems.STANDARD_KATANA);
+        tripleScaledThreePieceTools(MFRItems.STANDARD_HALBEARD);
+        tripleScaledThreePieceTools(MFRItems.STANDARD_LANCE);
         threePieceTools(MFRItems.STANDARD_PICK);
         threePieceTools(MFRItems.STANDARD_AXE);
         threePieceTools(MFRItems.STANDARD_SHOVEL);
@@ -96,9 +97,9 @@ public class MFRItemModelDatagen extends ItemModelProvider {
         threePieceTools(MFRItems.STANDARD_HEAVY_SHOVEL);
         threePieceTools(MFRItems.STANDARD_HANDPICK);
         threePieceTools(MFRItems.STANDARD_TROW);
-        threePieceTools(MFRItems.STANDARD_SCYTHE);
+        doubleScaledThreePieceTools(MFRItems.STANDARD_SCYTHE);
         threePieceTools(MFRItems.STANDARD_MATTOCK);
-        threePieceTools(MFRItems.STANDARD_LUMBER);
+        doubleScaledThreePieceTools(MFRItems.STANDARD_LUMBER);
         threePieceTools(MFRItems.STANDARD_HAMMMER);
         threePieceTools(MFRItems.STANDARD_HEAVY_HAMMMER);
         twoPieceTools(MFRItems.STANDARD_TONGS);
@@ -116,6 +117,14 @@ public class MFRItemModelDatagen extends ItemModelProvider {
         twoPieceTools(MFRItems.STANDARD_BOLT);
         twoPieceTools(MFRItems.STANDARD_ARROW_BODKIN);
         twoPieceTools(MFRItems.STANDARD_ARROW_BROAD);
+    }
+
+    public ItemModelBuilder doubleScaledThreePieceTools(DeferredItem<? extends Item> tool) {
+        return threePieceTools(tool, "", "minefantasyreforged:item/handheld/double");
+    }
+
+    public ItemModelBuilder tripleScaledThreePieceTools(DeferredItem<? extends Item> tool) {
+        return threePieceTools(tool, "", "minefantasyreforged:item/handheld/triple");
     }
 
     public void bow(DeferredItem<? extends Item> tool) {

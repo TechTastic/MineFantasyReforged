@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:item/handheld",
+  "parent": "minefantasyreforged:item/handheld/double",
   "textures": {
     "layer0": "minefantasyreforged:item/standard_warhammer",
     "layer1": "minefantasyreforged:item/standard_warhammer_haft",

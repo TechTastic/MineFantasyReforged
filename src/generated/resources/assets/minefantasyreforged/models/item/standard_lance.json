@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:item/handheld",
+  "parent": "minefantasyreforged:item/handheld/triple",
   "textures": {
     "layer0": "minefantasyreforged:item/standard_lance",
     "layer1": "minefantasyreforged:item/standard_lance_haft",
