@@ -2,6 +2,9 @@
   "values": [
     "minefantasyreforged:limestone_wall",
     "minefantasyreforged:cobble_limestone_wall",
+    "minefantasyreforged:limestone_brick_wall",
+    "minefantasyreforged:limestone_wall",
+    "minefantasyreforged:cobble_limestone_wall",
     "minefantasyreforged:limestone_brick_wall"
   ]
 }

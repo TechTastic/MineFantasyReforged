@@ -4,6 +4,8 @@ import minefantasy.mfr.init.MFRDataComponents;
 import minefantasy.mfr.item.component.MaterialDataComponent;
 import minefantasy.mfr.registry.types.CustomMaterialType;
 import minefantasy.mfr.registry.types.CustomMaterialTypeRegistry;
+import minefantasy.mfr.util.CustomToolHelper;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
 public class WoodComponentItem extends MFRComponentItem {
@@ -14,5 +16,9 @@ public class WoodComponentItem extends MFRComponentItem {
     @Override
     public CustomMaterialType getMaterialType(ItemStack item) {
         return CustomMaterialTypeRegistry.WOOD_TYPES.get();
+    }
+
+    public ItemStack construct(ResourceLocation material) {
+        return CustomToolHelper.construct(this, material);
     }
 }

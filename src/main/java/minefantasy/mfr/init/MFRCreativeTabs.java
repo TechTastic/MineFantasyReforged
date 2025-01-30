@@ -287,11 +287,23 @@ public class MFRCreativeTabs {
 
         ORES_TAB = TABS.register("ores", () ->
                 CreativeModeTab.builder()
-                        .icon(() -> CustomToolHelper.constructSingleColoredLayer(
-                                MFRItems.TIMBER.get(), MFRMaterials.OAK_WOOD))
+                        .icon(MFRBlocks.TIN_ORE::toStack)
                         .displayItems((param, output) -> {
-                            //output.acceptAll(metals.stream().map(mat ->
-                            //        constructTool(MFRItems.STANDARD_PICK.get(), mat)).toList());
+                            output.accept(MFRBlocks.TIN_ORE);
+                            output.accept(MFRBlocks.DEEPSLATE_TIN_ORE);
+                            output.accept(MFRBlocks.SILVER_ORE);
+                            output.accept(MFRBlocks.DEEPSLATE_SILVER_ORE);
+                            output.accept(MFRBlocks.MYTHIC_ORE);
+
+                            output.accept(MFRBlocks.KAOLINITE_ORE);
+                            output.accept(MFRBlocks.DEEPSLATE_KAOLINITE_ORE);
+                            output.accept(MFRBlocks.NITRE_ORE);
+                            output.accept(MFRBlocks.SULFUR_ORE);
+                            output.accept(MFRBlocks.BORAX_ORE);
+                            output.accept(MFRBlocks.DEEPSLATE_BORAX_ORE);
+                            output.accept(MFRBlocks.TUNGSTEN_ORE);
+                            output.accept(MFRBlocks.RICH_COAL_ORE);
+                            output.accept(MFRBlocks.DEEPSLATE_RICH_COAL_ORE);
                         })
                         .title(Component.translatable("itemGroup.minefantasyreforged.ores"))
                         .withTabsBefore(CRAFTING_TOOLS_TAB.getId())

@@ -5,6 +5,7 @@ import minefantasy.mfr.api.tool.IToolMFR;
 import minefantasy.mfr.api.weapon.IDamageType;
 import minefantasy.mfr.constants.Tool;
 import minefantasy.mfr.init.MFRDataComponents;
+import minefantasy.mfr.init.MFRMaterials;
 import minefantasy.mfr.item.component.MaterialDataComponent;
 import minefantasy.mfr.registry.CustomMaterialRegistry;
 import minefantasy.mfr.util.CustomToolHelper;
@@ -113,5 +114,10 @@ public class HammerItem extends TieredItem implements IToolMaterial, IToolMFR, I
     public @NotNull Component getName(@NotNull ItemStack stack) {
         String unlocalName = super.getDescriptionId(stack);
         return CustomToolHelper.getLocalisedName(stack, unlocalName);
+    }
+
+    @Override
+    public boolean isPiglinCurrency(@NotNull ItemStack stack) {
+        return CustomToolHelper.getCustomPrimaryMaterial(stack).getName().equals(MFRMaterials.GOLD_METAL);
     }
 }

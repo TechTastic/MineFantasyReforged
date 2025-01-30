@@ -21,21 +21,21 @@ public class MFRBlockModelDatagen extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        simpleBlock(MFRBlocks.TIN_ORE.get());
-        //simpleBlock(MFRBlocks.DEEPSLATE_TIN_ORE.get());
-        simpleBlock(MFRBlocks.SILVER_ORE.get());
-        //simpleBlock(MFRBlocks.DEEPSLATE_SILVER_ORE.get());
-        simpleBlock(MFRBlocks.MYTHIC_ORE.get());
+        blockWithItem(MFRBlocks.TIN_ORE);
+        //blockWithItem(MFRBlocks.DEEPSLATE_TIN_ORE);
+        blockWithItem(MFRBlocks.SILVER_ORE);
+        //blockWithItem(MFRBlocks.DEEPSLATE_SILVER_ORE);
+        blockWithItem(MFRBlocks.MYTHIC_ORE);
 
-        simpleBlock(MFRBlocks.KAOLINITE_ORE.get());
-        //simpleBlock(MFRBlocks.DEEPSLATE_KAOLINITE_ORE.get());
-        simpleBlock(MFRBlocks.NITRE_ORE.get());
-        simpleBlock(MFRBlocks.SULFUR_ORE.get());
-        simpleBlock(MFRBlocks.BORAX_ORE.get());
-        //simpleBlock(MFRBlocks.DEEPSLATE_BORAX_ORE.get());
-        simpleBlock(MFRBlocks.TUNGSTEN_ORE.get());
-        simpleBlock(MFRBlocks.RICH_COAL_ORE.get());
-        //simpleBlock(MFRBlocks.DEEPSLATE_RICH_COAL_ORE.get());
+        blockWithItem(MFRBlocks.KAOLINITE_ORE);
+        //blockWithItem(MFRBlocks.DEEPSLATE_KAOLINITE_ORE);
+        blockWithItem(MFRBlocks.NITRE_ORE);
+        blockWithItem(MFRBlocks.SULFUR_ORE);
+        blockWithItem(MFRBlocks.BORAX_ORE);
+        //blockWithItem(MFRBlocks.DEEPSLATE_BORAX_ORE);
+        blockWithItem(MFRBlocks.TUNGSTEN_ORE);
+        blockWithItem(MFRBlocks.RICH_COAL_ORE);
+        //blockWithItem(MFRBlocks.DEEPSLATE_RICH_COAL_ORE);
 
 
 

@@ -6,6 +6,8 @@ import minefantasy.mfr.init.MFRTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
@@ -126,8 +128,126 @@ public class MFRBlockTagsDatagen extends BlockTagsProvider {
         this.tag(BlockTags.BASE_STONE_OVERWORLD)
                 .add(MFRBlocks.LIMESTONE.get());
 
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
+                MFRBlocks.TIN_ORE.get(),
+                MFRBlocks.DEEPSLATE_TIN_ORE.get(),
+                MFRBlocks.SILVER_ORE.get(),
+                MFRBlocks.DEEPSLATE_SILVER_ORE.get(),
+                MFRBlocks.MYTHIC_ORE.get(),
+
+                MFRBlocks.KAOLINITE_ORE.get(),
+                MFRBlocks.DEEPSLATE_KAOLINITE_ORE.get(),
+                MFRBlocks.NITRE_ORE.get(),
+                MFRBlocks.SULFUR_ORE.get(),
+                MFRBlocks.BORAX_ORE.get(),
+                MFRBlocks.DEEPSLATE_BORAX_ORE.get(),
+                MFRBlocks.TUNGSTEN_ORE.get(),
+                MFRBlocks.RICH_COAL_ORE.get(),
+                MFRBlocks.DEEPSLATE_RICH_COAL_ORE.get(),
+
+                MFRBlocks.LIMESTONE.get(),
+                MFRBlocks.LIMESTONE_STAIRS.get(),
+                MFRBlocks.LIMESTONE_SLAB.get(),
+                MFRBlocks.LIMESTONE_WALL.get(),
+                MFRBlocks.COBBLE_LIMESTONE.get(),
+                MFRBlocks.COBBLE_LIMESTONE_STAIRS.get(),
+                MFRBlocks.COBBLE_LIMESTONE_SLAB.get(),
+                MFRBlocks.COBBLE_LIMESTONE_WALL.get(),
+                MFRBlocks.LIMESTONE_BRICKS.get(),
+                MFRBlocks.LIMESTONE_BRICK_STAIRS.get(),
+                MFRBlocks.LIMESTONE_BRICK_SLAB.get(),
+                MFRBlocks.LIMESTONE_BRICK_WALL.get()
+        );
+
         this.tag(BlockTags.STONE_BRICKS)
                 .add(MFRBlocks.LIMESTONE_BRICKS.get());
+
+        this.tag(BlockTags.COAL_ORES).add(
+                MFRBlocks.RICH_COAL_ORE.get(),
+                MFRBlocks.DEEPSLATE_RICH_COAL_ORE.get()
+        );
+
+        this.tag(BlockTags.STAIRS).add(
+                MFRBlocks.LIMESTONE_STAIRS.get(),
+                MFRBlocks.COBBLE_LIMESTONE_STAIRS.get(),
+                MFRBlocks.LIMESTONE_BRICK_STAIRS.get()
+        );
+
+        this.tag(BlockTags.SLABS).add(
+                MFRBlocks.LIMESTONE_SLAB.get(),
+                MFRBlocks.COBBLE_LIMESTONE_SLAB.get(),
+                MFRBlocks.LIMESTONE_BRICK_SLAB.get()
+        );
+
+        this.tag(BlockTags.WALLS).add(
+                MFRBlocks.LIMESTONE_WALL.get(),
+                MFRBlocks.COBBLE_LIMESTONE_WALL.get(),
+                MFRBlocks.LIMESTONE_BRICK_WALL.get()
+        );
+
+        this.tag(MFRTags.Blocks.getCommonTag("cobblestones"))
+                .add(MFRBlocks.COBBLE_LIMESTONE.get());
+
+        this.tag(MFRTags.Blocks.getCommonTag("ores_in_ground/stone")).add(
+                MFRBlocks.TIN_ORE.get(),
+                MFRBlocks.SILVER_ORE.get(),
+
+                MFRBlocks.KAOLINITE_ORE.get(),
+                MFRBlocks.BORAX_ORE.get(),
+                MFRBlocks.RICH_COAL_ORE.get()
+        );
+
+        this.tag(MFRTags.Blocks.getCommonTag("ores_in_ground/deepslate")).add(
+                MFRBlocks.DEEPSLATE_TIN_ORE.get(),
+                MFRBlocks.DEEPSLATE_SILVER_ORE.get(),
+                MFRBlocks.MYTHIC_ORE.get(),
+
+                MFRBlocks.DEEPSLATE_KAOLINITE_ORE.get(),
+                MFRBlocks.NITRE_ORE.get(),
+                MFRBlocks.SULFUR_ORE.get(),
+                MFRBlocks.DEEPSLATE_BORAX_ORE.get(),
+                MFRBlocks.TUNGSTEN_ORE.get(),
+                MFRBlocks.DEEPSLATE_RICH_COAL_ORE.get()
+        );
+
+        this.tag(MFRTags.Blocks.getCommonTag("ores")).add(
+                MFRBlocks.TIN_ORE.get(),
+                MFRBlocks.DEEPSLATE_TIN_ORE.get(),
+                MFRBlocks.SILVER_ORE.get(),
+                MFRBlocks.DEEPSLATE_SILVER_ORE.get(),
+                MFRBlocks.MYTHIC_ORE.get(),
+
+                MFRBlocks.KAOLINITE_ORE.get(),
+                MFRBlocks.DEEPSLATE_KAOLINITE_ORE.get(),
+                MFRBlocks.NITRE_ORE.get(),
+                MFRBlocks.SULFUR_ORE.get(),
+                MFRBlocks.BORAX_ORE.get(),
+                MFRBlocks.DEEPSLATE_BORAX_ORE.get(),
+                MFRBlocks.TUNGSTEN_ORE.get(),
+                MFRBlocks.RICH_COAL_ORE.get(),
+                MFRBlocks.DEEPSLATE_RICH_COAL_ORE.get()
+        );
+
+        this.tag(MFRTags.Blocks.getCommonTag("stones"))
+                .add(MFRBlocks.LIMESTONE.get());
+
+        this.tag(MFRTags.Blocks.getCommonTag("stripped_logs")).add(
+                MFRBlocks.STRIPPED_YEW_LOG.get(),
+                MFRBlocks.STRIPPED_IRONBARK_LOG.get(),
+                MFRBlocks.STRIPPED_EBONY_LOG.get()
+        );
+
+        this.tag(MFRTags.Blocks.getCommonTag("stripped_woods")).add(
+                MFRBlocks.STRIPPED_YEW_WOOD.get(),
+                MFRBlocks.STRIPPED_IRONBARK_WOOD.get(),
+                MFRBlocks.STRIPPED_EBONY_WOOD.get()
+        );
+
+        this.tag(MFRTags.Blocks.getCommonTag("fence_gates/wooden")).add(
+                MFRBlocks.YEW_FENCE_GATE.get(),
+                MFRBlocks.IRONBARK_FENCE_GATE.get(),
+                MFRBlocks.EBONY_FENCE_GATE.get()
+        );
 
         this.tag(MFRTags.Blocks.INCORRECT_FOR_TIN_TOOL).addTag(BlockTags.INCORRECT_FOR_WOODEN_TOOL);
 

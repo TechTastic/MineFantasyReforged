@@ -281,9 +281,9 @@ public class CustomToolHelper {
 
     }
 
-    public static String getSecondaryLocalisedName(ItemStack item, String unlocalizedName) {
+    public static Component getSecondaryLocalisedName(ItemStack item, String unlocalizedName) {
         if (materialOnTooltip()) {
-            I18n.get(unlocalizedName);
+            return Component.translatable(unlocalizedName);
         }
 
         CustomMaterial material = getCustomSecondaryMaterial(item);
@@ -298,7 +298,8 @@ public class CustomToolHelper {
         if (localized_material != null && !localized_material.endsWith(".name")) {
             name = localized_material;
         }
-        return I18n.get(
+
+        return Component.translatable(
                 unlocalizedName,
                 I18n.get(Utils.convertSnakeCaseToSplitCapitalized(name)));
     }

@@ -40,7 +40,6 @@ import net.neoforged.neoforge.common.NeoForge;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 @Mod(MineFantasyReforged.MOD_ID)
@@ -57,9 +56,6 @@ public class MineFantasyReforged {
         modEventBus.addListener(this::commonSetup);
 
         NeoForge.EVENT_BUS.addListener(this::onLevelLoad);
-
-        // Register our mod's ModConfigSpec so that FML can create and load the config file for us
-        //modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
 
         CustomMaterialTypeRegistry.register(modEventBus);
         MFRDataComponents.register(modEventBus);

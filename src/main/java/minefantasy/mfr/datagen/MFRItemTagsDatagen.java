@@ -9,10 +9,12 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
 
 public class MFRItemTagsDatagen extends ItemTagsProvider {
@@ -212,5 +214,127 @@ public class MFRItemTagsDatagen extends ItemTagsProvider {
                 MFRItems.STANDARD_ARROW_BODKIN.get(),
                 MFRItems.STANDARD_ARROW_BROAD.get()
         );
+
+        this.tag(ItemTags.STONE_BRICKS).add(
+                MFRBlocks.LIMESTONE_BRICKS.asItem()
+        );
+
+        this.tag(ItemTags.COAL_ORES).add(
+                MFRBlocks.RICH_COAL_ORE.asItem(),
+                MFRBlocks.DEEPSLATE_RICH_COAL_ORE.asItem()
+        );
+
+        this.tag(ItemTags.STAIRS).add(
+                MFRBlocks.LIMESTONE_STAIRS.asItem(),
+                MFRBlocks.COBBLE_LIMESTONE_STAIRS.asItem(),
+                MFRBlocks.LIMESTONE_BRICK_STAIRS.asItem()
+        );
+
+        this.tag(ItemTags.SLABS).add(
+                MFRBlocks.LIMESTONE_SLAB.asItem(),
+                MFRBlocks.COBBLE_LIMESTONE_SLAB.asItem(),
+                MFRBlocks.LIMESTONE_BRICK_SLAB.asItem()
+        );
+
+        this.tag(ItemTags.WALLS).add(
+                MFRBlocks.LIMESTONE_WALL.asItem(),
+                MFRBlocks.COBBLE_LIMESTONE_WALL.asItem(),
+                MFRBlocks.LIMESTONE_BRICK_WALL.asItem()
+        );
+
+        this.tag(ItemTags.STONE_CRAFTING_MATERIALS)
+                .add(MFRBlocks.COBBLE_LIMESTONE.asItem());
+
+        this.tag(ItemTags.STONE_TOOL_MATERIALS)
+                .add(MFRBlocks.COBBLE_LIMESTONE.asItem());
+
+        this.tag(MFRTags.Items.getCommonTag("cobblestones"))
+                .add(MFRBlocks.COBBLE_LIMESTONE.asItem());
+
+        this.tag(MFRTags.Items.getCommonTag("ores_in_ground/stone")).add(
+                MFRBlocks.TIN_ORE.asItem(),
+                MFRBlocks.SILVER_ORE.asItem(),
+
+                MFRBlocks.KAOLINITE_ORE.asItem(),
+                MFRBlocks.BORAX_ORE.asItem(),
+                MFRBlocks.RICH_COAL_ORE.asItem()
+        );
+
+        this.tag(MFRTags.Items.getCommonTag("ores_in_ground/deepslate")).add(
+                MFRBlocks.DEEPSLATE_TIN_ORE.asItem(),
+                MFRBlocks.DEEPSLATE_SILVER_ORE.asItem(),
+                MFRBlocks.MYTHIC_ORE.asItem(),
+
+                MFRBlocks.DEEPSLATE_KAOLINITE_ORE.asItem(),
+                MFRBlocks.NITRE_ORE.asItem(),
+                MFRBlocks.SULFUR_ORE.asItem(),
+                MFRBlocks.DEEPSLATE_BORAX_ORE.asItem(),
+                MFRBlocks.TUNGSTEN_ORE.asItem(),
+                MFRBlocks.DEEPSLATE_RICH_COAL_ORE.asItem()
+        );
+
+        this.tag(MFRTags.Items.getCommonTag("ores")).add(
+                MFRBlocks.TIN_ORE.asItem(),
+                MFRBlocks.DEEPSLATE_TIN_ORE.asItem(),
+                MFRBlocks.SILVER_ORE.asItem(),
+                MFRBlocks.DEEPSLATE_SILVER_ORE.asItem(),
+                MFRBlocks.MYTHIC_ORE.asItem(),
+
+                MFRBlocks.KAOLINITE_ORE.asItem(),
+                MFRBlocks.DEEPSLATE_KAOLINITE_ORE.asItem(),
+                MFRBlocks.NITRE_ORE.asItem(),
+                MFRBlocks.SULFUR_ORE.asItem(),
+                MFRBlocks.BORAX_ORE.asItem(),
+                MFRBlocks.DEEPSLATE_BORAX_ORE.asItem(),
+                MFRBlocks.TUNGSTEN_ORE.asItem(),
+                MFRBlocks.RICH_COAL_ORE.asItem(),
+                MFRBlocks.DEEPSLATE_RICH_COAL_ORE.asItem()
+        );
+
+        this.tag(MFRTags.Items.getCommonTag("stones"))
+                .add(MFRBlocks.LIMESTONE.asItem());
+
+        this.tag(MFRTags.Items.getCommonTag("stripped_logs")).add(
+                MFRBlocks.STRIPPED_YEW_LOG.asItem(),
+                MFRBlocks.STRIPPED_IRONBARK_LOG.asItem(),
+                MFRBlocks.STRIPPED_EBONY_LOG.asItem()
+        );
+
+        this.tag(MFRTags.Items.getCommonTag("stripped_woods")).add(
+                MFRBlocks.STRIPPED_YEW_WOOD.asItem(),
+                MFRBlocks.STRIPPED_IRONBARK_WOOD.asItem(),
+                MFRBlocks.STRIPPED_EBONY_WOOD.asItem()
+        );
+
+        this.tag(MFRTags.Items.getCommonTag("fence_gates/wooden")).add(
+                MFRBlocks.YEW_FENCE_GATE.asItem(),
+                MFRBlocks.IRONBARK_FENCE_GATE.asItem(),
+                MFRBlocks.EBONY_FENCE_GATE.asItem()
+        );
+
+        this.tag(MFRTags.Items.getCommonTag("tools/melee_weapon")).add(
+                MFRItems.STANDARD_SWORD.get(),
+                MFRItems.STANDARD_WARAXE.get(),
+                MFRItems.STANDARD_MACE.get(),
+                MFRItems.STANDARD_DAGGER.get(),
+                MFRItems.STANDARD_SPEAR.get(),
+                MFRItems.STANDARD_GREATSWORD.get(),
+                MFRItems.STANDARD_BATTLEAXE.get(),
+                MFRItems.STANDARD_WARHAMMER.get(),
+                MFRItems.STANDARD_KATANA.get(),
+                MFRItems.STANDARD_HALBEARD.get(),
+                MFRItems.STANDARD_LANCE.get(),
+                MFRItems.STANDARD_KNIFE.get()
+        );
+
+        this.tag(MFRTags.Items.getCommonTag("tools/mining_tool")).add(
+                MFRItems.STANDARD_PICK.get(),
+                MFRItems.STANDARD_HEAVY_PICK.get(),
+                MFRItems.STANDARD_HANDPICK.get(),
+                MFRItems.STANDARD_MATTOCK.get()
+        );
+
+        this.tag(MFRTags.Items.getCommonTag("tools/ranged_weapon"))
+                .add(MFRItems.STANDARD_BOW.get());
     }
 }

@@ -1,7 +1,12 @@
 package minefantasy.mfr.datagen;
 
 import minefantasy.mfr.init.MFRBlocks;
+import minefantasy.mfr.init.MFRItems;
+import minefantasy.mfr.init.MFRMaterials;
 import minefantasy.mfr.init.MFRTags;
+import minefantasy.mfr.material.CustomMaterial;
+import minefantasy.mfr.registry.CustomMaterialRegistry;
+import minefantasy.mfr.registry.types.CustomMaterialTypeRegistry;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
@@ -10,16 +15,22 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 public class MFRRecipesDatagen extends RecipeProvider {
     public static final TagKey<Item> WOODEN_RODS = TagKey.create(Registries.ITEM,
             ResourceLocation.fromNamespaceAndPath("c", "rods/wooden"));
+    public final CompletableFuture<HolderLookup.Provider> registries;
 
     public MFRRecipesDatagen(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries);
+        this.registries = registries;
     }
 
     @Override

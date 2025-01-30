@@ -4,6 +4,7 @@ import minefantasy.mfr.api.tier.IToolMaterial;
 import minefantasy.mfr.api.tool.IToolMFR;
 import minefantasy.mfr.api.weapon.IDamageType;
 import minefantasy.mfr.constants.Tool;
+import minefantasy.mfr.init.MFRMaterials;
 import minefantasy.mfr.util.CustomToolHelper;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -66,5 +67,10 @@ public class BasicCraftToolItem extends TieredItem implements IToolMaterial, ITo
     @Override
     public float getPenetrationLevel(Object implement) {
         return 0;
+    }
+
+    @Override
+    public boolean isPiglinCurrency(@NotNull ItemStack stack) {
+        return CustomToolHelper.getCustomPrimaryMaterial(stack).getName().equals(MFRMaterials.GOLD_METAL);
     }
 }

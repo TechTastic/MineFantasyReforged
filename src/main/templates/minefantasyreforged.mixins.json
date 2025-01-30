@@ -1,0 +1,6 @@
+{
+  "package": "minefantasy.mfr.mixin",
+  "mixins": [
+    "MixinPiglinAi"
+  ]
+}

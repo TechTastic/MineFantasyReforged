@@ -146,7 +146,7 @@ public class CustomMaterial {
     public ResourceLocation getName() {
         AtomicReference<ResourceLocation> name = new AtomicReference<>(MFRMaterials.ANY);
         CustomMaterialRegistry.ACCESS.registry(CustomMaterialRegistry.MATERIAL_REGISTRY_KEY).ifPresent(reg -> name.set(reg.getKey(this)));
-        return name.get();
+        return name.get() == null ? MFRMaterials.ANY : name.get();
     }
 
     /**

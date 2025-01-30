@@ -1,6 +1,7 @@
 package minefantasy.mfr.item;
 
 import minefantasy.mfr.api.tier.IToolMaterial;
+import minefantasy.mfr.init.MFRMaterials;
 import minefantasy.mfr.material.CustomMaterial;
 import minefantasy.mfr.registry.CustomMaterialRegistry;
 import minefantasy.mfr.util.CustomToolHelper;
@@ -136,5 +137,10 @@ public class HeavyPickaxeItem extends PickaxeItem implements IToolMaterial {
         }
 
         return positions;
+    }
+
+    @Override
+    public boolean isPiglinCurrency(@NotNull ItemStack stack) {
+        return CustomToolHelper.getCustomPrimaryMaterial(stack).getName().equals(MFRMaterials.GOLD_METAL);
     }
 }

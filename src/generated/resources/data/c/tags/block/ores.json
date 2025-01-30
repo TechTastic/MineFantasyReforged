@@ -1,0 +1,18 @@
+{
+  "values": [
+    "minefantasyreforged:tin_ore",
+    "minefantasyreforged:deepslate_tin_ore",
+    "minefantasyreforged:silver_ore",
+    "minefantasyreforged:deepslate_silver_ore",
+    "minefantasyreforged:mythic_ore",
+    "minefantasyreforged:kaolinite_ore",
+    "minefantasyreforged:deepslate_kaolinite_ore",
+    "minefantasyreforged:nitre_ore",
+    "minefantasyreforged:sulfur_ore",
+    "minefantasyreforged:borax_ore",
+    "minefantasyreforged:deepslate_borax_ore",
+    "minefantasyreforged:tungsten_ore",
+    "minefantasyreforged:rich_coal_ore",
+    "minefantasyreforged:deepslate_rich_coal_ore"
+  ]
+}

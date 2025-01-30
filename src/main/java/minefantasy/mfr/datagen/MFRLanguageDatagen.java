@@ -3,6 +3,7 @@ package minefantasy.mfr.datagen;
 import minefantasy.mfr.MineFantasyReforged;
 import minefantasy.mfr.init.MFRBlocks;
 import minefantasy.mfr.init.MFRItems;
+import minefantasy.mfr.init.MFRTags;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 
@@ -13,6 +14,15 @@ public class MFRLanguageDatagen extends LanguageProvider {
 
     @Override
     protected void addTranslations() {
+        // TAGS
+
+        addTag(() -> MFRTags.Items.YEW_LOGS, "Yew Logs");
+        addTag(() -> MFRTags.Items.IRONBARK_LOGS, "Ironbark Logs");
+        addTag(() -> MFRTags.Items.EBONY_LOGS, "Ebony Logs");
+        addTag(() -> MFRTags.Blocks.YEW_LOGS, "Yew Logs");
+        addTag(() -> MFRTags.Blocks.IRONBARK_LOGS, "Ironbark Logs");
+        addTag(() -> MFRTags.Blocks.EBONY_LOGS, "Ebony Logs");
+
         // INFORMATION
 
         add("forge.fuel.name", "~Fuel~");

@@ -77,4 +77,9 @@ public class MetalComponentItem extends MFRComponentItem {
         CustomMaterialRegistry.addMaterial(item, MaterialDataComponent.SLOT_MAIN, base);
         return item;
     }
+
+    @Override
+    public boolean isPiglinCurrency(@NotNull ItemStack stack) {
+        return CustomToolHelper.getCustomPrimaryMaterial(stack).getName().equals(MFRMaterials.GOLD_METAL);
+    }
 }

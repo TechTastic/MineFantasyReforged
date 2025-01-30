@@ -1,6 +1,7 @@
 package minefantasy.mfr.item;
 
 import minefantasy.mfr.api.tier.IToolMaterial;
+import minefantasy.mfr.init.MFRMaterials;
 import minefantasy.mfr.material.CustomMaterial;
 import minefantasy.mfr.registry.CustomMaterialRegistry;
 import minefantasy.mfr.util.CustomToolHelper;
@@ -104,5 +105,10 @@ public class HandpickItem extends PickaxeItem implements IToolMaterial {
                         .getEfficiency(stack, efficiency, 0.5f))).withStyle(ChatFormatting.GREEN));
 
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+    }
+
+    @Override
+    public boolean isPiglinCurrency(@NotNull ItemStack stack) {
+        return CustomToolHelper.getCustomPrimaryMaterial(stack).getName().equals(MFRMaterials.GOLD_METAL);
     }
 }

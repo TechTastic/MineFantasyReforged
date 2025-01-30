@@ -60,6 +60,10 @@ public class MFRTags {
                 ResourceLocation.fromNamespaceAndPath(MineFantasyReforged.MOD_ID, "incorrect_for_composite_alloy_tool"));
         public static TagKey<Block> INCORRECT_FOR_NETHERITE_TOOL = TagKey.create(Registries.BLOCK,
                 ResourceLocation.fromNamespaceAndPath(MineFantasyReforged.MOD_ID, "incorrect_for_netherite_tool"));
+
+        public static TagKey<Block> getCommonTag(String path) {
+            return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", path));
+        }
     }
 
     public static class Items {
@@ -69,5 +73,9 @@ public class MFRTags {
                 ResourceLocation.fromNamespaceAndPath(MineFantasyReforged.MOD_ID, "ironbark_logs"));
         public static TagKey<Item> EBONY_LOGS = TagKey.create(Registries.ITEM,
                 ResourceLocation.fromNamespaceAndPath(MineFantasyReforged.MOD_ID, "ebony_logs"));
+
+        public static TagKey<Item> getCommonTag(String path) {
+            return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", path));
+        }
     }
 }
