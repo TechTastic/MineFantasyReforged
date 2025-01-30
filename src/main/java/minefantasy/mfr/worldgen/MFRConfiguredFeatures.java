@@ -148,7 +148,7 @@ public class MFRConfiguredFeatures {
 
 
         FeatureUtils.register(context, LIMESTONE_KEY, Feature.ORE, new OreConfiguration(
-                new TagMatchTest(BlockTags.BASE_STONE_OVERWORLD), Blocks.ANDESITE.defaultBlockState(), 64));
+                new TagMatchTest(BlockTags.BASE_STONE_OVERWORLD), MFRBlocks.LIMESTONE.get().defaultBlockState(), 64));
     }
     
     static {

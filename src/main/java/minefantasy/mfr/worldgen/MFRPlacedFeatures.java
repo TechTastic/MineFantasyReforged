@@ -64,7 +64,33 @@ public class MFRPlacedFeatures {
     private static void registerOres(BootstrapContext<PlacedFeature> context, HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures) {
         PlacementUtils.register(context, TIN_ORE_PLACED_KEY, configuredFeatures.getOrThrow(MFRConfiguredFeatures.TIN_ORE_KEY),
                 commonOrePlacement(16, HeightRangePlacement.triangle(VerticalAnchor.absolute(-12), VerticalAnchor.absolute(116))));
-        // 48 - 96
+
+        PlacementUtils.register(context, SILVER_ORE_PLACED_KEY, configuredFeatures.getOrThrow(MFRConfiguredFeatures.SILVER_ORE_KEY),
+                commonOrePlacement(4, HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(32))));
+
+        PlacementUtils.register(context, MYTHIC_ORE_PLACED_KEY, configuredFeatures.getOrThrow(MFRConfiguredFeatures.MYTHIC_ORE_KEY),
+                rareOrePlacement(1, HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(-60))));
+
+        PlacementUtils.register(context, KAOLINITE_ORE_PLACED_KEY, configuredFeatures.getOrThrow(MFRConfiguredFeatures.KAOLINITE_ORE_KEY),
+                commonOrePlacement(18, HeightRangePlacement.triangle(VerticalAnchor.absolute(0), VerticalAnchor.absolute(192))));
+
+        PlacementUtils.register(context, NITRE_ORE_PLACED_KEY, configuredFeatures.getOrThrow(MFRConfiguredFeatures.NITRE_ORE_KEY),
+                commonOrePlacement(8, HeightRangePlacement.triangle(VerticalAnchor.absolute(-32), VerticalAnchor.absolute(8))));
+
+        PlacementUtils.register(context, SULFUR_ORE_PLACED_KEY, configuredFeatures.getOrThrow(MFRConfiguredFeatures.SULFUR_ORE_KEY),
+                commonOrePlacement(6, HeightRangePlacement.triangle(VerticalAnchor.absolute(-32), VerticalAnchor.absolute(8))));
+
+        PlacementUtils.register(context, BORAX_ORE_PLACED_KEY, configuredFeatures.getOrThrow(MFRConfiguredFeatures.BORAX_ORE_KEY),
+                commonOrePlacement(7, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80))));
+
+        PlacementUtils.register(context, TUNGSTEN_ORE_PLACED_KEY, configuredFeatures.getOrThrow(MFRConfiguredFeatures.TUNGSTEN_ORE_KEY),
+                commonOrePlacement(6, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-64), VerticalAnchor.aboveBottom(28))));
+
+        PlacementUtils.register(context, RICH_COAL_ORE_PLACED_KEY, configuredFeatures.getOrThrow(MFRConfiguredFeatures.RICH_COAL_ORE_KEY),
+                commonOrePlacement(4, HeightRangePlacement.triangle(VerticalAnchor.absolute(0), VerticalAnchor.absolute(192))));
+
+        PlacementUtils.register(context, LIMESTONE_PLACED_KEY, configuredFeatures.getOrThrow(MFRConfiguredFeatures.LIMESTONE_KEY),
+                rareOrePlacement(10, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(60))));
     }
 
     private static List<PlacementModifier> orePlacement(PlacementModifier countPlacement, PlacementModifier heightRange) {

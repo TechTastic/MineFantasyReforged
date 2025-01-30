@@ -1,5 +1,6 @@
 package minefantasy.mfr.mixin;
 
+import minefantasy.mfr.MineFantasyReforged;
 import minefantasy.mfr.init.MFRMaterials;
 import minefantasy.mfr.util.CustomToolHelper;
 import net.minecraft.world.entity.monster.piglin.PiglinAi;
@@ -13,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class MixinPiglinAi {
     @Inject(method = "isLovedItem", at = @At("RETURN"), cancellable = true)
     private static void mfr$isItemGold(ItemStack item, CallbackInfoReturnable<Boolean> cir) {
-        if (!cir.getReturnValue()) {
+        if (!cir.getReturnValue() && item.getItemHolder().getKey().location().getNamespace().equals(MineFantasyReforged.MOD_ID)) {
             cir.setReturnValue(CustomToolHelper.getCustomPrimaryMaterial(item).getName().equals(MFRMaterials.GOLD_METAL));
         }
     }
