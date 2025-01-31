@@ -1,5 +1,41 @@
 {
   "parent": "minefantasyreforged:item/handheld/triple",
+  "display": {
+    "thirdperson_lefthand": {
+      "rotation": [
+        0,
+        90,
+        -55
+      ],
+      "scale": [
+        1.7,
+        1.7,
+        0.85
+      ],
+      "translation": [
+        0,
+        11,
+        0.5
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        0,
+        -90,
+        55
+      ],
+      "scale": [
+        1.7,
+        1.7,
+        0.85
+      ],
+      "translation": [
+        0,
+        11,
+        0.5
+      ]
+    }
+  },
   "textures": {
     "layer0": "minefantasyreforged:item/standard_lance",
     "layer1": "minefantasyreforged:item/standard_lance_haft",

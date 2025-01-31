@@ -3,6 +3,7 @@ package minefantasy.mfr.datagen;
 import minefantasy.mfr.MineFantasyReforged;
 import minefantasy.mfr.init.MFRBlocks;
 import minefantasy.mfr.init.MFRItems;
+import minefantasy.mfr.item.LanceItem;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -10,7 +11,6 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
-import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -78,6 +78,9 @@ public class MFRItemModelDatagen extends ItemModelProvider {
         twoPieceTools(MFRItems.STANDARD_PLATE_LEGGINGS);
         twoPieceTools(MFRItems.STANDARD_PLATE_BOOTS);
 
+        getOrMakeDoubleScaleHandheldModel();
+        getOrMakeTripleScaleHandheldModel();
+
         threePieceTools(MFRItems.STANDARD_SWORD);
         threePieceTools(MFRItems.STANDARD_WARAXE);
         threePieceTools(MFRItems.STANDARD_MACE);
@@ -88,7 +91,7 @@ public class MFRItemModelDatagen extends ItemModelProvider {
         doubleScaledThreePieceTools(MFRItems.STANDARD_WARHAMMER);
         doubleScaledThreePieceTools(MFRItems.STANDARD_KATANA);
         tripleScaledThreePieceTools(MFRItems.STANDARD_HALBEARD);
-        tripleScaledThreePieceTools(MFRItems.STANDARD_LANCE);
+        lance(MFRItems.STANDARD_LANCE);
         threePieceTools(MFRItems.STANDARD_PICK);
         threePieceTools(MFRItems.STANDARD_AXE);
         threePieceTools(MFRItems.STANDARD_SHOVEL);
@@ -117,6 +120,59 @@ public class MFRItemModelDatagen extends ItemModelProvider {
         twoPieceTools(MFRItems.STANDARD_BOLT);
         twoPieceTools(MFRItems.STANDARD_ARROW_BODKIN);
         twoPieceTools(MFRItems.STANDARD_ARROW_BROAD);
+    }
+
+    public void lance(DeferredItem<LanceItem> item) {
+        tripleScaledThreePieceTools(item).transforms()
+                .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND).scale(1.7f, 1.7f, 0.85f)
+                .translation(0f, 11f, 0.5f).rotation(0, -90, 55).end()
+                .transform(ItemDisplayContext.THIRD_PERSON_LEFT_HAND).scale(1.7f, 1.7f, 0.85f)
+                .translation(0f, 11f, 0.5f).rotation(0, 90, -55).end()
+                .end();
+    }
+
+    public ItemModelBuilder getOrMakeDoubleScaleHandheldModel() {
+        return withExistingParent("item/handheld/double", mcLoc("item/handheld")).transforms()
+                .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND)
+                .scale(1.7f, 1.7f, 0.85f)
+                .translation(0f, 7.5f, 0.5f)
+                .rotation(0, -90, 55)
+                .end()
+                .transform(ItemDisplayContext.THIRD_PERSON_LEFT_HAND)
+                .scale(1.7f, 1.7f, 0.85f)
+                .translation(0f, 7.5f, 0.5f)
+                .rotation(0, 90, -55)
+                .end()
+
+                .transform(ItemDisplayContext.FIRST_PERSON_RIGHT_HAND)
+                .scale(1.36f, 1.36f, 0.68f)
+                .translation(1.13f, 7.8f, 1.13f)
+                .rotation(0, -90, 25)
+                .end()
+                .transform(ItemDisplayContext.FIRST_PERSON_LEFT_HAND)
+                .scale(1.36f, 1.36f, 0.68f)
+                .translation(1.13f, 7.8f, 1.13f)
+                .rotation(0, 90, -25)
+                .end()
+
+                .transform(ItemDisplayContext.GROUND)
+                .scale(2f, 2f, 1f)
+                .translation(12f, 12f, 0f)
+                .end().end();
+    }
+
+    public ItemModelBuilder getOrMakeTripleScaleHandheldModel() {
+        return withExistingParent("item/handheld/triple", mcLoc("item/handheld")).transforms()
+                .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND).scale(2.55f, 2.55f, 0.85f)
+                .translation(0f, 7f, 0.5f).rotation(0, -90, 55).end()
+                .transform(ItemDisplayContext.THIRD_PERSON_LEFT_HAND).scale(2.55f, 2.55f, 0.85f)
+                .translation(0f, 7f, 0.5f).rotation(0, 90, -55).end()
+                .transform(ItemDisplayContext.FIRST_PERSON_RIGHT_HAND).scale(2.04f, 2.04f, 0.68f)
+                .translation(1.13f, 7.2f, 1.13f).rotation(0, -90, 25).end()
+                .transform(ItemDisplayContext.FIRST_PERSON_LEFT_HAND).scale(2.04f, 2.04f, 0.68f)
+                .translation(1.13f, 7.2f, 1.13f).rotation(0, 90, -25).end()
+                .transform(ItemDisplayContext.GROUND).scale(3f, 3f, 1f).translation(24f, 18f, 0f).end()
+                .end();
     }
 
     public ItemModelBuilder doubleScaledThreePieceTools(DeferredItem<? extends Item> tool) {
