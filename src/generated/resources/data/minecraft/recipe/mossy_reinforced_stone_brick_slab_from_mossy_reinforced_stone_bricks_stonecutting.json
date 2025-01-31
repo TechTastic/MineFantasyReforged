@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minefantasyreforged:mossy_reinforced_stone_bricks"
+  },
+  "result": {
+    "count": 2,
+    "id": "minefantasyreforged:mossy_reinforced_stone_brick_slab"
+  }
+}

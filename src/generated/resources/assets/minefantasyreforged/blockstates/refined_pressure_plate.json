@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "minefantasyreforged:block/refined_pressure_plate"
+    },
+    "powered=true": {
+      "model": "minefantasyreforged:block/refined_pressure_plate_down"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "minefantasyreforged:block/firebricks",
+    "side": "minefantasyreforged:block/firebricks",
+    "top": "minefantasyreforged:block/firebricks"
+  }
+}

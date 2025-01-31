@@ -1,5 +1,6 @@
 package minefantasy.mfr.datagen;
 
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.resources.ResourceLocation;
@@ -11,6 +12,7 @@ import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.Map;
 
@@ -37,13 +39,34 @@ public class MFRBlockModelDatagen extends BlockStateProvider {
         blockWithItem(MFRBlocks.RICH_COAL_ORE);
         //blockWithItem(MFRBlocks.DEEPSLATE_RICH_COAL_ORE);
 
+        blockFamily(MFRBlocks.COBBLE_BRICK_FAMILY.get());
 
+        glassBlock(MFRBlocks.WINDOW);
+        paneBlockWithRenderType(MFRBlocks.WINDOW_PANE.get(), modLoc("block/framed_glass"), modLoc("block/framed_glass_pane"), mcLoc("translucent"));
+        glassBlock(MFRBlocks.FRAMED_GLASS);
+        paneBlockWithRenderType(MFRBlocks.FRAMED_GLASS_PANE.get(), modLoc("block/window"), modLoc("block/framed_glass_pane"), mcLoc("translucent"));
+
+        blockFamily(MFRBlocks.THATCH_FAMILY.get());
 
         blockFamily(MFRBlocks.LIMESTONE_FAMILY.get());
+
         blockFamily(MFRBlocks.COBBLE_LIMESTONE_FAMILY.get());
         blockFamily(MFRBlocks.LIMESTONE_BRICK_FAMILY.get());
 
+        blockFamily(MFRBlocks.FIREBRICK_FAMILY.get());
+        blockFamily(MFRBlocks.CLAY_PANEL_FAMILY.get());
 
+        blockFamily(MFRBlocks.REFINED_FAMILY.get());
+        blockFamily(MFRBlocks.NAILED_FAMILY.get());
+
+        blockFamily(MFRBlocks.REINFORCED_STONE_FAMILY.get());
+
+        blockFamily(MFRBlocks.REINFORCED_STONE_BRICK_FAMILY.get());
+        blockFamily(MFRBlocks.MOSSY_REINFORCED_STONE_BRICK_FAMILY.get());
+        blockFamily(MFRBlocks.CRACKED_REINFORCED_STONE_BRICK_FAMILY.get());
+
+        blockFamily(MFRBlocks.FRAMED_REINFORCED_STONE_FAMILY.get());
+        blockFamily(MFRBlocks.IRON_FRAMED_REINFORCED_STONE_FAMILY.get());
 
         logBlock(MFRBlocks.YEW_LOG.get());
         axisBlock(MFRBlocks.YEW_WOOD.get(), blockTexture(MFRBlocks.YEW_LOG.get()), blockTexture(MFRBlocks.YEW_LOG.get()));
@@ -52,15 +75,11 @@ public class MFRBlockModelDatagen extends BlockStateProvider {
         leavesBlock(MFRBlocks.YEW_LEAVES);
         saplingBlock(MFRBlocks.YEW_SAPLING);
         pottedSaplingBlock(MFRBlocks.POTTED_YEW_SAPLING, MFRBlocks.YEW_SAPLING);
-
         blockItem(MFRBlocks.YEW_LOG);
         blockItem(MFRBlocks.YEW_WOOD);
         blockItem(MFRBlocks.STRIPPED_YEW_LOG);
         blockItem(MFRBlocks.STRIPPED_YEW_WOOD);
-
         blockFamily(MFRBlocks.YEW_FAMILY.get());
-
-
 
         logBlock(MFRBlocks.IRONBARK_LOG.get());
         axisBlock(MFRBlocks.IRONBARK_WOOD.get(), blockTexture(MFRBlocks.IRONBARK_LOG.get()), blockTexture(MFRBlocks.IRONBARK_LOG.get()));
@@ -69,15 +88,11 @@ public class MFRBlockModelDatagen extends BlockStateProvider {
         leavesBlock(MFRBlocks.IRONBARK_LEAVES);
         saplingBlock(MFRBlocks.IRONBARK_SAPLING);
         pottedSaplingBlock(MFRBlocks.POTTED_IRONBARK_SAPLING, MFRBlocks.IRONBARK_SAPLING);
-
         blockItem(MFRBlocks.IRONBARK_LOG);
         blockItem(MFRBlocks.IRONBARK_WOOD);
         blockItem(MFRBlocks.STRIPPED_IRONBARK_LOG);
         blockItem(MFRBlocks.STRIPPED_IRONBARK_WOOD);
-
         blockFamily(MFRBlocks.IRONBARK_FAMILY.get());
-
-
         
         logBlock(MFRBlocks.EBONY_LOG.get());
         axisBlock(MFRBlocks.EBONY_WOOD.get(), blockTexture(MFRBlocks.EBONY_LOG.get()), blockTexture(MFRBlocks.EBONY_LOG.get()));
@@ -86,12 +101,10 @@ public class MFRBlockModelDatagen extends BlockStateProvider {
         leavesBlock(MFRBlocks.EBONY_LEAVES);
         saplingBlock(MFRBlocks.EBONY_SAPLING);
         pottedSaplingBlock(MFRBlocks.POTTED_EBONY_SAPLING, MFRBlocks.EBONY_SAPLING);
-
         blockItem(MFRBlocks.EBONY_LOG);
         blockItem(MFRBlocks.EBONY_WOOD);
         blockItem(MFRBlocks.STRIPPED_EBONY_LOG);
         blockItem(MFRBlocks.STRIPPED_EBONY_WOOD);
-
         blockFamily(MFRBlocks.EBONY_FAMILY.get());
     }
 
@@ -134,6 +147,10 @@ public class MFRBlockModelDatagen extends BlockStateProvider {
         if (variants.get(BlockFamily.Variant.WALL) instanceof WallBlock wall) {
             wallBlock(wall, blockTexture(family.getBaseBlock()));
         }
+    }
+
+    private void glassBlock(DeferredBlock<Block> block) {
+        simpleBlockWithItem(block.get(), models().cubeAll(block.getId().getPath(), blockTexture(block.get())).renderType("translucent"));
     }
 
     private void saplingBlock(DeferredBlock<Block> blockRegistryObject) {

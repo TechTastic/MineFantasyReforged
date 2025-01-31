@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "minefantasyreforged:block/nailed_slab"
+    },
+    "type=double": {
+      "model": "minefantasyreforged:block/nailed_planks"
+    },
+    "type=top": {
+      "model": "minefantasyreforged:block/nailed_slab_top"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_firebricks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minefantasyreforged:firebricks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:firebrick_wall_from_firebricks_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_firebricks"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:firebrick_wall_from_firebricks_stonecutting"
+    ]
+  }
+}

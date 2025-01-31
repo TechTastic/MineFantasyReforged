@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "minefantasyreforged:block/firebrick_slab"
+    },
+    "type=double": {
+      "model": "minefantasyreforged:block/firebricks"
+    },
+    "type=top": {
+      "model": "minefantasyreforged:block/firebrick_slab_top"
+    }
+  }
+}

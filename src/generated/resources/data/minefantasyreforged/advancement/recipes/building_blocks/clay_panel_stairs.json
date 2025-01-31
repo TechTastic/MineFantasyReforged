@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_clay_panel": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minefantasyreforged:clay_panel"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minefantasyreforged:clay_panel_stairs"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_clay_panel"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minefantasyreforged:clay_panel_stairs"
+    ]
+  }
+}

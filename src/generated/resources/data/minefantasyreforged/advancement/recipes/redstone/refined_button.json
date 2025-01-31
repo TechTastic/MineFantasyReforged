@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_refined_planks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minefantasyreforged:refined_planks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minefantasyreforged:refined_button"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_refined_planks"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minefantasyreforged:refined_button"
+    ]
+  }
+}

@@ -11,6 +11,7 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -22,14 +23,49 @@ public class MFRItemModelDatagen extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
+        wallInventory(MFRBlocks.COBBLE_BRICK_WALL.getId().toString(),
+                modLoc("block/cobble_bricks"));
+
+        wallInventory(MFRBlocks.THATCH_WALL.getId().toString(),
+                modLoc("block/thatch"));
+
+        getBuilder("item/window_pane").parent(new ModelFile.UncheckedModelFile("item/generated"))
+                .texture("layer0", modLoc("block/window"));
+        getBuilder("item/framed_glass_pane").parent(new ModelFile.UncheckedModelFile("item/generated"))
+                .texture("layer0", modLoc("block/framed_glass"));
+
         wallInventory(MFRBlocks.LIMESTONE_WALL.getId().toString(),
                 modLoc("block/limestone"));
+
         wallInventory(MFRBlocks.COBBLE_LIMESTONE_WALL.getId().toString(),
                 modLoc("block/cobble_limestone"));
         wallInventory(MFRBlocks.LIMESTONE_BRICK_WALL.getId().toString(),
                 modLoc("block/limestone_bricks"));
 
+        wallInventory(MFRBlocks.FIREBRICK_WALL.getId().toString(),
+                modLoc("block/firebricks"));
+        wallInventory(MFRBlocks.CLAY_PANEL_WALL.getId().toString(),
+                modLoc("block/clay_panel"));
 
+        fenceItem(MFRBlocks.REFINED_FENCE, MFRBlocks.REFINED_PLANKS);
+        buttonItem(MFRBlocks.REFINED_BUTTON, MFRBlocks.REFINED_PLANKS);
+        fenceItem(MFRBlocks.NAILED_FENCE, MFRBlocks.NAILED_PLANKS);
+        buttonItem(MFRBlocks.NAILED_BUTTON, MFRBlocks.NAILED_PLANKS);
+
+        wallInventory(MFRBlocks.REINFORCED_STONE_WALL.getId().toString(),
+                modLoc("block/reinforced_stone"));
+
+        wallInventory(MFRBlocks.REINFORCED_STONE_BRICK_WALL.getId().toString(),
+                modLoc("block/reinforced_stone_bricks"));
+        wallInventory(MFRBlocks.MOSSY_REINFORCED_STONE_BRICK_WALL.getId().toString(),
+                modLoc("block/mossy_reinforced_stone_bricks"));
+        wallInventory(MFRBlocks.CRACKED_REINFORCED_STONE_BRICK_WALL.getId().toString(),
+                modLoc("block/cracked_reinforced_stone_bricks"));
+
+        wallInventory(MFRBlocks.FRAMED_REINFORCED_STONE_WALL.getId().toString(),
+                modLoc("block/framed_reinforced_stone"));
+        wallInventory(MFRBlocks.IRON_FRAMED_REINFORCED_STONE_WALL.getId().toString(),
+                modLoc("block/iron_framed_reinforced_stone"));
 
         withExistingParent(MFRBlocks.YEW_SAPLING.getId().toString(), mcLoc("item/generated"))
                 .texture("layer0", modLoc("block/yew_sapling"));
@@ -45,8 +81,6 @@ public class MFRItemModelDatagen extends ItemModelProvider {
                 .texture("layer0", modLoc("block/ebony_sapling"));
         fenceItem(MFRBlocks.EBONY_FENCE, MFRBlocks.EBONY_PLANKS);
         buttonItem(MFRBlocks.EBONY_BUTTON, MFRBlocks.EBONY_PLANKS);
-
-
 
         basicItem(MFRItems.BAR.get());
 

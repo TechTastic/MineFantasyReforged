@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "minefantasyreforged:block/iron_framed_reinforced_stone_slab"
+    },
+    "type=double": {
+      "model": "minefantasyreforged:block/iron_framed_reinforced_stone"
+    },
+    "type=top": {
+      "model": "minefantasyreforged:block/iron_framed_reinforced_stone_slab_top"
+    }
+  }
+}

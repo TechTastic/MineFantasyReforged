@@ -1,7 +1,16 @@
 {
   "values": [
+    "minefantasyreforged:cobble_brick_slab",
+    "minefantasyreforged:thatch_slab",
     "minefantasyreforged:limestone_slab",
     "minefantasyreforged:cobble_limestone_slab",
-    "minefantasyreforged:limestone_brick_slab"
+    "minefantasyreforged:limestone_brick_slab",
+    "minefantasyreforged:firebrick_slab",
+    "minefantasyreforged:clay_panel_slab",
+    "minefantasyreforged:reinforced_stone_slab",
+    "minefantasyreforged:mossy_reinforced_stone_brick_slab",
+    "minefantasyreforged:cracked_reinforced_stone_brick_slab",
+    "minefantasyreforged:framed_reinforced_stone_slab",
+    "minefantasyreforged:iron_framed_reinforced_stone_slab"
   ]
 }

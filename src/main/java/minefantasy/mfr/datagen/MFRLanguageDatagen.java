@@ -685,20 +685,18 @@ public class MFRLanguageDatagen extends LanguageProvider {
         addBlock(MFRBlocks.TUNGSTEN_ORE, "Wolframite Ore");
         addBlock(MFRBlocks.RICH_COAL_ORE, "Rich Coal Deposit");
         addBlock(MFRBlocks.DEEPSLATE_RICH_COAL_ORE, "Deepslate Rich Coal Deposit");
-
+        
+        addBlock(MFRBlocks.WINDOW, "Window");
+        addBlock(MFRBlocks.WINDOW_PANE, "Window Pane");
         /*
-        tile.window.name=Window
-        tile.window_pane.name=Window Pane
         tile.mud_road.name=Mud Road
         tile.mud_road_block.name=Mud Road Block
         tile.mud_road_block_slab.name=Mud Road Slab
-        tile.mud_brick.name=Mud Bricks
-        tile.mud_brick_slab.name=Mud Bricks Slab
-        tile.mud_brick_stairs.name=Mud Brick Steps
-        tile.thatch.name=Thatch
-        tile.thatch_slab.name=Thatch Slab
-        tile.thatch_stairs.name=Thatch Stairs
-        tile.component.name=Component*/
+        */
+        addBlock(MFRBlocks.THATCH, "Thatch");
+        addBlock(MFRBlocks.THATCH_STAIRS, "Thatch Stairs");
+        addBlock(MFRBlocks.THATCH_SLAB, "Thatch Slab");
+        addBlock(MFRBlocks.THATCH_WALL, "Thatch Wall");
 
         addBlock(MFRBlocks.LIMESTONE, "Limestone");
         addBlock(MFRBlocks.LIMESTONE_STAIRS, "Limestone Stairs");
@@ -723,22 +721,28 @@ public class MFRLanguageDatagen extends LanguageProvider {
         tile.slate_pavement.name=Slate Pavement
         tile.slate_stair.name=Slate Stairs
         tile.slate_cobblestone_stair.name=Slate Cobblestone Stairs
-        tile.slate_brick_stair.name=Slate Brick Stairs
-
-        tile.framed_glass.name=Framed Glass
-        tile.framed_glass_pane.name=Framed Glass Pane
-        tile.firebricks.name=Fire Bricks
-        tile.firebricks_slab.name= Fire Brick Slab
-        tile.firebrick_stairs.name=Fire Brick Steps
+        tile.slate_brick_stair.name=Slate Brick Stairs*/
+        
+        addBlock(MFRBlocks.FRAMED_GLASS, "Framed Glass");
+        addBlock(MFRBlocks.FRAMED_GLASS_PANE, "Framed Glass Pane");
+        addBlock(MFRBlocks.FIREBRICKS, "Fire Bricks");
+        addBlock(MFRBlocks.FIREBRICK_STAIRS, "Fire Brick Stairs");
+        addBlock(MFRBlocks.FIREBRICK_SLAB, "Fire Brick Slab");
+        addBlock(MFRBlocks.FIREBRICK_WALL, "Fire Brick Wall");
+        /*
         tile.cobblestone_road.name=Cobblestone Road
         tile.cobblestone_road_block.name=Cobblestone Road Block
         tile.cobblestone_road_block_slab.name=Cobblestone Road Slab
-        tile.cobble_brick.name=Cobblestone Bricks
-        tile.cobble_brick_slab.name=Cobblestone Brick Slab
-        tile.cobble_brick_stairs.name=Cobblestone Brick Steps
-        tile.clay_wall.name=Clay Wall Panel
-        tile.clay_wall_slab.name=Clay Wall Slab
-        tile.clay_wall_cross.name=Clay Wall Cross Panel
+        */
+        addBlock(MFRBlocks.COBBLE_BRICKS, "Cobblestone Bricks");
+        addBlock(MFRBlocks.COBBLE_BRICK_STAIRS, "Cobblestone Brick Stairs");
+        addBlock(MFRBlocks.COBBLE_BRICK_SLAB, "Cobblestone Brick Slab");
+        addBlock(MFRBlocks.COBBLE_BRICK_WALL, "Cobblestone Brick Wall");
+        addBlock(MFRBlocks.CLAY_PANEL, "Clay Wall Panel");
+        addBlock(MFRBlocks.CLAY_PANEL_STAIRS, "Clay Wall Stairs");
+        addBlock(MFRBlocks.CLAY_PANEL_SLAB, "Clay Wall Slab");
+        addBlock(MFRBlocks.CLAY_PANEL_WALL, "Clay Wall");
+        /*
         tile.clay_wall_right_diagonal.name=Clay Wall Right Diagonal Panel
         tile.clay_wall_left_diagonal.name=Clay Wall Left Diagonal Panel
         */
@@ -791,36 +795,56 @@ public class MFRLanguageDatagen extends LanguageProvider {
         addBlock(MFRBlocks.EBONY_DOOR, "Ebony Door");
         addBlock(MFRBlocks.EBONY_TRAPDOOR, "Ebony Trapdoor");
 
+        addBlock(MFRBlocks.NAILED_PLANKS, "Nailed Wood Planks");
+        addBlock(MFRBlocks.NAILED_STAIRS, "Nailed Wood Stairs");
+        addBlock(MFRBlocks.NAILED_SLAB, "Nailed Wood Slab");
+        addBlock(MFRBlocks.NAILED_FENCE, "Nailed Wood Fence");
+        addBlock(MFRBlocks.NAILED_FENCE_GATE, "Nailed Wood Fence Gate");
+        addBlock(MFRBlocks.NAILED_PRESSURE_PLATE, "Nailed Wood Pressure Plate");
+        addBlock(MFRBlocks.NAILED_BUTTON, "Nailed Wood Button");
+        addBlock(MFRBlocks.REFINED_PLANKS, "Refined Wood Planks");
+        addBlock(MFRBlocks.REFINED_STAIRS, "Refined Wood Stairs");
+        addBlock(MFRBlocks.REFINED_SLAB, "Refined Wood Slab");
+        addBlock(MFRBlocks.REFINED_FENCE, "Refined Wood Fence");
+        addBlock(MFRBlocks.REFINED_FENCE_GATE, "Refined Wood Fence Gate");
+        addBlock(MFRBlocks.REFINED_PRESSURE_PLATE, "Refined Wood Pressure Plate");
+        addBlock(MFRBlocks.REFINED_BUTTON, "Refined Wood Button");
+        
+        addBlock(MFRBlocks.REINFORCED_STONE, "Reinforced Stone");
+        addBlock(MFRBlocks.REINFORCED_STONE_STAIRS, "Reinforced Stone Stairs");
+        addBlock(MFRBlocks.REINFORCED_STONE_SLAB, "Reinforced Stone Slab");
+        addBlock(MFRBlocks.REINFORCED_STONE_WALL, "Reinforced Stone Wall");
+        addBlock(MFRBlocks.REINFORCED_STONE_BRICKS, "Reinforced Stone Bricks");
+        addBlock(MFRBlocks.REINFORCED_STONE_BRICK_STAIRS, "Reinforced Stone Brick Stairs");
+        addBlock(MFRBlocks.REINFORCED_STONE_BRICK_SLAB, "Reinforced Stone Brick Slab");
+        addBlock(MFRBlocks.REINFORCED_STONE_BRICK_WALL, "Reinforced Stone Brick Wall");
         /*
-
-        tile.nailed_planks.name=Nailed Wood Planks
-        tile.nailed_planks_slab.name=Nailed Wood Slab
-        tile.refined_planks.name=Refined Wood Planks
-        tile.refined_planks_slab.name=Refined Wood Slab
-        tile.nailed_planks_stairs.name=Nailed Plank Stairs
-        tile.refined_planks_stairs.name=Refined Plank Stairs
-
-        tile.reinforced_stone.name=Reinforced Stone
-        tile.reinforced_stone_slab.name=Reinforced Stone Slab
-        tile.reinforced_stone_bricks.name=Reinforced Stone Bricks
-        tile.reinforced_stone_bricks_slab.name=Reinforced Stone Brick Slab
         tile.reinforced_stone_base.name=Reinforced Stone
         tile.reinforced_stone_engraved_0.name=Engraved Reinforced Stone
         tile.reinforced_stone_engraved_1.name=Engraved Reinforced Stone
         tile.reinforced_stone_engraved_2.name=Engraved Reinforced Stone
         tile.reinforced_stone_engraved_3.name=Engraved Reinforced Stone
+        */
 
-        tile.reinforced_stone_bricks_base.name=Reinforced Stone Bricks
-        tile.reinforced_stone_bricks_cracked.name=Worn Reinforced Stone Bricks
-        tile.reinforced_stone_bricks_cracked_slab.name=Worn Reinforced Stone Brick Slab
-        tile.reinforced_stone_bricks_mossy.name=Mossy Reinforced Stone Bricks
-        tile.reinforced_stone_bricks_mossy_slab.name=Mossy Reinforced Stone Brick Slab
+        addBlock(MFRBlocks.MOSSY_REINFORCED_STONE_BRICKS, "Mossy Reinforced Stone Bricks");
+        addBlock(MFRBlocks.MOSSY_REINFORCED_STONE_BRICK_STAIRS, "Mossy Reinforced Stone Brick Stairs");
+        addBlock(MFRBlocks.MOSSY_REINFORCED_STONE_BRICK_SLAB, "Mossy Reinforced Stone Brick Slab");
+        addBlock(MFRBlocks.MOSSY_REINFORCED_STONE_BRICK_WALL, "Mossy Reinforced Stone Brick Wall");
+        addBlock(MFRBlocks.CRACKED_REINFORCED_STONE_BRICKS, "Cracked Reinforced Stone Bricks");
+        addBlock(MFRBlocks.CRACKED_REINFORCED_STONE_BRICK_STAIRS, "Cracked Reinforced Stone Brick Stairs");
+        addBlock(MFRBlocks.CRACKED_REINFORCED_STONE_BRICK_SLAB, "Cracked Reinforced Stone Brick Slab");
+        addBlock(MFRBlocks.CRACKED_REINFORCED_STONE_BRICK_WALL, "Cracked Reinforced Stone Brick Wall");
 
-        tile.reinforced_stone_framed.name=Framed Reinforced Stone
-        tile.reinforced_stone_framed_iron.name=Framed Reinforced Stone
-        tile.reinforced_stone_stairs.name=Reinforced Stone Steps
-        tile.reinforced_stone_brick_stairs.name=Reinforced Stone Brick Steps
+        addBlock(MFRBlocks.FRAMED_REINFORCED_STONE, "Framed Reinforced Stone Bricks");
+        addBlock(MFRBlocks.FRAMED_REINFORCED_STONE_STAIRS, "Framed Reinforced Stone Brick Stairs");
+        addBlock(MFRBlocks.FRAMED_REINFORCED_STONE_SLAB, "Framed Reinforced Stone Brick Slab");
+        addBlock(MFRBlocks.FRAMED_REINFORCED_STONE_WALL, "Framed Reinforced Stone Brick Wall");
+        addBlock(MFRBlocks.IRON_FRAMED_REINFORCED_STONE, "Iron-Framed Reinforced Stone Bricks");
+        addBlock(MFRBlocks.IRON_FRAMED_REINFORCED_STONE_STAIRS, "Iron-Framed Reinforced Stone Brick Stairs");
+        addBlock(MFRBlocks.IRON_FRAMED_REINFORCED_STONE_SLAB, "Iron-Framed Reinforced Stone Brick Slab");
+        addBlock(MFRBlocks.IRON_FRAMED_REINFORCED_STONE_WALL, "Iron-Framed Reinforced Stone Brick Wall");
 
+        /*
         tile.bronze_bars.name=Bronze Bars
         tile.iron_bars.name=Iron Bars
         tile.steel_bars.name=Steel Bars

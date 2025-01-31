@@ -6,8 +6,6 @@ import minefantasy.mfr.init.MFRTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
@@ -49,6 +47,8 @@ public class MFRBlockTagsDatagen extends BlockTagsProvider {
                 .addTag(MFRTags.Blocks.EBONY_LOGS);
 
         this.tag(BlockTags.PLANKS).add(
+                MFRBlocks.REFINED_PLANKS.get(),
+                MFRBlocks.NAILED_PLANKS.get(),
                 MFRBlocks.YEW_PLANKS.get(),
                 MFRBlocks.IRONBARK_PLANKS.get(),
                 MFRBlocks.EBONY_PLANKS.get()
@@ -67,36 +67,48 @@ public class MFRBlockTagsDatagen extends BlockTagsProvider {
         );
 
         this.tag(BlockTags.WOODEN_STAIRS).add(
+                MFRBlocks.REFINED_STAIRS.get(),
+                MFRBlocks.NAILED_STAIRS.get(),
                 MFRBlocks.YEW_STAIRS.get(),
                 MFRBlocks.IRONBARK_STAIRS.get(),
                 MFRBlocks.EBONY_STAIRS.get()
         );
 
         this.tag(BlockTags.WOODEN_SLABS).add(
+                MFRBlocks.REFINED_SLAB.get(),
+                MFRBlocks.NAILED_SLAB.get(),
                 MFRBlocks.YEW_SLAB.get(),
                 MFRBlocks.IRONBARK_SLAB.get(),
                 MFRBlocks.EBONY_SLAB.get()
         );
 
         this.tag(BlockTags.WOODEN_FENCES).add(
+                MFRBlocks.REFINED_FENCE.get(),
+                MFRBlocks.NAILED_FENCE.get(),
                 MFRBlocks.YEW_FENCE.get(),
                 MFRBlocks.IRONBARK_FENCE.get(),
                 MFRBlocks.EBONY_FENCE.get()
         );
 
         this.tag(BlockTags.FENCE_GATES).add(
+                MFRBlocks.REFINED_FENCE_GATE.get(),
+                MFRBlocks.NAILED_FENCE_GATE.get(),
                 MFRBlocks.YEW_FENCE_GATE.get(),
                 MFRBlocks.IRONBARK_FENCE_GATE.get(),
                 MFRBlocks.EBONY_FENCE_GATE.get()
         );
 
         this.tag(BlockTags.WOODEN_PRESSURE_PLATES).add(
+                MFRBlocks.REFINED_PRESSURE_PLATE.get(),
+                MFRBlocks.NAILED_PRESSURE_PLATE.get(),
                 MFRBlocks.YEW_PRESSURE_PLATE.get(),
                 MFRBlocks.IRONBARK_PRESSURE_PLATE.get(),
                 MFRBlocks.EBONY_PRESSURE_PLATE.get()
         );
 
         this.tag(BlockTags.WOODEN_BUTTONS).add(
+                MFRBlocks.REFINED_BUTTON.get(),
+                MFRBlocks.NAILED_BUTTON.get(),
                 MFRBlocks.YEW_BUTTON.get(),
                 MFRBlocks.IRONBARK_BUTTON.get(),
                 MFRBlocks.EBONY_BUTTON.get()
@@ -119,12 +131,6 @@ public class MFRBlockTagsDatagen extends BlockTagsProvider {
         // CEILING SIGNS
         // WALL_HANGING_SIGNS
 
-        this.tag(BlockTags.WALLS).add(
-                MFRBlocks.LIMESTONE_WALL.get(),
-                MFRBlocks.COBBLE_LIMESTONE_WALL.get(),
-                MFRBlocks.LIMESTONE_BRICK_WALL.get()
-        );
-
         this.tag(BlockTags.BASE_STONE_OVERWORLD)
                 .add(MFRBlocks.LIMESTONE.get());
 
@@ -145,6 +151,8 @@ public class MFRBlockTagsDatagen extends BlockTagsProvider {
                 MFRBlocks.RICH_COAL_ORE.get(),
                 MFRBlocks.DEEPSLATE_RICH_COAL_ORE.get(),
 
+                MFRBlocks.COBBLE_BRICKS.get(),
+
                 MFRBlocks.LIMESTONE.get(),
                 MFRBlocks.LIMESTONE_STAIRS.get(),
                 MFRBlocks.LIMESTONE_SLAB.get(),
@@ -156,11 +164,44 @@ public class MFRBlockTagsDatagen extends BlockTagsProvider {
                 MFRBlocks.LIMESTONE_BRICKS.get(),
                 MFRBlocks.LIMESTONE_BRICK_STAIRS.get(),
                 MFRBlocks.LIMESTONE_BRICK_SLAB.get(),
-                MFRBlocks.LIMESTONE_BRICK_WALL.get()
-        );
+                MFRBlocks.LIMESTONE_BRICK_WALL.get(),
 
-        this.tag(BlockTags.STONE_BRICKS)
-                .add(MFRBlocks.LIMESTONE_BRICKS.get());
+                MFRBlocks.FIREBRICKS.get(),
+                MFRBlocks.FIREBRICK_STAIRS.get(),
+                MFRBlocks.FIREBRICK_SLAB.get(),
+                MFRBlocks.FIREBRICK_WALL.get(),
+                MFRBlocks.CLAY_PANEL.get(),
+                MFRBlocks.CLAY_PANEL_STAIRS.get(),
+                MFRBlocks.CLAY_PANEL_SLAB.get(),
+                MFRBlocks.CLAY_PANEL_WALL.get(),
+
+                MFRBlocks.REINFORCED_STONE.get(),
+                MFRBlocks.REINFORCED_STONE_STAIRS.get(),
+                MFRBlocks.REINFORCED_STONE_SLAB.get(),
+                MFRBlocks.REINFORCED_STONE_WALL.get(),
+
+                MFRBlocks.REINFORCED_STONE_BRICKS.get(),
+                MFRBlocks.REINFORCED_STONE_BRICK_STAIRS.get(),
+                MFRBlocks.REINFORCED_STONE_BRICK_SLAB.get(),
+                MFRBlocks.REINFORCED_STONE_BRICK_WALL.get(),
+                MFRBlocks.MOSSY_REINFORCED_STONE_BRICKS.get(),
+                MFRBlocks.MOSSY_REINFORCED_STONE_BRICK_STAIRS.get(),
+                MFRBlocks.MOSSY_REINFORCED_STONE_BRICK_SLAB.get(),
+                MFRBlocks.MOSSY_REINFORCED_STONE_BRICK_WALL.get(),
+                MFRBlocks.CRACKED_REINFORCED_STONE_BRICKS.get(),
+                MFRBlocks.CRACKED_REINFORCED_STONE_BRICK_STAIRS.get(),
+                MFRBlocks.CRACKED_REINFORCED_STONE_BRICK_SLAB.get(),
+                MFRBlocks.CRACKED_REINFORCED_STONE_BRICK_WALL.get(),
+
+                MFRBlocks.FRAMED_REINFORCED_STONE.get(),
+                MFRBlocks.FRAMED_REINFORCED_STONE_STAIRS.get(),
+                MFRBlocks.FRAMED_REINFORCED_STONE_SLAB.get(),
+                MFRBlocks.FRAMED_REINFORCED_STONE_WALL.get(),
+                MFRBlocks.IRON_FRAMED_REINFORCED_STONE.get(),
+                MFRBlocks.IRON_FRAMED_REINFORCED_STONE_STAIRS.get(),
+                MFRBlocks.IRON_FRAMED_REINFORCED_STONE_SLAB.get(),
+                MFRBlocks.IRON_FRAMED_REINFORCED_STONE_WALL.get()
+        );
 
         this.tag(BlockTags.COAL_ORES).add(
                 MFRBlocks.RICH_COAL_ORE.get(),
@@ -168,21 +209,51 @@ public class MFRBlockTagsDatagen extends BlockTagsProvider {
         );
 
         this.tag(BlockTags.STAIRS).add(
+                MFRBlocks.COBBLE_BRICK_STAIRS.get(),
+                MFRBlocks.THATCH_STAIRS.get(),
                 MFRBlocks.LIMESTONE_STAIRS.get(),
                 MFRBlocks.COBBLE_LIMESTONE_STAIRS.get(),
-                MFRBlocks.LIMESTONE_BRICK_STAIRS.get()
+                MFRBlocks.LIMESTONE_BRICK_STAIRS.get(),
+                MFRBlocks.FIREBRICK_STAIRS.get(),
+                MFRBlocks.CLAY_PANEL_STAIRS.get(),
+                MFRBlocks.REINFORCED_STONE_STAIRS.get(),
+                MFRBlocks.REINFORCED_STONE_BRICK_STAIRS.get(),
+                MFRBlocks.MOSSY_REINFORCED_STONE_BRICK_STAIRS.get(),
+                MFRBlocks.CRACKED_REINFORCED_STONE_BRICK_STAIRS.get(),
+                MFRBlocks.FRAMED_REINFORCED_STONE_STAIRS.get(),
+                MFRBlocks.IRON_FRAMED_REINFORCED_STONE_STAIRS.get()
         );
 
         this.tag(BlockTags.SLABS).add(
+                MFRBlocks.COBBLE_BRICK_SLAB.get(),
+                MFRBlocks.THATCH_SLAB.get(),
                 MFRBlocks.LIMESTONE_SLAB.get(),
                 MFRBlocks.COBBLE_LIMESTONE_SLAB.get(),
-                MFRBlocks.LIMESTONE_BRICK_SLAB.get()
+                MFRBlocks.LIMESTONE_BRICK_SLAB.get(),
+                MFRBlocks.FIREBRICK_SLAB.get(),
+                MFRBlocks.CLAY_PANEL_SLAB.get(),
+                MFRBlocks.REINFORCED_STONE_SLAB.get(),
+                MFRBlocks.REINFORCED_STONE_BRICK_SLAB.get(),
+                MFRBlocks.MOSSY_REINFORCED_STONE_BRICK_SLAB.get(),
+                MFRBlocks.CRACKED_REINFORCED_STONE_BRICK_SLAB.get(),
+                MFRBlocks.FRAMED_REINFORCED_STONE_SLAB.get(),
+                MFRBlocks.IRON_FRAMED_REINFORCED_STONE_SLAB.get()
         );
 
         this.tag(BlockTags.WALLS).add(
+                MFRBlocks.COBBLE_BRICK_WALL.get(),
+                MFRBlocks.THATCH_WALL.get(),
                 MFRBlocks.LIMESTONE_WALL.get(),
                 MFRBlocks.COBBLE_LIMESTONE_WALL.get(),
-                MFRBlocks.LIMESTONE_BRICK_WALL.get()
+                MFRBlocks.LIMESTONE_BRICK_WALL.get(),
+                MFRBlocks.FIREBRICK_WALL.get(),
+                MFRBlocks.CLAY_PANEL_WALL.get(),
+                MFRBlocks.REINFORCED_STONE_WALL.get(),
+                MFRBlocks.REINFORCED_STONE_BRICK_WALL.get(),
+                MFRBlocks.MOSSY_REINFORCED_STONE_BRICK_WALL.get(),
+                MFRBlocks.CRACKED_REINFORCED_STONE_BRICK_WALL.get(),
+                MFRBlocks.FRAMED_REINFORCED_STONE_WALL.get(),
+                MFRBlocks.IRON_FRAMED_REINFORCED_STONE_WALL.get()
         );
 
         this.tag(MFRTags.Blocks.getCommonTag("cobblestones"))
@@ -244,6 +315,8 @@ public class MFRBlockTagsDatagen extends BlockTagsProvider {
         );
 
         this.tag(MFRTags.Blocks.getCommonTag("fence_gates/wooden")).add(
+                MFRBlocks.REFINED_FENCE_GATE.get(),
+                MFRBlocks.NAILED_FENCE_GATE.get(),
                 MFRBlocks.YEW_FENCE_GATE.get(),
                 MFRBlocks.IRONBARK_FENCE_GATE.get(),
                 MFRBlocks.EBONY_FENCE_GATE.get()

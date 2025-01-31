@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "minefantasyreforged:block/clay_panel_slab"
+    },
+    "type=double": {
+      "model": "minefantasyreforged:block/clay_panel"
+    },
+    "type=top": {
+      "model": "minefantasyreforged:block/clay_panel_slab_top"
+    }
+  }
+}

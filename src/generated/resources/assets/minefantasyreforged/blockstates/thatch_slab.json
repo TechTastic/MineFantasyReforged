@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "minefantasyreforged:block/thatch_slab"
+    },
+    "type=double": {
+      "model": "minefantasyreforged:block/thatch"
+    },
+    "type=top": {
+      "model": "minefantasyreforged:block/thatch_slab_top"
+    }
+  }
+}

@@ -1,10 +1,17 @@
 {
   "values": [
+    "minefantasyreforged:cobble_brick_wall",
+    "minefantasyreforged:thatch_wall",
     "minefantasyreforged:limestone_wall",
     "minefantasyreforged:cobble_limestone_wall",
     "minefantasyreforged:limestone_brick_wall",
-    "minefantasyreforged:limestone_wall",
-    "minefantasyreforged:cobble_limestone_wall",
-    "minefantasyreforged:limestone_brick_wall"
+    "minefantasyreforged:firebrick_wall",
+    "minefantasyreforged:clay_panel_wall",
+    "minefantasyreforged:reinforced_stone_wall",
+    "minefantasyreforged:reinforced_stone_brick_wall",
+    "minefantasyreforged:mossy_reinforced_stone_brick_wall",
+    "minefantasyreforged:cracked_reinforced_stone_brick_wall",
+    "minefantasyreforged:framed_reinforced_stone_wall",
+    "minefantasyreforged:iron_framed_reinforced_stone_wall"
   ]
 }

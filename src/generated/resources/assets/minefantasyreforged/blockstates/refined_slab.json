@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "minefantasyreforged:block/refined_slab"
+    },
+    "type=double": {
+      "model": "minefantasyreforged:block/refined_planks"
+    },
+    "type=top": {
+      "model": "minefantasyreforged:block/refined_slab_top"
+    }
+  }
+}

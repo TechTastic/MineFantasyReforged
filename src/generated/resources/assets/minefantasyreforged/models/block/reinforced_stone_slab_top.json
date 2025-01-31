@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "minefantasyreforged:block/reinforced_stone",
+    "side": "minefantasyreforged:block/reinforced_stone",
+    "top": "minefantasyreforged:block/reinforced_stone"
+  }
+}

@@ -7,14 +7,11 @@ import minefantasy.mfr.init.MFRTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
 
 public class MFRItemTagsDatagen extends ItemTagsProvider {
@@ -52,6 +49,8 @@ public class MFRItemTagsDatagen extends ItemTagsProvider {
                 .addTag(MFRTags.Items.EBONY_LOGS);
 
         this.tag(ItemTags.PLANKS).add(
+                MFRBlocks.REFINED_PLANKS.asItem(),
+                MFRBlocks.NAILED_PLANKS.asItem(),
                 MFRBlocks.YEW_PLANKS.asItem(),
                 MFRBlocks.IRONBARK_PLANKS.asItem(),
                 MFRBlocks.EBONY_PLANKS.asItem()
@@ -70,36 +69,48 @@ public class MFRItemTagsDatagen extends ItemTagsProvider {
         );
 
         this.tag(ItemTags.WOODEN_STAIRS).add(
+                MFRBlocks.REFINED_STAIRS.asItem(),
+                MFRBlocks.NAILED_STAIRS.asItem(),
                 MFRBlocks.YEW_STAIRS.asItem(),
                 MFRBlocks.IRONBARK_STAIRS.asItem(),
                 MFRBlocks.EBONY_STAIRS.asItem()
         );
 
         this.tag(ItemTags.WOODEN_SLABS).add(
+                MFRBlocks.REFINED_SLAB.asItem(),
+                MFRBlocks.NAILED_SLAB.asItem(),
                 MFRBlocks.YEW_SLAB.asItem(),
                 MFRBlocks.IRONBARK_SLAB.asItem(),
                 MFRBlocks.EBONY_SLAB.asItem()
         );
 
         this.tag(ItemTags.WOODEN_FENCES).add(
+                MFRBlocks.REFINED_FENCE.asItem(),
+                MFRBlocks.NAILED_FENCE.asItem(),
                 MFRBlocks.YEW_FENCE.asItem(),
                 MFRBlocks.IRONBARK_FENCE.asItem(),
                 MFRBlocks.EBONY_FENCE.asItem()
         );
 
         this.tag(ItemTags.FENCE_GATES).add(
+                MFRBlocks.REFINED_FENCE_GATE.asItem(),
+                MFRBlocks.NAILED_FENCE_GATE.asItem(),
                 MFRBlocks.YEW_FENCE_GATE.asItem(),
                 MFRBlocks.IRONBARK_FENCE_GATE.asItem(),
                 MFRBlocks.EBONY_FENCE_GATE.asItem()
         );
 
         this.tag(ItemTags.WOODEN_PRESSURE_PLATES).add(
+                MFRBlocks.REFINED_PRESSURE_PLATE.asItem(),
+                MFRBlocks.NAILED_PRESSURE_PLATE.asItem(),
                 MFRBlocks.YEW_PRESSURE_PLATE.asItem(),
                 MFRBlocks.IRONBARK_PRESSURE_PLATE.asItem(),
                 MFRBlocks.EBONY_PRESSURE_PLATE.asItem()
         );
 
         this.tag(ItemTags.WOODEN_BUTTONS).add(
+                MFRBlocks.REFINED_BUTTON.asItem(),
+                MFRBlocks.NAILED_BUTTON.asItem(),
                 MFRBlocks.YEW_BUTTON.asItem(),
                 MFRBlocks.IRONBARK_BUTTON.asItem(),
                 MFRBlocks.EBONY_BUTTON.asItem()
@@ -215,31 +226,54 @@ public class MFRItemTagsDatagen extends ItemTagsProvider {
                 MFRItems.STANDARD_ARROW_BROAD.get()
         );
 
-        this.tag(ItemTags.STONE_BRICKS).add(
-                MFRBlocks.LIMESTONE_BRICKS.asItem()
-        );
-
         this.tag(ItemTags.COAL_ORES).add(
                 MFRBlocks.RICH_COAL_ORE.asItem(),
                 MFRBlocks.DEEPSLATE_RICH_COAL_ORE.asItem()
         );
 
         this.tag(ItemTags.STAIRS).add(
+                MFRBlocks.COBBLE_BRICK_STAIRS.asItem(),
+                MFRBlocks.THATCH_STAIRS.asItem(),
                 MFRBlocks.LIMESTONE_STAIRS.asItem(),
                 MFRBlocks.COBBLE_LIMESTONE_STAIRS.asItem(),
-                MFRBlocks.LIMESTONE_BRICK_STAIRS.asItem()
+                MFRBlocks.LIMESTONE_BRICK_STAIRS.asItem(),
+                MFRBlocks.FIREBRICK_STAIRS.asItem(),
+                MFRBlocks.CLAY_PANEL_STAIRS.asItem(),
+                MFRBlocks.REINFORCED_STONE_STAIRS.asItem(),
+                MFRBlocks.MOSSY_REINFORCED_STONE_BRICK_STAIRS.asItem(),
+                MFRBlocks.CRACKED_REINFORCED_STONE_BRICK_STAIRS.asItem(),
+                MFRBlocks.FRAMED_REINFORCED_STONE_STAIRS.asItem(),
+                MFRBlocks.IRON_FRAMED_REINFORCED_STONE_STAIRS.asItem()
         );
 
         this.tag(ItemTags.SLABS).add(
+                MFRBlocks.COBBLE_BRICK_SLAB.asItem(),
+                MFRBlocks.THATCH_SLAB.asItem(),
                 MFRBlocks.LIMESTONE_SLAB.asItem(),
                 MFRBlocks.COBBLE_LIMESTONE_SLAB.asItem(),
-                MFRBlocks.LIMESTONE_BRICK_SLAB.asItem()
+                MFRBlocks.LIMESTONE_BRICK_SLAB.asItem(),
+                MFRBlocks.FIREBRICK_SLAB.asItem(),
+                MFRBlocks.CLAY_PANEL_SLAB.asItem(),
+                MFRBlocks.REINFORCED_STONE_SLAB.asItem(),
+                MFRBlocks.MOSSY_REINFORCED_STONE_BRICK_SLAB.asItem(),
+                MFRBlocks.CRACKED_REINFORCED_STONE_BRICK_SLAB.asItem(),
+                MFRBlocks.FRAMED_REINFORCED_STONE_SLAB.asItem(),
+                MFRBlocks.IRON_FRAMED_REINFORCED_STONE_SLAB.asItem()
         );
 
         this.tag(ItemTags.WALLS).add(
+                MFRBlocks.COBBLE_BRICK_WALL.asItem(),
+                MFRBlocks.THATCH_WALL.asItem(),
                 MFRBlocks.LIMESTONE_WALL.asItem(),
                 MFRBlocks.COBBLE_LIMESTONE_WALL.asItem(),
-                MFRBlocks.LIMESTONE_BRICK_WALL.asItem()
+                MFRBlocks.LIMESTONE_BRICK_WALL.asItem(),
+                MFRBlocks.FIREBRICK_WALL.asItem(),
+                MFRBlocks.CLAY_PANEL_WALL.asItem(),
+                MFRBlocks.REINFORCED_STONE_WALL.asItem(),
+                MFRBlocks.MOSSY_REINFORCED_STONE_BRICK_WALL.asItem(),
+                MFRBlocks.CRACKED_REINFORCED_STONE_BRICK_WALL.asItem(),
+                MFRBlocks.FRAMED_REINFORCED_STONE_WALL.asItem(),
+                MFRBlocks.IRON_FRAMED_REINFORCED_STONE_WALL.asItem()
         );
 
         this.tag(ItemTags.STONE_CRAFTING_MATERIALS)
@@ -307,6 +341,8 @@ public class MFRItemTagsDatagen extends ItemTagsProvider {
         );
 
         this.tag(MFRTags.Items.getCommonTag("fence_gates/wooden")).add(
+                MFRBlocks.REFINED_FENCE_GATE.asItem(),
+                MFRBlocks.NAILED_FENCE_GATE.asItem(),
                 MFRBlocks.YEW_FENCE_GATE.asItem(),
                 MFRBlocks.IRONBARK_FENCE_GATE.asItem(),
                 MFRBlocks.EBONY_FENCE_GATE.asItem()

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "minefantasyreforged:block/clay_panel",
+    "side": "minefantasyreforged:block/clay_panel",
+    "top": "minefantasyreforged:block/clay_panel"
+  }
+}

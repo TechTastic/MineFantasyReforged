@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cobble_bricks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minefantasyreforged:cobble_bricks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minefantasyreforged:cobble_brick_stairs"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_cobble_bricks"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minefantasyreforged:cobble_brick_stairs"
+    ]
+  }
+}
