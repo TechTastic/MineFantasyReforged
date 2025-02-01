@@ -1,0 +1,6 @@
+{
+  "parent": "minefantasyreforged:block/carpenter_bench",
+  "textures": {
+    "log": "minecraft:block/spruce_log"
+  }
+}

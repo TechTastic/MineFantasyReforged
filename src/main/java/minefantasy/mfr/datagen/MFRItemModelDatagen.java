@@ -23,64 +23,18 @@ public class MFRItemModelDatagen extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        wallInventory(MFRBlocks.COBBLE_BRICK_WALL.getId().toString(),
-                modLoc("block/cobble_bricks"));
-
-        wallInventory(MFRBlocks.THATCH_WALL.getId().toString(),
-                modLoc("block/thatch"));
-
         getBuilder("item/window_pane").parent(new ModelFile.UncheckedModelFile("item/generated"))
                 .texture("layer0", modLoc("block/window"));
         getBuilder("item/framed_glass_pane").parent(new ModelFile.UncheckedModelFile("item/generated"))
                 .texture("layer0", modLoc("block/framed_glass"));
 
-        wallInventory(MFRBlocks.LIMESTONE_WALL.getId().toString(),
-                modLoc("block/limestone"));
+        withExistingParent(MFRBlocks.BRONZE_BARS.getId().toString(), mcLoc("item/generated"))
+                .texture("layer0", modLoc("block/" + MFRBlocks.BRONZE_BARS.getId().getPath()));
 
-        wallInventory(MFRBlocks.COBBLE_LIMESTONE_WALL.getId().toString(),
-                modLoc("block/cobble_limestone"));
-        wallInventory(MFRBlocks.LIMESTONE_BRICK_WALL.getId().toString(),
-                modLoc("block/limestone_bricks"));
-
-        wallInventory(MFRBlocks.FIREBRICK_WALL.getId().toString(),
-                modLoc("block/firebricks"));
-        wallInventory(MFRBlocks.CLAY_PANEL_WALL.getId().toString(),
-                modLoc("block/clay_panel"));
-
-        fenceItem(MFRBlocks.REFINED_FENCE, MFRBlocks.REFINED_PLANKS);
-        buttonItem(MFRBlocks.REFINED_BUTTON, MFRBlocks.REFINED_PLANKS);
-        fenceItem(MFRBlocks.NAILED_FENCE, MFRBlocks.NAILED_PLANKS);
-        buttonItem(MFRBlocks.NAILED_BUTTON, MFRBlocks.NAILED_PLANKS);
-
-        wallInventory(MFRBlocks.REINFORCED_STONE_WALL.getId().toString(),
-                modLoc("block/reinforced_stone"));
-
-        wallInventory(MFRBlocks.REINFORCED_STONE_BRICK_WALL.getId().toString(),
-                modLoc("block/reinforced_stone_bricks"));
-        wallInventory(MFRBlocks.MOSSY_REINFORCED_STONE_BRICK_WALL.getId().toString(),
-                modLoc("block/mossy_reinforced_stone_bricks"));
-        wallInventory(MFRBlocks.CRACKED_REINFORCED_STONE_BRICK_WALL.getId().toString(),
-                modLoc("block/cracked_reinforced_stone_bricks"));
-
-        wallInventory(MFRBlocks.FRAMED_REINFORCED_STONE_WALL.getId().toString(),
-                modLoc("block/framed_reinforced_stone"));
-        wallInventory(MFRBlocks.IRON_FRAMED_REINFORCED_STONE_WALL.getId().toString(),
-                modLoc("block/iron_framed_reinforced_stone"));
-
-        withExistingParent(MFRBlocks.YEW_SAPLING.getId().toString(), mcLoc("item/generated"))
-                .texture("layer0", modLoc("block/yew_sapling"));
-        fenceItem(MFRBlocks.YEW_FENCE, MFRBlocks.YEW_PLANKS);
-        buttonItem(MFRBlocks.YEW_BUTTON, MFRBlocks.YEW_PLANKS);
-        
-        withExistingParent(MFRBlocks.IRONBARK_SAPLING.getId().toString(), mcLoc("item/generated"))
-                .texture("layer0", modLoc("block/ironbark_sapling"));
-        fenceItem(MFRBlocks.IRONBARK_FENCE, MFRBlocks.IRONBARK_PLANKS);
-        buttonItem(MFRBlocks.IRONBARK_BUTTON, MFRBlocks.IRONBARK_PLANKS);
-        
-        withExistingParent(MFRBlocks.EBONY_SAPLING.getId().toString(), mcLoc("item/generated"))
-                .texture("layer0", modLoc("block/ebony_sapling"));
-        fenceItem(MFRBlocks.EBONY_FENCE, MFRBlocks.EBONY_PLANKS);
-        buttonItem(MFRBlocks.EBONY_BUTTON, MFRBlocks.EBONY_PLANKS);
+        simpleBlockItem(MFRBlocks.ENGRAVED_REINFORCED_STONE_0.get());
+        simpleBlockItem(MFRBlocks.ENGRAVED_REINFORCED_STONE_1.get());
+        simpleBlockItem(MFRBlocks.ENGRAVED_REINFORCED_STONE_2.get());
+        simpleBlockItem(MFRBlocks.ENGRAVED_REINFORCED_STONE_3.get());
 
         basicItem(MFRItems.BAR.get());
 

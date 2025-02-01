@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "minefantasyreforged:block/reinforced_stone",
+    "side": "minefantasyreforged:block/engraved_reinforced_stone_0"
+  }
+}

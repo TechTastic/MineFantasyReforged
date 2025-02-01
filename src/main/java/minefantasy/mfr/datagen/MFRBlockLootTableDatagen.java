@@ -57,9 +57,29 @@ public class MFRBlockLootTableDatagen extends BlockLootSubProvider {
         blockFamily(MFRBlocks.FIREBRICK_FAMILY.get());
         blockFamily(MFRBlocks.CLAY_PANEL_FAMILY.get());
 
+        dropSelf(MFRBlocks.BRONZE_BARS.get());
+
+        dropSelf(MFRBlocks.OAK_CARPENTER.get());
+        dropSelf(MFRBlocks.BIRCH_CARPENTER.get());
+        dropSelf(MFRBlocks.SPRUCE_CARPENTER.get());
+        dropSelf(MFRBlocks.JUNGLE_CARPENTER.get());
+        dropSelf(MFRBlocks.DARK_OAK_CARPENTER.get());
+        dropSelf(MFRBlocks.ACACIA_CARPENTER.get());
+        dropSelf(MFRBlocks.MANGROVE_CARPENTER.get());
+        dropSelf(MFRBlocks.BAMBOO_CARPENTER.get());
+        dropSelf(MFRBlocks.CRIMSON_CARPENTER.get());
+        dropSelf(MFRBlocks.WARPED_CARPENTER.get());
+        dropSelf(MFRBlocks.YEW_CARPENTER.get());
+        dropSelf(MFRBlocks.IRONBARK_CARPENTER.get());
+        dropSelf(MFRBlocks.EBONY_CARPENTER.get());
+
         blockFamily(MFRBlocks.REFINED_FAMILY.get());
         blockFamily(MFRBlocks.NAILED_FAMILY.get());
 
+        dropSelf(MFRBlocks.ENGRAVED_REINFORCED_STONE_0.get());
+        dropSelf(MFRBlocks.ENGRAVED_REINFORCED_STONE_1.get());
+        dropSelf(MFRBlocks.ENGRAVED_REINFORCED_STONE_2.get());
+        dropSelf(MFRBlocks.ENGRAVED_REINFORCED_STONE_3.get());
         blockFamily(MFRBlocks.REINFORCED_STONE_FAMILY.get());
 
         blockFamily(MFRBlocks.REINFORCED_STONE_BRICK_FAMILY.get());

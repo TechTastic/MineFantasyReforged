@@ -1,6 +1,7 @@
 package minefantasy.mfr.init;
 
 import minefantasy.mfr.MineFantasyReforged;
+import minefantasy.mfr.block.CarpenterBlock;
 import minefantasy.mfr.block.FlammableRotatedPillarBlock;
 import minefantasy.mfr.worldgen.tree.MFRTreeGrowers;
 import net.minecraft.core.BlockPos;
@@ -92,6 +93,27 @@ public class MFRBlocks {
     public static final DeferredBlock<WallBlock> CLAY_PANEL_WALL;
     public static final Supplier<BlockFamily> CLAY_PANEL_FAMILY;
 
+    // IRON BARS
+    public static final DeferredBlock<IronBarsBlock> BRONZE_BARS;
+    // STEEL_BARS
+    // BLACK_STEEL_BARS
+    // RED_STEEL_BARS
+    // BLUE_STEEL_BARS
+
+    public static final DeferredBlock<CarpenterBlock> OAK_CARPENTER;
+    public static final DeferredBlock<CarpenterBlock> BIRCH_CARPENTER;
+    public static final DeferredBlock<CarpenterBlock> SPRUCE_CARPENTER;
+    public static final DeferredBlock<CarpenterBlock> JUNGLE_CARPENTER;
+    public static final DeferredBlock<CarpenterBlock> DARK_OAK_CARPENTER;
+    public static final DeferredBlock<CarpenterBlock> ACACIA_CARPENTER;
+    public static final DeferredBlock<CarpenterBlock> MANGROVE_CARPENTER;
+    public static final DeferredBlock<CarpenterBlock> BAMBOO_CARPENTER;
+    public static final DeferredBlock<CarpenterBlock> CRIMSON_CARPENTER;
+    public static final DeferredBlock<CarpenterBlock> WARPED_CARPENTER;
+    public static final DeferredBlock<CarpenterBlock> YEW_CARPENTER;
+    public static final DeferredBlock<CarpenterBlock> IRONBARK_CARPENTER;
+    public static final DeferredBlock<CarpenterBlock> EBONY_CARPENTER;
+
     public static final DeferredBlock<Block> REFINED_PLANKS;
     public static final DeferredBlock<StairBlock> REFINED_STAIRS;
     public static final DeferredBlock<SlabBlock> REFINED_SLAB;
@@ -99,8 +121,6 @@ public class MFRBlocks {
     public static final DeferredBlock<FenceGateBlock> REFINED_FENCE_GATE;
     public static final DeferredBlock<PressurePlateBlock> REFINED_PRESSURE_PLATE;
     public static final DeferredBlock<ButtonBlock> REFINED_BUTTON;
-    //public static final DeferredBlock<DoorBlock> REFINED_DOOR;
-    //public static final DeferredBlock<TrapDoorBlock> REFINED_TRAPDOOR;
     public static final Supplier<BlockFamily> REFINED_FAMILY;
     public static final DeferredBlock<Block> NAILED_PLANKS;
     public static final DeferredBlock<StairBlock> NAILED_STAIRS;
@@ -109,15 +129,16 @@ public class MFRBlocks {
     public static final DeferredBlock<FenceGateBlock> NAILED_FENCE_GATE;
     public static final DeferredBlock<PressurePlateBlock> NAILED_PRESSURE_PLATE;
     public static final DeferredBlock<ButtonBlock> NAILED_BUTTON;
-    //public static final DeferredBlock<DoorBlock> NAILED_DOOR;
-    //public static final DeferredBlock<TrapDoorBlock> NAILED_TRAPDOOR;
     public static final Supplier<BlockFamily> NAILED_FAMILY;
 
     public static final DeferredBlock<Block> REINFORCED_STONE;
     public static final DeferredBlock<StairBlock> REINFORCED_STONE_STAIRS;
     public static final DeferredBlock<SlabBlock> REINFORCED_STONE_SLAB;
     public static final DeferredBlock<WallBlock> REINFORCED_STONE_WALL;
-    // Engraved 0-4?
+    public static final DeferredBlock<RotatedPillarBlock> ENGRAVED_REINFORCED_STONE_0;
+    public static final DeferredBlock<RotatedPillarBlock> ENGRAVED_REINFORCED_STONE_1;
+    public static final DeferredBlock<RotatedPillarBlock> ENGRAVED_REINFORCED_STONE_2;
+    public static final DeferredBlock<RotatedPillarBlock> ENGRAVED_REINFORCED_STONE_3;
     public static final Supplier<BlockFamily> REINFORCED_STONE_FAMILY;
 
     public static final DeferredBlock<Block> REINFORCED_STONE_BRICKS;
@@ -367,6 +388,40 @@ public class MFRBlocks {
                 .wall(CLAY_PANEL_WALL.get())
                 .getFamily();
 
+        // IRON BARS
+        BRONZE_BARS = BLOCKS.register("bronze_bars", () ->
+                new IronBarsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BARS)));
+        // STEEL_BARS
+        // BLACK_STEEL_BARS
+        // RED_STEEL_BARS
+        // BLUE_STEEL_BARS
+
+        OAK_CARPENTER = BLOCKS.register("oak_carpenter_bench", () ->
+                new CarpenterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRAFTING_TABLE)));
+        BIRCH_CARPENTER = BLOCKS.register("birch_carpenter_bench", () ->
+                new CarpenterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRAFTING_TABLE)));
+        SPRUCE_CARPENTER = BLOCKS.register("spruce_carpenter_bench", () ->
+                new CarpenterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRAFTING_TABLE)));
+        JUNGLE_CARPENTER = BLOCKS.register("jungle_carpenter_bench", () ->
+                new CarpenterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRAFTING_TABLE)));
+        DARK_OAK_CARPENTER = BLOCKS.register("dark_oak_carpenter_bench", () ->
+                new CarpenterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRAFTING_TABLE)));
+        ACACIA_CARPENTER = BLOCKS.register("acacia_carpenter_bench", () ->
+                new CarpenterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRAFTING_TABLE)));
+        MANGROVE_CARPENTER = BLOCKS.register("mangrove_carpenter_bench", () ->
+                new CarpenterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRAFTING_TABLE)));
+        BAMBOO_CARPENTER = BLOCKS.register("bamboo_carpenter_bench", () ->
+                new CarpenterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRAFTING_TABLE)));
+        CRIMSON_CARPENTER = BLOCKS.register("crimson_carpenter_bench", () ->
+                new CarpenterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRAFTING_TABLE)));
+        WARPED_CARPENTER = BLOCKS.register("warped_carpenter_bench", () ->
+                new CarpenterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRAFTING_TABLE)));
+        YEW_CARPENTER = BLOCKS.register("yew_carpenter_bench", () ->
+                new CarpenterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRAFTING_TABLE)));
+        IRONBARK_CARPENTER = BLOCKS.register("ironbark_carpenter_bench", () ->
+                new CarpenterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRAFTING_TABLE)));
+        EBONY_CARPENTER = BLOCKS.register("ebony_carpenter_bench", () ->
+                new CarpenterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRAFTING_TABLE)));
 
         REFINED_PLANKS = BLOCKS.register("refined_planks", () ->
                 new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)) {
@@ -566,7 +621,6 @@ public class MFRBlocks {
                 // SIGN
                 .recipeGroupPrefix("wooden")
                 .getFamily();
-        
 
         REINFORCED_STONE = BLOCKS.register("reinforced_stone", () ->
                 new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
@@ -576,6 +630,14 @@ public class MFRBlocks {
                 new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_SLAB)));
         REINFORCED_STONE_WALL = BLOCKS.register("reinforced_stone_wall", () ->
                 new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICK_WALL)));
+        ENGRAVED_REINFORCED_STONE_0 = BLOCKS.register("engraved_reinforced_stone_0", () ->
+                new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+        ENGRAVED_REINFORCED_STONE_1 = BLOCKS.register("engraved_reinforced_stone_1", () ->
+                new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+        ENGRAVED_REINFORCED_STONE_2 = BLOCKS.register("engraved_reinforced_stone_2", () ->
+                new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS)));
+        ENGRAVED_REINFORCED_STONE_3 = BLOCKS.register("engraved_reinforced_stone_3", () ->
+                new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS)));
         REINFORCED_STONE_FAMILY = () -> new BlockFamily.Builder(REINFORCED_STONE.get())
                 .stairs(REINFORCED_STONE_STAIRS.get())
                 .slab(REINFORCED_STONE_SLAB.get())

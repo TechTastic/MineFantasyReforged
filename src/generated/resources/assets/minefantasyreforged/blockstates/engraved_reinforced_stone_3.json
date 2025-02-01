@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "minefantasyreforged:block/engraved_reinforced_stone_3_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "minefantasyreforged:block/engraved_reinforced_stone_3"
+    },
+    "axis=z": {
+      "model": "minefantasyreforged:block/engraved_reinforced_stone_3_horizontal",
+      "x": 90
+    }
+  }
+}
