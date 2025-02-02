@@ -1793,7 +1793,7 @@ knowledge.big_furnace.heater=For the furnace to function, it needs a place for t
 
 knowledge.big_furnace.top=Above the heater goes the furnace itself. This block works similar to the smaller models used, only is capable of regulating temperature much more efficiently. Much like the fuel-based counterpart the furnace requires fire bricks across its sides and top.
 
-knowledge.big_furnace.structure=the structure works with multiple furnaces, two side walls and one back wall can support many connected furnaces.
+knowledge.big_furnace.structures=the structures works with multiple furnaces, two side walls and one back wall can support many connected furnaces.
 
 knowledge.blast_furnace=Refining
 knowledge.blast_furnace.desc=More than smelting

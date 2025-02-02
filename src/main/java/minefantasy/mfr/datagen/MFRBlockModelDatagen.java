@@ -200,35 +200,19 @@ public class MFRBlockModelDatagen extends BlockStateProvider {
     }
 
     private void bars(DeferredBlock<IronBarsBlock> bars) {
+        ResourceLocation block = modLoc("block/" + bars.getId().getPath());
         var barsPostEnds = models().withExistingParent(bars.getId() + "_post_ends", mcLoc("block/iron_bars_post_ends"))
-                .texture("particle", modLoc("block/" + bars.getId().getPath()))
-                .texture("bars", modLoc("block/" + bars.getId().getPath()))
-                .texture("edge", modLoc("block/" + bars.getId().getPath()))
-                .renderType("translucent");
+                .texture("particle", block).texture("bars", block).texture("edge", block).renderType("translucent");
         var barsSide = models().withExistingParent(bars.getId() + "_side", mcLoc("block/iron_bars_side"))
-                .texture("particle", modLoc("block/" + bars.getId().getPath()))
-                .texture("bars", modLoc("block/" + bars.getId().getPath()))
-                .texture("edge", modLoc("block/" + bars.getId().getPath()))
-                .renderType("translucent");
+                .texture("particle", block).texture("bars", block).texture("edge", block).renderType("translucent");
         var barsPost = models().withExistingParent(bars.getId() + "_post", mcLoc("block/iron_bars_post"))
-                .texture("particle", modLoc("block/" + bars.getId().getPath()))
-                .texture("bars", modLoc("block/" + bars.getId().getPath()))
-                .renderType("translucent");
+                .texture("particle", block).texture("bars", block).renderType("translucent");
         var barsCap = models().withExistingParent(bars.getId() + "_cap", mcLoc("block/iron_bars_cap"))
-                .texture("particle", modLoc("block/" + bars.getId().getPath()))
-                .texture("bars", modLoc("block/" + bars.getId().getPath()))
-                .texture("edge", modLoc("block/" + bars.getId().getPath()))
-                .renderType("translucent");
+                .texture("particle", block).texture("bars", block).texture("edge", block).renderType("translucent");
         var barsCapAlt = models().withExistingParent(bars.getId() + "_cap_alt", mcLoc("block/iron_bars_cap_alt"))
-                .texture("particle", modLoc("block/" + bars.getId().getPath()))
-                .texture("bars", modLoc("block/" + bars.getId().getPath()))
-                .texture("edge", modLoc("block/" + bars.getId().getPath()))
-                .renderType("translucent");
+                .texture("particle", block).texture("bars", block).texture("edge", block).renderType("translucent");
         var barsSideAlt = models().withExistingParent(bars.getId() + "_side_alt", mcLoc("block/iron_bars_side_alt"))
-                .texture("particle", modLoc("block/" + bars.getId().getPath()))
-                .texture("bars", modLoc("block/" + bars.getId().getPath()))
-                .texture("edge", modLoc("block/" + bars.getId().getPath()))
-                .renderType("translucent");
+                .texture("particle", block).texture("bars", block).texture("edge", block).renderType("translucent");
 
         getMultipartBuilder(bars.get())
                 .part().modelFile(barsPostEnds).addModel()
@@ -278,6 +262,9 @@ public class MFRBlockModelDatagen extends BlockStateProvider {
                 .part().modelFile(barsSideAlt).rotationY(90).addModel()
                 .condition(CrossCollisionBlock.WEST, true)
                 .end();
+
+        itemModels().withExistingParent(bars.getId().toString(), mcLoc("item/generated"))
+                .texture("layer0", block);
     }
 
     private void buttonBlockItem(ButtonBlock button, Block base) {

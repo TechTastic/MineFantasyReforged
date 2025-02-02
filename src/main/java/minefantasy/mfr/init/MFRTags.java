@@ -5,6 +5,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 
 public class MFRTags {
@@ -77,5 +78,10 @@ public class MFRTags {
         public static TagKey<Item> getCommonTag(String path) {
             return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", path));
         }
+    }
+
+    public static class Biomes {
+        public static TagKey<Biome> HAS_DWARVEN_STRONGHOLD = TagKey.create(Registries.BIOME,
+                ResourceLocation.fromNamespaceAndPath(MineFantasyReforged.MOD_ID, "has_structure/dwarven_stronghold"));
     }
 }

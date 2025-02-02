@@ -118,6 +118,8 @@ public class MineFantasyReforged {
         gen.addProvider(event.includeServer(), new LootTableProvider(packOutput, Collections.emptySet(),
                 List.of(new LootTableProvider.SubProviderEntry(MFRBlockLootTableDatagen::new,
                         LootContextParamSets.BLOCK)), lookup));
+        gen.addProvider(event.includeServer(),
+                new MFRBiomeTagsDatagen(packOutput, lookup, fileHelper));
     }
 
     @EventBusSubscriber(modid = MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)

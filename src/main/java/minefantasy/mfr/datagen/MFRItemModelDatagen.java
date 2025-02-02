@@ -28,8 +28,8 @@ public class MFRItemModelDatagen extends ItemModelProvider {
         getBuilder("item/framed_glass_pane").parent(new ModelFile.UncheckedModelFile("item/generated"))
                 .texture("layer0", modLoc("block/framed_glass"));
 
-        withExistingParent(MFRBlocks.BRONZE_BARS.getId().toString(), mcLoc("item/generated"))
-                .texture("layer0", modLoc("block/" + MFRBlocks.BRONZE_BARS.getId().getPath()));
+        //withExistingParent(MFRBlocks.BRONZE_BARS.getId().toString(), mcLoc("item/generated"))
+        //        .texture("layer0", modLoc("block/" + MFRBlocks.BRONZE_BARS.getId().getPath()));
 
         simpleBlockItem(MFRBlocks.ENGRAVED_REINFORCED_STONE_0.get());
         simpleBlockItem(MFRBlocks.ENGRAVED_REINFORCED_STONE_1.get());
