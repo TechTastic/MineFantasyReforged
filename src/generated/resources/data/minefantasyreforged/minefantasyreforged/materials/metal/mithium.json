@@ -10,6 +10,7 @@
     "green": 200,
     "red": 60
   },
+  "incorrectBlocksTag": "minefantasyreforged:incorrect_for_mithium_tool",
   "materialIngredient": {
     "tag": "c:ingots/mithium"
   },

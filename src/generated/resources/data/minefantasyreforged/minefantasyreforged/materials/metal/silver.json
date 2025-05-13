@@ -5,6 +5,7 @@
     "green": 206,
     "red": 155
   },
+  "incorrectBlocksTag": "minefantasyreforged:incorrect_for_silver_tool",
   "materialIngredient": {
     "tag": "c:ingots/silver"
   },

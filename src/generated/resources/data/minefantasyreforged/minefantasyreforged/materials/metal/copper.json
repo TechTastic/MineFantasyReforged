@@ -5,6 +5,7 @@
     "green": 132,
     "red": 255
   },
+  "incorrectBlocksTag": "minefantasyreforged:incorrect_for_copper_tool",
   "materialIngredient": {
     "tag": "c:ingots/copper"
   },

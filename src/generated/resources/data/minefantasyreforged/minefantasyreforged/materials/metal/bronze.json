@@ -5,6 +5,7 @@
     "green": 165,
     "red": 207
   },
+  "incorrectBlocksTag": "minefantasyreforged:incorrect_for_bronze_tool",
   "materialIngredient": {
     "tag": "c:ingots/bronze"
   },

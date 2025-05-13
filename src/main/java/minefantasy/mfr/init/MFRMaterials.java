@@ -8,6 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.crafting.Ingredient;
 
+import java.util.Optional;
 import java.util.function.Supplier;
 
 public class MFRMaterials {
@@ -96,8 +97,8 @@ public class MFRMaterials {
                 .fromNamespaceAndPath(MineFantasyReforged.MOD_ID, "metal/netherite");
 
         NONE = () -> new CustomMaterial(
-                CustomMaterialTypeRegistry.NONE.get(),
-                Ingredient.EMPTY, new int[] {255, 237, 237, 237}, 0, 0,0,0,0,
+                CustomMaterialTypeRegistry.NONE.get(), Ingredient.EMPTY, Optional.empty(),
+                new int[] {255, 237, 237, 237}, 0, 0,0,0,0,
                 0,0, Rarity.COMMON,0, 0, 0, 0f, 0,
                 CustomMaterialFactory.ArmorStats.DEFAULT.toArray(), false
         );

@@ -10,6 +10,7 @@
     "green": 63,
     "red": 255
   },
+  "incorrectBlocksTag": "minefantasyreforged:incorrect_for_ender_tool",
   "materialIngredient": {
     "tag": "c:ingots/ender"
   },

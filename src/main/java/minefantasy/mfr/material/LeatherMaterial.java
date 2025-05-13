@@ -8,6 +8,8 @@ import minefantasy.mfr.registry.types.CustomMaterialTypeRegistry;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.crafting.Ingredient;
 
+import java.util.Optional;
+
 public class LeatherMaterial extends CustomMaterial {
     public static final MapCodec<LeatherMaterial> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
             CustomMaterialTypeRegistry.MATERIAL_TYPE_REGISTRY.byNameCodec().fieldOf("type").forGetter(CustomMaterial::getType),
@@ -35,7 +37,7 @@ public class LeatherMaterial extends CustomMaterial {
 
     public LeatherMaterial(CustomMaterialType type, Ingredient material, int[] color, float hardness, float durability, float flexibility,
                            float sharpness, float resistance, float density, int tier, Rarity rarity, int enchantability, int crafterTier, boolean unbreakable) {
-        super(type, material, color, hardness, durability, flexibility, sharpness, resistance,
+        super(type, material, Optional.empty(), color, hardness, durability, flexibility, sharpness, resistance,
                 density, tier, rarity, enchantability, crafterTier, 0, 0f, 0, CustomMaterialFactory.ArmorStats.DEFAULT.toArray(), unbreakable);
     }
 }

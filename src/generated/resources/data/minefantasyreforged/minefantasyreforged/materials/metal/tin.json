@@ -10,6 +10,7 @@
     "green": 177,
     "red": 164
   },
+  "incorrectBlocksTag": "minefantasyreforged:incorrect_for_tin_tool",
   "materialIngredient": {
     "tag": "c:ingots/tin"
   },

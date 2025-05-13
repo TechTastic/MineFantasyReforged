@@ -9,23 +9,28 @@ import minefantasy.mfr.registry.factories.CustomMaterialFactory;
 import minefantasy.mfr.registry.types.CustomMaterialType;
 import minefantasy.mfr.registry.types.CustomMaterialTypeRegistry;
 import minefantasy.mfr.util.MFRLogUtil;
-import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.Block;
 
 import java.util.List;
+import java.util.Optional;
 
 public class MetalMaterial extends CustomMaterial {
     public static final MapCodec<MetalMaterial> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
             CustomMaterialTypeRegistry.MATERIAL_TYPE_REGISTRY.byNameCodec().fieldOf("type").forGetter(CustomMaterial::getType),
             Ingredient.CODEC.fieldOf("materialIngredient").forGetter(CustomMaterial::getMaterialIngredient),
+            TagKey.codec(Registries.BLOCK).optionalFieldOf("incorrectBlocksTag").forGetter(mat -> Optional.of(mat.getOrCreateIncorrectBlocksTag())),
             CustomMaterialFactory.Properties.CODEC.fieldOf("properties").forGetter(CustomMaterialFactory.Properties::fromMaterial),
             CustomMaterialFactory.Colors.CODEC.fieldOf("color").forGetter(CustomMaterialFactory.Colors::fromMaterial),
             CustomMaterialFactory.ArmorStats.CODEC.optionalFieldOf("armor_stats", CustomMaterialFactory.ArmorStats.DEFAULT).forGetter(CustomMaterialFactory.ArmorStats::fromMaterial)
-    ).apply(instance, (type, ingredient, properties, colors, armor) ->
+    ).apply(instance, (type, ingredient, incorrectBlocksTag, properties, colors, armor) ->
             new MetalMaterial(
                     type,
                     ingredient,
+                    incorrectBlocksTag,
                     colors.toArray(),
                     properties.hardness(),
                     properties.durability(),
@@ -44,12 +49,12 @@ public class MetalMaterial extends CustomMaterial {
             )
     ));
 
-    public MetalMaterial(CustomMaterialType type, Ingredient materialIngredient, int[] colourRGB, float hardness,
+    public MetalMaterial(CustomMaterialType type, Ingredient materialIngredient, Optional<TagKey<Block>> incorrectBlocksTag, int[] colourRGB, float hardness,
                          float durability, float flexibility, float sharpness, float resistance, float density, int tier, Rarity rarity,
                          int enchantability, int crafterTier, Float craftTimeModifier, Integer meltingPoint,
                          Float[] armourProtection, boolean unbreakable) {
 
-        super(type, materialIngredient, colourRGB, hardness, durability, flexibility, sharpness, resistance, density, tier,
+        super(type, materialIngredient, incorrectBlocksTag, colourRGB, hardness, durability, flexibility, sharpness, resistance, density, tier,
                 rarity, enchantability, crafterTier, Math.min(-1, 4), craftTimeModifier * (2f + (sharpness * 2f)),
                 meltingPoint, armourProtection, unbreakable);
 

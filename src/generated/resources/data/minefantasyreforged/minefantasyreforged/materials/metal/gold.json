@@ -5,6 +5,7 @@
     "green": 222,
     "red": 243
   },
+  "incorrectBlocksTag": "minefantasyreforged:incorrect_for_gold_tool",
   "materialIngredient": {
     "tag": "c:ingots/gold"
   },

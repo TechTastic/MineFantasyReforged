@@ -6,8 +6,12 @@ import minefantasy.mfr.registry.factories.CustomMaterialFactory;
 import minefantasy.mfr.registry.types.CustomMaterialType;
 import minefantasy.mfr.registry.types.CustomMaterialTypeRegistry;
 import net.minecraft.client.resources.language.I18n;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.crafting.Ingredient;
+
+import java.util.Optional;
 
 public class WoodMaterial extends CustomMaterial {
     public static final MapCodec<WoodMaterial> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
@@ -33,11 +37,11 @@ public class WoodMaterial extends CustomMaterial {
             )
     ));
 
-    public WoodMaterial(CustomMaterialType type, Ingredient materialIngredient,  int[] colourRGB, float hardness,
+    public WoodMaterial(CustomMaterialType type, Ingredient materialIngredient, int[] colourRGB, float hardness,
                          float durability, float flexibility, float resistance, float density, int tier, Rarity rarity,
                          int crafterTier, Float craftTimeModifier, boolean unbreakable) {
 
-        super(type, materialIngredient, colourRGB, hardness, durability, flexibility, 0f, resistance, density,
+        super(type, materialIngredient, Optional.empty(), colourRGB, hardness, durability, flexibility, 0f, resistance, density,
                 tier, rarity, 0, crafterTier, 0, craftTimeModifier,
                 0, CustomMaterialFactory.ArmorStats.DEFAULT.toArray(), unbreakable);
     }

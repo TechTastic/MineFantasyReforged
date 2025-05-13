@@ -10,6 +10,7 @@
     "green": 140,
     "red": 250
   },
+  "incorrectBlocksTag": "minefantasyreforged:incorrect_for_mithril_tool",
   "materialIngredient": {
     "tag": "c:ingots/mithril"
   },

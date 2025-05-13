@@ -16,10 +16,13 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.SimpleTier;
 
+import java.util.Arrays;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class CustomMaterial {
@@ -38,6 +41,8 @@ public class CustomMaterial {
     private final CustomMaterialType type;
 
     protected Ingredient materialIngredient;
+
+    protected TagKey<Block> incorrectBlocksTag;
     /**
      * The material colour
      */
@@ -76,12 +81,19 @@ public class CustomMaterial {
     private Float[] armourProtection; // TODO: consider making this property into a typed class
     private final boolean unbreakable;
 
-    public CustomMaterial(CustomMaterialType type, Ingredient materialIngredient, int[] colourRGB, float hardness,
+    public CustomMaterial(CustomMaterialType type, Ingredient materialIngredient, Optional<TagKey<Block>> incorrectBlocksTag, int[] colourRGB, float hardness,
                           float durability, float flexibility, float sharpness, float resistance, float density, int tier, Rarity rarity,
                           int enchantability, int crafterTier, Integer crafterAnvilTier, Float craftTimeModifier, Integer meltingPoint,
                           Float[] armourProtection, boolean unbreakable) {
         this.type = type;
         this.materialIngredient = materialIngredient;
+        this.incorrectBlocksTag = incorrectBlocksTag.orElseGet(() -> {
+            ResourceLocation name = getName();
+            String path = name.getPath();
+
+            return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(
+                    name.getNamespace(), "incorrect_for_" + (path.contains("/") ?
+                            Arrays.stream(path.split("/")).toList().getLast() : path) + "_tool"));});
         this.colourARGB = colourRGB;
         this.hardness = hardness;
         this.durability = durability;
@@ -105,25 +117,13 @@ public class CustomMaterial {
      * @return "incorrect_for_[material]_tool" tag key
      */
     public TagKey<Block> getOrCreateIncorrectBlocksTag() {
-        ResourceLocation name = this.getName();
+        /*ResourceLocation name = this.getName();
         String path = name.getPath();
 
         return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(
                 name.getNamespace(), "incorrect_for_" + (path.contains("/") ?
-                        path.split("/")[1] : path) + "_tool"));
-    }
-
-    /**
-     * Gets or Creates a "needs_[material]_tool" tag for the given material
-     * @return "needs_[material]_tool" tag key
-     */
-    public TagKey<Block> getOrCreateNeedsBlocksTag() {
-        ResourceLocation name = this.getName();
-        String path = name.getPath();
-
-        return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(
-                name.getNamespace(), "needs_" + (path.contains("/") ?
-                        path.split("/")[1] : path) + "_tool"));
+                        Arrays.stream(path.split("/")).toList().getLast() : path) + "_tool"));*/
+        return this.incorrectBlocksTag;
     }
 
     /**
@@ -145,6 +145,8 @@ public class CustomMaterial {
      */
     public ResourceLocation getName() {
         AtomicReference<ResourceLocation> name = new AtomicReference<>(MFRMaterials.ANY);
+        if (CustomMaterialRegistry.ACCESS == null)
+            return MFRMaterials.ANY;
         CustomMaterialRegistry.ACCESS.registry(CustomMaterialRegistry.MATERIAL_REGISTRY_KEY).ifPresent(reg -> name.set(reg.getKey(this)));
         return name.get() == null ? MFRMaterials.ANY : name.get();
     }
@@ -274,13 +276,15 @@ public class CustomMaterial {
         CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
                 CustomMaterialTypeRegistry.MATERIAL_TYPE_REGISTRY.byNameCodec().fieldOf("type").forGetter(CustomMaterial::getType),
                 Ingredient.CODEC.fieldOf("materialIngredient").forGetter(CustomMaterial::getMaterialIngredient),
+                TagKey.codec(Registries.BLOCK).optionalFieldOf("incorrectBlocksTag").forGetter(mat -> Optional.of(mat.getOrCreateIncorrectBlocksTag())),
                 CustomMaterialFactory.Properties.CODEC.fieldOf("properties").forGetter(CustomMaterialFactory.Properties::fromMaterial),
                 CustomMaterialFactory.Colors.CODEC.fieldOf("color").forGetter(CustomMaterialFactory.Colors::fromMaterial),
                 CustomMaterialFactory.ArmorStats.CODEC.fieldOf("armor_stats").forGetter(CustomMaterialFactory.ArmorStats::fromMaterial)
-        ).apply(instance, (type, ingredient, properties, colors, armor) ->
+        ).apply(instance, (type, ingredient, incorrectBlocksTag, properties, colors, armor) ->
                 new CustomMaterial(
                         type,
                         ingredient,
+                        incorrectBlocksTag,
                         colors.toArray(),
                         properties.hardness(),
                         properties.durability(),
@@ -303,13 +307,15 @@ public class CustomMaterial {
         SYNC_CODEC = RecordCodecBuilder.create(instance -> instance.group(
                 CustomMaterialTypeRegistry.MATERIAL_TYPE_REGISTRY.byNameCodec().fieldOf("type").forGetter(CustomMaterial::getType),
                 Ingredient.CODEC.fieldOf("materialIngredient").forGetter(CustomMaterial::getMaterialIngredient),
+                TagKey.codec(Registries.BLOCK).optionalFieldOf("incorrectBlocksTag").forGetter(mat -> Optional.of(mat.getOrCreateIncorrectBlocksTag())),
                 CustomMaterialFactory.Properties.CODEC.fieldOf("properties").forGetter(CustomMaterialFactory.Properties::fromMaterial),
                 CustomMaterialFactory.Colors.CODEC.fieldOf("color").forGetter(CustomMaterialFactory.Colors::fromMaterial),
                 CustomMaterialFactory.ArmorStats.CODEC.optionalFieldOf("armor_stats", CustomMaterialFactory.ArmorStats.DEFAULT).forGetter(CustomMaterialFactory.ArmorStats::fromMaterial)
-        ).apply(instance, (type, ingredient, properties, colors, armor) ->
+        ).apply(instance, (type, ingredient, incorrectBlocksTag, properties, colors, armor) ->
                 new CustomMaterial(
                         type,
                         ingredient,
+                        incorrectBlocksTag,
                         colors.toArray(),
                         properties.hardness(),
                         properties.durability(),

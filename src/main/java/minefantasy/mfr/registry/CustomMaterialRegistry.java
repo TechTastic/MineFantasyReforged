@@ -5,6 +5,7 @@ import minefantasy.mfr.extension.EnumExtensions;
 import minefantasy.mfr.init.MFRBlocks;
 import minefantasy.mfr.init.MFRDataComponents;
 import minefantasy.mfr.init.MFRMaterials;
+import minefantasy.mfr.init.MFRTags;
 import minefantasy.mfr.item.component.MaterialDataComponent;
 import minefantasy.mfr.material.CustomMaterial;
 import minefantasy.mfr.material.LeatherMaterial;
@@ -391,6 +392,7 @@ public class CustomMaterialRegistry {
         context.register(createMaterialKey(MFRMaterials.TIN_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/tin"))),
+                Optional.of(MFRTags.Blocks.INCORRECT_FOR_TIN_TOOL),
                 new int[] { 255, 164, 177, 177 },
                 1.5f,
                 1f,
@@ -410,6 +412,7 @@ public class CustomMaterialRegistry {
         context.register(createMaterialKey(MFRMaterials.COPPER_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/copper"))),
+                Optional.of(MFRTags.Blocks.INCORRECT_FOR_COPPER_TOOL),
                 new int[] { 255, 255, 132, 66 },
                 1.5f,
                 1f,
@@ -429,6 +432,7 @@ public class CustomMaterialRegistry {
         context.register(createMaterialKey(MFRMaterials.BRONZE_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/bronze"))),
+                Optional.of(MFRTags.Blocks.INCORRECT_FOR_BRONZE_TOOL),
                 new int[] { 255, 207, 165, 118 },
                 2.25f,
                 1.5f,
@@ -448,6 +452,7 @@ public class CustomMaterialRegistry {
         context.register(createMaterialKey(MFRMaterials.IRON_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/iron"))),
+                Optional.of(MFRTags.Blocks.INCORRECT_FOR_IRON_TOOL),
                 new int[] { 255, 140, 120, 100 },
                 2.5f,
                 2f,
@@ -467,6 +472,7 @@ public class CustomMaterialRegistry {
         context.register(createMaterialKey(MFRMaterials.PIG_IRON_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/pig_iron"))),
+                Optional.of(MFRTags.Blocks.INCORRECT_FOR_PIG_IRON_TOOL),
                 new int[] { 255, 120, 95, 95 },
                 2.5f,
                 2f,
@@ -486,6 +492,7 @@ public class CustomMaterialRegistry {
         context.register(createMaterialKey(MFRMaterials.STEEL_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/steel"))),
+                Optional.of(MFRTags.Blocks.INCORRECT_FOR_STEEL_TOOL),
                 new int[] { 255, 168, 168, 168 },
                 2.75f,
                 3f,
@@ -505,6 +512,7 @@ public class CustomMaterialRegistry {
         context.register(createMaterialKey(MFRMaterials.ENCRUSTED_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/encrusted"))),
+                Optional.of(MFRTags.Blocks.INCORRECT_FOR_ENCRUSTED_TOOL),
                 new int[] { 255, 64, 255, 255 },
                 3f,
                 8f,
@@ -524,6 +532,7 @@ public class CustomMaterialRegistry {
         context.register(createMaterialKey(MFRMaterials.OBSIDIAN_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/obsidian"))),
+                Optional.of(MFRTags.Blocks.INCORRECT_FOR_OBSIDIAN_TOOL),
                 new int[] { 255, 90, 45, 90 },
                 3f,
                 8f,
@@ -543,6 +552,7 @@ public class CustomMaterialRegistry {
         context.register(createMaterialKey(MFRMaterials.TUNGSTEN_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/tungsten"))),
+                Optional.of(MFRTags.Blocks.INCORRECT_FOR_TUNGSTEN_TOOL),
                 new int[] { 255, 66, 86, 65 },
                 3f,
                 8f,
@@ -562,6 +572,7 @@ public class CustomMaterialRegistry {
         context.register(createMaterialKey(MFRMaterials.BLACK_STEEL_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/black_steel"))),
+                Optional.of(MFRTags.Blocks.INCORRECT_FOR_BLACK_STEEL_TOOL),
                 new int[] { 255, 80, 80, 80 },
                 3.5f,
                 6f,
@@ -581,6 +592,7 @@ public class CustomMaterialRegistry {
         context.register(createMaterialKey(MFRMaterials.BLUE_STEEL_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/blue_steel"))),
+                Optional.of(MFRTags.Blocks.INCORRECT_FOR_BLUE_STEEL_TOOL),
                 new int[] { 255, 28, 31, 159 },
                 4f,
                 7f,
@@ -600,6 +612,7 @@ public class CustomMaterialRegistry {
         context.register(createMaterialKey(MFRMaterials.RED_STEEL_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/red_steel"))),
+                Optional.of(MFRTags.Blocks.INCORRECT_FOR_RED_STEEL_TOOL),
                 new int[] { 255, 219, 56, 58 },
                 4.5f,
                 8f,
@@ -619,6 +632,7 @@ public class CustomMaterialRegistry {
         context.register(createMaterialKey(MFRMaterials.SILVER_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/silver"))),
+                Optional.of(MFRTags.Blocks.INCORRECT_FOR_SILVER_TOOL),
                 new int[] { 255, 155, 206, 205 },
                 1.5f,
                 2.5f,
@@ -638,6 +652,7 @@ public class CustomMaterialRegistry {
         context.register(createMaterialKey(MFRMaterials.GOLD_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/gold"))),
+                Optional.of(MFRTags.Blocks.INCORRECT_FOR_GOLD_TOOL),
                 new int[] { 255, 243, 222, 49 },
                 1.5f,
                 2f,
@@ -657,6 +672,7 @@ public class CustomMaterialRegistry {
         context.register(createMaterialKey(MFRMaterials.MITHRIL_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/mithril"))),
+                Optional.of(MFRTags.Blocks.INCORRECT_FOR_MITHRIL_TOOL),
                 new int[] { 255, 250, 140, 250 },
                 5f,
                 10f,
@@ -676,6 +692,7 @@ public class CustomMaterialRegistry {
         context.register(createMaterialKey(MFRMaterials.ADAMANTIUM_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/adamantium"))),
+                Optional.of(MFRTags.Blocks.INCORRECT_FOR_ADAMANTIUM_TOOL),
                 new int[] { 255, 100, 200, 100 },
                 5.5f,
                 12f,
@@ -695,6 +712,7 @@ public class CustomMaterialRegistry {
         context.register(createMaterialKey(MFRMaterials.MITHIUM_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/mithium"))),
+                Optional.of(MFRTags.Blocks.INCORRECT_FOR_MITHIUM_TOOL),
                 new int[] { 255, 60, 200, 255 },
                 6.5f,
                 15f,
@@ -714,6 +732,7 @@ public class CustomMaterialRegistry {
         context.register(createMaterialKey(MFRMaterials.IGNOTUMITE_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/ignotumite"))),
+                Optional.of(MFRTags.Blocks.INCORRECT_FOR_IGNOTUMITE_TOOL),
                 new int[] { 255, 20, 255, 100 },
                 8.5f,
                 15f,
@@ -733,6 +752,7 @@ public class CustomMaterialRegistry {
         context.register(createMaterialKey(MFRMaterials.ENDER_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/ender"))),
+                Optional.of(MFRTags.Blocks.INCORRECT_FOR_ENDER_TOOL),
                 new int[] { 255, 255, 63, 243 },
                 7.5f,
                 15f,
@@ -752,6 +772,7 @@ public class CustomMaterialRegistry {
         context.register(createMaterialKey(MFRMaterials.COMPOSITE_ALLOY_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/composite_alloy"))),
+                Optional.of(MFRTags.Blocks.INCORRECT_FOR_COMPOSITE_ALLOY_TOOL),
                 new int[] { 255, 65, 75, 65 },
                 2.5f,
                 10f,
@@ -771,6 +792,7 @@ public class CustomMaterialRegistry {
         context.register(createMaterialKey(MFRMaterials.NETHERITE_METAL), new MetalMaterial(
                 CustomMaterialTypeRegistry.METAL_TYPES.get(),
                 Ingredient.of(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "ingots/netherite"))),
+                Optional.of(MFRTags.Blocks.INCORRECT_FOR_NETHERITE_TOOL),
                 new int[] { 255, 115, 113, 115 },
                 5.5f,
                 10f,

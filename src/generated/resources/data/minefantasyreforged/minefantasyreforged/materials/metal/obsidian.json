@@ -10,6 +10,7 @@
     "green": 45,
     "red": 90
   },
+  "incorrectBlocksTag": "minefantasyreforged:incorrect_for_obsidian_tool",
   "materialIngredient": {
     "tag": "c:ingots/obsidian"
   },

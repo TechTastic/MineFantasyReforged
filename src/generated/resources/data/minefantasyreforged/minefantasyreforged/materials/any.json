@@ -10,6 +10,7 @@
     "green": 237,
     "red": 237
   },
+  "incorrectBlocksTag": "minefantasyreforged:incorrect_for_any_tool",
   "materialIngredient": [],
   "properties": {
     "crafter_tier": 0,

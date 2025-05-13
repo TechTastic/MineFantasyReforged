@@ -10,6 +10,7 @@
     "green": 113,
     "red": 115
   },
+  "incorrectBlocksTag": "minefantasyreforged:incorrect_for_netherite_tool",
   "materialIngredient": {
     "tag": "c:ingots/netherite"
   },

@@ -10,6 +10,7 @@
     "green": 255,
     "red": 20
   },
+  "incorrectBlocksTag": "minefantasyreforged:incorrect_for_ignotumite_tool",
   "materialIngredient": {
     "tag": "c:ingots/ignotumite"
   },

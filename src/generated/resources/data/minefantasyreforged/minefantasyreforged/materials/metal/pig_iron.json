@@ -10,6 +10,7 @@
     "green": 95,
     "red": 120
   },
+  "incorrectBlocksTag": "minefantasyreforged:incorrect_for_pig_iron_tool",
   "materialIngredient": {
     "tag": "c:ingots/pig_iron"
   },
