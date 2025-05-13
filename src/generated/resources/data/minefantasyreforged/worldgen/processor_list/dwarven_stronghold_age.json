@@ -1,0 +1,8 @@
+{
+  "processors": [
+    {
+      "mossiness": 0.25,
+      "processor_type": "minefantasyreforged:dwarven_stronghold_age"
+    }
+  ]
+}

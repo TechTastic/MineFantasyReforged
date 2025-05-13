@@ -5,6 +5,7 @@ import minefantasy.mfr.registry.CustomMaterialRegistry;
 import minefantasy.mfr.worldgen.MFRBiomeModifiers;
 import minefantasy.mfr.worldgen.MFRConfiguredFeatures;
 import minefantasy.mfr.worldgen.MFRPlacedFeatures;
+import minefantasy.mfr.worldgen.MFRStructureProcessorLists;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
@@ -20,7 +21,8 @@ public class MFRDatapackDatagen extends DatapackBuiltinEntriesProvider {
             .add(CustomMaterialRegistry.MATERIAL_REGISTRY_KEY, CustomMaterialRegistry::bootstrap)
             .add(Registries.CONFIGURED_FEATURE, MFRConfiguredFeatures::bootstrap)
             .add(Registries.PLACED_FEATURE, MFRPlacedFeatures::bootstrap)
-            .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, MFRBiomeModifiers::bootstrap);
+            .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, MFRBiomeModifiers::bootstrap)
+            .add(Registries.PROCESSOR_LIST, MFRStructureProcessorLists::bootstrap);
 
     public MFRDatapackDatagen(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries, BUILDER, Set.of(MineFantasyReforged.MOD_ID));

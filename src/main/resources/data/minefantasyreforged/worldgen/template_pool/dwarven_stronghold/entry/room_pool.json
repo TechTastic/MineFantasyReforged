@@ -1,0 +1,33 @@
+{
+  "name": "minefantasyreforged:dwarven_stronghold/entry/room_pool",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 25,
+      "element": {
+        "location": "minefantasyreforged:dwarven_stronghold/room/tower",
+        "processors": "minefantasyreforged:dwarven_stronghold_age",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 75,
+      "element": {
+        "location": "minefantasyreforged:dwarven_stronghold/room/small",
+        "processors": "minefantasyreforged:dwarven_stronghold_age",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "location": "minefantasyreforged:dwarven_stronghold/entry/trunk",
+        "processors": "minefantasyreforged:dwarven_stronghold_age",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

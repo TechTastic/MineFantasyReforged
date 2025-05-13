@@ -46,8 +46,6 @@ import java.util.concurrent.CompletableFuture;
 public class MineFantasyReforged {
     public static final String MOD_ID = "minefantasyreforged";
 
-    // The constructor for the mod class is the first code that is run when your mod is loaded.
-    // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
     public MineFantasyReforged(IEventBus modEventBus, ModContainer modContainer) {
 
         modEventBus.addListener(this::registerDatapackRegistries);
@@ -58,10 +56,13 @@ public class MineFantasyReforged {
         NeoForge.EVENT_BUS.addListener(this::onLevelLoad);
 
         CustomMaterialTypeRegistry.register(modEventBus);
+
         MFRDataComponents.register(modEventBus);
         MFRItems.register(modEventBus);
         MFRBlocks.register(modEventBus);
         MFRCreativeTabs.register(modEventBus);
+
+        MFRStructureProcessorTypes.register(modEventBus);
     }
 
     private void onLevelLoad(LevelEvent.Load event) {
