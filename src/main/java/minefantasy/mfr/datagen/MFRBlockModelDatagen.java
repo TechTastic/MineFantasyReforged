@@ -83,6 +83,7 @@ public class MFRBlockModelDatagen extends BlockStateProvider {
         carpenter(MFRBlocks.ACACIA_CARPENTER, Blocks.ACACIA_LOG);
         carpenter(MFRBlocks.MANGROVE_CARPENTER, Blocks.MANGROVE_LOG);
         carpenter(MFRBlocks.BAMBOO_CARPENTER, Blocks.BAMBOO_BLOCK);
+        carpenter(MFRBlocks.CHERRY_CARPENTER, Blocks.CHERRY_LOG);
         carpenter(MFRBlocks.CRIMSON_CARPENTER, Blocks.CRIMSON_STEM);
         carpenter(MFRBlocks.WARPED_CARPENTER, Blocks.WARPED_STEM);
         carpenter(MFRBlocks.YEW_CARPENTER, MFRBlocks.YEW_LOG.get());

@@ -892,7 +892,24 @@ public class MFRLanguageDatagen extends LanguageProvider {
         tile.bomb_bench.name=Bomb Crafting Table
         tile.crossbow_bench.name=Crossbow Assembly Table
         tile.bomb_press.name=Bomb Press
-        tile.carpenter_bench.name=Carpenter Bench
+        */
+
+        this.addBlock(MFRBlocks.OAK_CARPENTER, "Oak Carpenter Bench");
+        this.addBlock(MFRBlocks.SPRUCE_CARPENTER, "Spruce Carpenter Bench");
+        this.addBlock(MFRBlocks.BIRCH_CARPENTER, "Birch Carpenter Bench");
+        this.addBlock(MFRBlocks.JUNGLE_CARPENTER, "Jungle Carpenter Bench");
+        this.addBlock(MFRBlocks.ACACIA_CARPENTER, "Acacia Carpenter Bench");
+        this.addBlock(MFRBlocks.DARK_OAK_CARPENTER, "Dark Oak Carpenter Bench");
+        this.addBlock(MFRBlocks.MANGROVE_CARPENTER, "Mangrove Carpenter Bench");
+        this.addBlock(MFRBlocks.BAMBOO_CARPENTER, "Bamboo Carpenter Bench");
+        this.addBlock(MFRBlocks.CHERRY_CARPENTER, "Cherry Carpenter Bench");
+        this.addBlock(MFRBlocks.CRIMSON_CARPENTER, "Crimson Carpenter Bench");
+        this.addBlock(MFRBlocks.WARPED_CARPENTER, "Warped Carpenter Bench");
+        this.addBlock(MFRBlocks.YEW_CARPENTER, "Yew Carpenter Bench");
+        this.addBlock(MFRBlocks.IRONBARK_CARPENTER, "Ironbark Carpenter Bench");
+        this.addBlock(MFRBlocks.EBONY_CARPENTER, "Ebony Carpenter Bench");
+
+        /*
         tile.kitchen_bench_granite.name=Kitchen Bench
         tile.kitchen_bench_diorite.name=Kitchen Bench
         tile.kitchen_bench_andesite.name=Kitchen Bench

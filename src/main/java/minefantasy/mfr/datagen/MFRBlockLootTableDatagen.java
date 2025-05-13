@@ -67,6 +67,7 @@ public class MFRBlockLootTableDatagen extends BlockLootSubProvider {
         dropSelf(MFRBlocks.ACACIA_CARPENTER.get());
         dropSelf(MFRBlocks.MANGROVE_CARPENTER.get());
         dropSelf(MFRBlocks.BAMBOO_CARPENTER.get());
+        dropSelf(MFRBlocks.CHERRY_CARPENTER.get());
         dropSelf(MFRBlocks.CRIMSON_CARPENTER.get());
         dropSelf(MFRBlocks.WARPED_CARPENTER.get());
         dropSelf(MFRBlocks.YEW_CARPENTER.get());

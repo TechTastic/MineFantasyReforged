@@ -108,6 +108,7 @@ public class MFRBlocks {
     public static final DeferredBlock<CarpenterBlock> ACACIA_CARPENTER;
     public static final DeferredBlock<CarpenterBlock> MANGROVE_CARPENTER;
     public static final DeferredBlock<CarpenterBlock> BAMBOO_CARPENTER;
+    public static final DeferredBlock<CarpenterBlock> CHERRY_CARPENTER;
     public static final DeferredBlock<CarpenterBlock> CRIMSON_CARPENTER;
     public static final DeferredBlock<CarpenterBlock> WARPED_CARPENTER;
     public static final DeferredBlock<CarpenterBlock> YEW_CARPENTER;
@@ -411,6 +412,8 @@ public class MFRBlocks {
         MANGROVE_CARPENTER = BLOCKS.register("mangrove_carpenter_bench", () ->
                 new CarpenterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRAFTING_TABLE)));
         BAMBOO_CARPENTER = BLOCKS.register("bamboo_carpenter_bench", () ->
+                new CarpenterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRAFTING_TABLE)));
+        CHERRY_CARPENTER = BLOCKS.register("cherry_carpenter_bench", () ->
                 new CarpenterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRAFTING_TABLE)));
         CRIMSON_CARPENTER = BLOCKS.register("crimson_carpenter_bench", () ->
                 new CarpenterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRAFTING_TABLE)));

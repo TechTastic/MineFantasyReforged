@@ -169,9 +169,22 @@ public class MFRCreativeTabs {
 
         UTILITY_BLOCKS_TAB = TABS.register("utility_blocks", () ->
                 CreativeModeTab.builder()
-                        .icon(() -> CustomToolHelper.constructSingleColoredLayer(
-                                MFRItems.TIMBER.get(), MFRMaterials.OAK_WOOD))
+                        .icon(() -> MFRBlocks.OAK_CARPENTER.toStack())
                         .displayItems((param, output) -> {
+                            output.accept(MFRBlocks.OAK_CARPENTER);
+                            output.accept(MFRBlocks.SPRUCE_CARPENTER);
+                            output.accept(MFRBlocks.BIRCH_CARPENTER);
+                            output.accept(MFRBlocks.JUNGLE_CARPENTER);
+                            output.accept(MFRBlocks.ACACIA_CARPENTER);
+                            output.accept(MFRBlocks.DARK_OAK_CARPENTER);
+                            output.accept(MFRBlocks.MANGROVE_CARPENTER);
+                            output.accept(MFRBlocks.BAMBOO_CARPENTER);
+                            output.accept(MFRBlocks.CHERRY_CARPENTER);
+                            output.accept(MFRBlocks.CRIMSON_CARPENTER);
+                            output.accept(MFRBlocks.WARPED_CARPENTER);
+                            output.accept(MFRBlocks.YEW_CARPENTER);
+                            output.accept(MFRBlocks.IRONBARK_CARPENTER);
+                            output.accept(MFRBlocks.EBONY_CARPENTER);
                         })
                         .title(Component.translatable("itemGroup.minefantasyreforged.utility_blocks"))
                         .withTabsBefore(ARCHERY_TAB.getId())

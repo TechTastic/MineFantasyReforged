@@ -77,13 +77,6 @@ public class MFRPickaxeItem extends PickaxeItem implements IToolMaterial {
     }
 
     @Override
-    public float getDestroySpeed(ItemStack stack, BlockState state) {
-        if (state.is(BlockTags.MINEABLE_WITH_PICKAXE))
-            return super.getDestroySpeed(stack, state);
-        return 1f;
-    }
-
-    @Override
     public @NotNull InteractionResult useOn(@NotNull UseOnContext context) {
         Level level = context.getLevel();
         Player player = context.getPlayer();
