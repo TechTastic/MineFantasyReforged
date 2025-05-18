@@ -1,5 +1,6 @@
 package minefantasy.mfr.blockentity;
 
+import minefantasy.mfr.block.StorageComponentBlock;
 import minefantasy.mfr.init.MFRBlockEntities;
 import minefantasy.mfr.item.component.MaterialDataComponent;
 import minefantasy.mfr.material.CustomMaterial;
@@ -7,6 +8,7 @@ import minefantasy.mfr.registry.CustomMaterialRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -21,6 +23,17 @@ public class StorageComponentBE extends BlockEntity {
 
     public void setStack(ItemStack stack) {
         this.stack = stack.copyWithCount(1);
+    }
+
+    public boolean incrementStack(ServerLevel level, BlockPos pos, BlockState state) {
+        StorageComponentBlock.Type type = state.getValue(StorageComponentBlock.TYPE);
+        int currentSize = state.getValue(StorageComponentBlock.SIZE);
+
+        if (currentSize >= type.getMaxStackSize())
+            return false;
+
+        level.setBlockAndUpdate(pos, state.setValue(StorageComponentBlock.SIZE, currentSize + 1));
+        return true;
     }
 
     public CustomMaterial getMaterial() {

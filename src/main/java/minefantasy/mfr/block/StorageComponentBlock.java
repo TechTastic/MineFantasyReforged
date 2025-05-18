@@ -4,7 +4,10 @@ import minefantasy.mfr.blockentity.StorageComponentBE;
 import minefantasy.mfr.init.MFRItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
@@ -17,9 +20,11 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -28,6 +33,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class StorageComponentBlock extends Block implements EntityBlock {
     public static final EnumProperty<Type> TYPE;
+    public static final IntegerProperty SIZE;
 
     public StorageComponentBlock(Properties properties) {
         super(properties);
@@ -35,7 +41,7 @@ public class StorageComponentBlock extends Block implements EntityBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        super.createBlockStateDefinition(builder.add(TYPE));
+        super.createBlockStateDefinition(builder.add(TYPE, SIZE));
     }
 
     @Nullable
@@ -48,6 +54,7 @@ public class StorageComponentBlock extends Block implements EntityBlock {
     protected @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         // Per Type, per Stack Size
         Type type = state.getValue(TYPE);
+        int size = state.getValue(SIZE);
         //return switch (type) {
         //    case TIMBER, TIMBER_CUT ->
         //};
@@ -127,8 +134,22 @@ public class StorageComponentBlock extends Block implements EntityBlock {
         return PushReaction.DESTROY;
     }
 
+    @Override
+    protected @NotNull ItemInteractionResult useItemOn(@NotNull ItemStack stack, @NotNull BlockState state, @NotNull Level level,
+            @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
+        Type type = state.getValue(TYPE);
+        BlockEntity be = level.getBlockEntity(pos);
+
+        if (level.isClientSide || type != Type.getType(stack) || !(be instanceof StorageComponentBE comp) || !comp.incrementStack((ServerLevel) level, pos, state))
+            return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
+
+        stack.shrink(1);
+        return ItemInteractionResult.CONSUME;
+    }
+
     static {
         TYPE = EnumProperty.create("type", Type.class);
+        SIZE = IntegerProperty.create("stack_size", 1, 64);
     }
 
     public enum Type implements StringRepresentable {
