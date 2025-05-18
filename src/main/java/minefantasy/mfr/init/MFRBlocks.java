@@ -3,6 +3,7 @@ package minefantasy.mfr.init;
 import minefantasy.mfr.MineFantasyReforged;
 import minefantasy.mfr.block.CarpenterBlock;
 import minefantasy.mfr.block.FlammableRotatedPillarBlock;
+import minefantasy.mfr.block.StorageComponentBlock;
 import minefantasy.mfr.worldgen.tree.MFRTreeGrowers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -222,6 +223,8 @@ public class MFRBlocks {
     public static final DeferredBlock<DoorBlock> EBONY_DOOR;
     public static final DeferredBlock<TrapDoorBlock> EBONY_TRAPDOOR;
     public static final Supplier<BlockFamily> EBONY_FAMILY;
+
+    public static final DeferredBlock<StorageComponentBlock> STORAGE_COMPONENT;
 
     public static void register(IEventBus bus) {
         BLOCKS.register(bus);
@@ -1126,5 +1129,8 @@ public class MFRBlocks {
                 // SIGN
                 .recipeGroupPrefix("wooden")
                 .getFamily();
+
+        STORAGE_COMPONENT = BLOCKS.register("storage_component", () ->
+                new StorageComponentBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRAFTING_TABLE)));
     }
 }

@@ -6,7 +6,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Explosion;
@@ -18,7 +17,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
@@ -30,7 +28,6 @@ import org.jetbrains.annotations.Nullable;
 
 public class StorageComponentBlock extends Block implements EntityBlock {
     public static final EnumProperty<Type> TYPE;
-    public static final IntegerProperty STACK_SIZE;
 
     public StorageComponentBlock(Properties properties) {
         super(properties);
@@ -38,7 +35,7 @@ public class StorageComponentBlock extends Block implements EntityBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        super.createBlockStateDefinition(builder.add(TYPE, STACK_SIZE));
+        super.createBlockStateDefinition(builder.add(TYPE));
     }
 
     @Nullable
@@ -49,42 +46,60 @@ public class StorageComponentBlock extends Block implements EntityBlock {
 
     @Override
     protected @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+        // Per Type, per Stack Size
+        Type type = state.getValue(TYPE);
+        //return switch (type) {
+        //    case TIMBER, TIMBER_CUT ->
+        //};
+
         return super.getShape(state, level, pos, context);
     }
 
     @Override
     public boolean onDestroyedByPlayer(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, boolean willHarvest, @NotNull FluidState fluid) {
+        // Itemize
 
         return super.onDestroyedByPlayer(state, level, pos, player, willHarvest, fluid);
     }
 
     @Override
     public void onDestroyedByPushReaction(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Direction pushDirection, @NotNull FluidState fluid) {
+        // Itemize and Push in direction
+
         super.onDestroyedByPushReaction(state, level, pos, pushDirection, fluid);
     }
 
     @Override
     public @NotNull ItemStack getCloneItemStack(@NotNull BlockState state, @NotNull HitResult target, @NotNull LevelReader level, @NotNull BlockPos pos, @NotNull Player player) {
+        // Get from Block Entity
         return super.getCloneItemStack(state, target, level, pos, player);
     }
 
     @Override
     public int getFlammability(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
-        return super.getFlammability(state, level, pos, direction);
+        Type type = state.getValue(TYPE);
+        return switch (type) {
+            case TIMBER, TIMBER_CUT, TIMBER_PANE -> 20; // Check material for Wood
+            default -> 0;
+        };
     }
 
     @Override
     public boolean isFlammable(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
         Type type = state.getValue(TYPE);
         return switch (type) {
-            case TIMBER, PANE -> true; // Check Pane material for Wood
+            case TIMBER, TIMBER_CUT, TIMBER_PANE -> true; // Check Pane material for Wood
             default -> false;
         };
     }
 
     @Override
     public int getFireSpreadSpeed(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
-        return super.getFireSpreadSpeed(state, level, pos, direction);
+        Type type = state.getValue(TYPE);
+        return switch (type) {
+            case TIMBER, TIMBER_CUT, TIMBER_PANE -> 10; // Check material for Wood
+            default -> 0;
+        };
     }
 
     @Override
@@ -101,8 +116,8 @@ public class StorageComponentBlock extends Block implements EntityBlock {
     public @NotNull MapColor getMapColor(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull MapColor defaultColor) {
         Type type = state.getValue(TYPE);
         return switch (type) {
-            case TIMBER, PANE, BAR, PLATE_HUGE -> defaultColor; // Get Material Color from BlockEntity
-            case POT, JAR -> MapColor.COLOR_BROWN;
+            case POT, JAR, MOULD -> MapColor.COLOR_BROWN;
+            case FIREBRICK, BRICK -> MapColor.TERRACOTTA_BROWN;
             default -> super.getMapColor(state, level, pos, defaultColor);
         };
     }
@@ -114,21 +129,23 @@ public class StorageComponentBlock extends Block implements EntityBlock {
 
     static {
         TYPE = EnumProperty.create("type", Type.class);
-        STACK_SIZE = IntegerProperty.create("stack_size", 1, 64);
-
-        // Shape = Type then Size
-        //     TIMBER - 1-64
-        //     PANE - 1-16
-        //     BAR - 1-64
-        //     POT - 1-64
-        //     JAR - 1-32
-        //     PLATE_HUGE - 1-8
     }
 
     public enum Type implements StringRepresentable {
         TIMBER(64),
-        PANE(16),
+        TIMBER_CUT(64),
+
+        TIMBER_PANE(16),
+        PLATE(16),
+        CHAIN_MESH(16),
+        SCALE_MESH(16),
+        SPLINT_MESH(16),
+
         BAR(64),
+        MOULD(64),
+        BRICK(64),
+        FIREBRICK(64),
+
         POT(64),
         JAR(32),
         PLATE_HUGE(8);
@@ -144,13 +161,29 @@ public class StorageComponentBlock extends Block implements EntityBlock {
         }
 
         public static @Nullable Type getType(ItemStack item) {
-            if (item.is(MFRItems.TIMBER) || item.is(MFRItems.TIMBER_CUT))
+            if (item.is(MFRItems.TIMBER))
                 return TIMBER;
-            else if (item.is(MFRItems.TIMBER_PANE) || item.is(MFRItems.PLATE) || item.is(MFRItems.CHAIN_MESH) || item.is(MFRItems.SCALE_MESH) || item.is(MFRItems.SPLINT_MESH))
-                return PANE;
-            else if (item.is(MFRItems.BAR) /* or Firebrick or Mould or Brick */)
+            else if (item.is(MFRItems.TIMBER_CUT))
+                return TIMBER_CUT;
+            else if (item.is(MFRItems.TIMBER_PANE))
+                return TIMBER_PANE;
+            else if (item.is(MFRItems.PLATE))
+                return PLATE;
+            else if (item.is(MFRItems.CHAIN_MESH))
+                return CHAIN_MESH;
+            else if (item.is(MFRItems.SCALE_MESH))
+                return SCALE_MESH;
+            else if (item.is(MFRItems.SPLINT_MESH))
+                return SPLINT_MESH;
+            else if (item.is(MFRItems.BAR))
                 return BAR;
             /*
+            else if (item.is(MFRItems.MOULD))
+                return MOULD;
+            else if (item.is(MFRItems.FIREBRICK))
+                return FIREBRICK;
+            else if (item.is(MFRItems.BRICK))
+                return BRICK;
             else if (item.is(MFRItems.CLAY_POT))
                 return POT;
              */
