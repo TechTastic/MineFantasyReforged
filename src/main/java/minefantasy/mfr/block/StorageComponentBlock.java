@@ -10,6 +10,7 @@ import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -148,12 +149,22 @@ public class StorageComponentBlock extends Block implements EntityBlock {
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        BlockEntity be = context.getLevel().getBlockEntity(context.getClickedPos());
-        if (!context.getLevel().isClientSide && be instanceof StorageComponentBE comp) {
-            comp.setStack(context.getItemInHand());
-        }
+        StorageComponentBlock.Type type = StorageComponentBlock.Type.getType(context.getItemInHand());
+        if (type == null) return super.getStateForPlacement(context);
 
-        return super.getStateForPlacement(context);
+        return super.getStateForPlacement(context).setValue(TYPE, type).setValue(SIZE, 1);
+    }
+
+    @Override
+    public void setPlacedBy(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, @Nullable LivingEntity placer, @NotNull ItemStack stack) {
+        super.setPlacedBy(level, pos, state, placer, stack);
+
+        BlockEntity be = level.getBlockEntity(pos);
+        if (be instanceof StorageComponentBE comp) {
+            comp.setStack(stack);
+            if (!level.isClientSide)
+                comp.setChanged();
+        }
     }
 
     @Override

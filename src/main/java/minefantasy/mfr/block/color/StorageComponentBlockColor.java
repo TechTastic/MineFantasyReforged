@@ -18,7 +18,7 @@ public class StorageComponentBlockColor implements BlockColor {
     public int getColor(@NotNull BlockState blockState, @Nullable BlockAndTintGetter blockAndTintGetter, @Nullable BlockPos blockPos, int i) {
         if (blockAndTintGetter == null || blockPos == null || !(blockAndTintGetter.getBlockEntity(blockPos) instanceof StorageComponentBE comp))
             return CustomMaterialRegistry.getMaterial(MFRMaterials.ANY).getColourInt();
-        var color = CustomMaterialRegistry.getMaterialFor(comp.getStackWithSize(1), MaterialDataComponent.SLOT_MAIN).getColourInt();
+        var color = comp.getMaterial().getColourInt();
         System.out.println(HexFormat.of().toHexDigits(color));
         return color;
     }

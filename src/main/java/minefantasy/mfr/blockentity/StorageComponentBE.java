@@ -29,7 +29,6 @@ public class StorageComponentBE extends BlockEntity {
 
     public void setStack(ItemStack stack) {
         this.stack = stack.copyWithCount(1);
-        this.setChanged();
     }
 
     public boolean incrementStack(ServerLevel level, BlockPos pos, BlockState state) {
