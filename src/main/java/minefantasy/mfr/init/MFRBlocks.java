@@ -1130,7 +1130,7 @@ public class MFRBlocks {
                 .recipeGroupPrefix("wooden")
                 .getFamily();
 
-        STORAGE_COMPONENT = BLOCKS.register("storage_component", () ->
+        STORAGE_COMPONENT = BLOCKS_WITHOUT_ITEMS.register("storage_component", () ->
                 new StorageComponentBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRAFTING_TABLE)));
     }
 }

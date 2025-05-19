@@ -1,6 +1,8 @@
 package minefantasy.mfr.datagen;
 
 import minefantasy.mfr.block.CarpenterBlock;
+import minefantasy.mfr.block.StorageComponentBlock;
+import net.minecraft.client.model.Model;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.BlockFamily;
@@ -22,10 +24,13 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.Map;
+import java.util.stream.IntStream;
+
+import static minefantasy.mfr.MineFantasyReforged.MOD_ID;
 
 public class MFRBlockModelDatagen extends BlockStateProvider {
     public MFRBlockModelDatagen(PackOutput output, ExistingFileHelper exFileHelper) {
-        super(output, MineFantasyReforged.MOD_ID, exFileHelper);
+        super(output, MOD_ID, exFileHelper);
     }
 
     @Override
@@ -152,6 +157,37 @@ public class MFRBlockModelDatagen extends BlockStateProvider {
         blockItem(MFRBlocks.STRIPPED_EBONY_LOG);
         blockItem(MFRBlocks.STRIPPED_EBONY_WOOD);
         blockFamily(MFRBlocks.EBONY_FAMILY.get());
+
+        var multiPartBuilder = getMultipartBuilder(MFRBlocks.STORAGE_COMPONENT.get());
+
+        for (int bars = 1; bars <= StorageComponentBlock.Type.BAR.getMaxStackSize(); bars++) {
+            int layer = (bars - 1) / 8;
+            int currentLayerBar = bars - (8 * layer);
+
+            float offsetX = switch (currentLayerBar) {
+                case 1, 5 -> 0f;
+                case 2, 6 -> 4f;
+                case 3, 7 -> 8f;
+                default -> 12f;
+            };
+
+            float offsetZ = (currentLayerBar > 4) ? 8f : 0f;
+
+            var barModel = models().withExistingParent(StorageComponentBlock.Type.BAR.getModelLocation() + "_" + bars, StorageComponentBlock.Type.BAR.getModelLocation())
+                    .rootTransforms()
+                    .translation(((layer % 2 == 0) ? offsetX : offsetZ) / 16, (layer * 2) / 16f, ((layer % 2 == 0) ? offsetZ : offsetX - 28) / 16)
+                    .rotation(0, (layer % 2 == 0) ? 0 : 90, 0, true)
+                    .end()
+                    .renderType("cutout");
+
+            multiPartBuilder = multiPartBuilder
+                    .part()
+                    .modelFile(barModel)
+                    .addModel()
+                    .condition(StorageComponentBlock.TYPE, StorageComponentBlock.Type.BAR)
+                    .condition(StorageComponentBlock.SIZE, IntStream.rangeClosed(bars, 64).distinct().boxed().toArray(Integer[]::new))
+                    .end();
+        }
     }
 
     private void blockFamily(BlockFamily family) {
@@ -322,12 +358,12 @@ public class MFRBlockModelDatagen extends BlockStateProvider {
 
     private void blockItem(DeferredBlock<?> deferredBlock, String appendix) {
         simpleBlockItem(deferredBlock.get(), new ModelFile.UncheckedModelFile(
-                MineFantasyReforged.MOD_ID + ":block/" + deferredBlock.getId().getPath() + appendix));
+                MOD_ID + ":block/" + deferredBlock.getId().getPath() + appendix));
     }
 
     private void blockItem(Block block, String appendix) {
         simpleBlockItem(block, new ModelFile.UncheckedModelFile(
-                MineFantasyReforged.MOD_ID + ":block/" + BuiltInRegistries.BLOCK.getKey(block).getPath() + appendix));
+                MOD_ID + ":block/" + BuiltInRegistries.BLOCK.getKey(block).getPath() + appendix));
     }
 
     private void blockItem(Block block) {

@@ -1,5 +1,6 @@
 package minefantasy.mfr;
 
+import minefantasy.mfr.block.color.StorageComponentBlockColor;
 import minefantasy.mfr.datagen.*;
 import minefantasy.mfr.init.*;
 import minefantasy.mfr.item.color.ArmorMaterialItemColor;
@@ -58,8 +59,9 @@ public class MineFantasyReforged {
         CustomMaterialTypeRegistry.register(modEventBus);
 
         MFRDataComponents.register(modEventBus);
-        MFRItems.register(modEventBus);
         MFRBlocks.register(modEventBus);
+        MFRItems.register(modEventBus);
+        MFRBlockEntities.register(modEventBus);
         MFRCreativeTabs.register(modEventBus);
 
         MFRStructureProcessorTypes.register(modEventBus);
@@ -230,11 +232,13 @@ public class MineFantasyReforged {
         @SubscribeEvent
         public static void registerColors(RegisterColorHandlersEvent.Block event) {
             event.register((blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null & blockPos != null
-                    ? BiomeColors.getAverageFoliageColor(blockAndTintGetter, blockPos) : FoliageColor.getDefaultColor(),
+                            ? BiomeColors.getAverageFoliageColor(blockAndTintGetter, blockPos) : FoliageColor.getDefaultColor(),
                     MFRBlocks.YEW_LEAVES.get(),
                     MFRBlocks.IRONBARK_LEAVES.get(),
                     MFRBlocks.EBONY_LEAVES.get()
             );
+
+            event.register(new StorageComponentBlockColor(), MFRBlocks.STORAGE_COMPONENT.get());
         }
     }
 }

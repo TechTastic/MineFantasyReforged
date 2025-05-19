@@ -41,7 +41,7 @@ public class MetalComponentItem extends MFRComponentItem {
     }
 
     @Override
-    public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
+    public void appendHoverText(@NotNull ItemStack itemStack, @NotNull TooltipContext tooltipContext, @NotNull List<Component> list, @NotNull TooltipFlag tooltipFlag) {
         super.appendHoverText(itemStack, tooltipContext, list, tooltipFlag);
 
         if (!canDamage()) {
@@ -57,7 +57,7 @@ public class MetalComponentItem extends MFRComponentItem {
     }
 
     @Override
-    public @NotNull Component getName(ItemStack itemStack) {
+    public @NotNull Component getName(@NotNull ItemStack itemStack) {
         return CustomToolHelper.getLocalisedName(itemStack,
                 "item.commodity_" + BuiltInRegistries.ITEM.getKey(this).getPath() + ".name");
     }

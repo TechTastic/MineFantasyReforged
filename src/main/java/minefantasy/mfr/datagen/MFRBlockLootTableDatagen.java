@@ -6,6 +6,8 @@ import net.minecraft.data.BlockFamily;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
@@ -119,6 +121,8 @@ public class MFRBlockLootTableDatagen extends BlockLootSubProvider {
         dropSelf(MFRBlocks.EBONY_SAPLING.get());
         dropPottedContents(MFRBlocks.POTTED_EBONY_SAPLING.get());
         blockFamily(MFRBlocks.EBONY_FAMILY.get());
+
+        this.add(MFRBlocks.STORAGE_COMPONENT.get(), block -> LootTable.lootTable().withPool(LootPool.lootPool()));
     }
 
     private void blockFamily(BlockFamily family) {

@@ -4,12 +4,15 @@ import minefantasy.mfr.blockentity.StorageComponentBE;
 import minefantasy.mfr.init.MFRItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
@@ -31,12 +34,16 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import static minefantasy.mfr.MineFantasyReforged.MOD_ID;
+
 public class StorageComponentBlock extends Block implements EntityBlock {
     public static final EnumProperty<Type> TYPE;
     public static final IntegerProperty SIZE;
 
     public StorageComponentBlock(Properties properties) {
         super(properties);
+
+        this.registerDefaultState(this.defaultBlockState().setValue(TYPE, Type.BAR).setValue(SIZE, 1));
     }
 
     @Override
@@ -78,8 +85,12 @@ public class StorageComponentBlock extends Block implements EntityBlock {
 
     @Override
     public @NotNull ItemStack getCloneItemStack(@NotNull BlockState state, @NotNull HitResult target, @NotNull LevelReader level, @NotNull BlockPos pos, @NotNull Player player) {
-        // Get from Block Entity
-        return super.getCloneItemStack(state, target, level, pos, player);
+        BlockEntity be = level.getBlockEntity(pos);
+
+        if (!(be instanceof StorageComponentBE comp))
+            return super.getCloneItemStack(state, target, level, pos, player);
+
+        return comp.getStackWithSize(1);
     }
 
     @Override
@@ -123,7 +134,7 @@ public class StorageComponentBlock extends Block implements EntityBlock {
     public @NotNull MapColor getMapColor(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull MapColor defaultColor) {
         Type type = state.getValue(TYPE);
         return switch (type) {
-            case POT, JAR, MOULD -> MapColor.COLOR_BROWN;
+            case POT, JUG, MOULD -> MapColor.COLOR_BROWN;
             case FIREBRICK, BRICK -> MapColor.TERRACOTTA_BROWN;
             default -> super.getMapColor(state, level, pos, defaultColor);
         };
@@ -134,17 +145,42 @@ public class StorageComponentBlock extends Block implements EntityBlock {
         return PushReaction.DESTROY;
     }
 
+    @Nullable
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        BlockEntity be = context.getLevel().getBlockEntity(context.getClickedPos());
+        if (!context.getLevel().isClientSide && be instanceof StorageComponentBE comp) {
+            comp.setStack(context.getItemInHand());
+        }
+
+        return super.getStateForPlacement(context);
+    }
+
     @Override
     protected @NotNull ItemInteractionResult useItemOn(@NotNull ItemStack stack, @NotNull BlockState state, @NotNull Level level,
             @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
         Type type = state.getValue(TYPE);
         BlockEntity be = level.getBlockEntity(pos);
 
-        if (level.isClientSide || type != Type.getType(stack) || !(be instanceof StorageComponentBE comp) || !comp.incrementStack((ServerLevel) level, pos, state))
+        if (level.isClientSide || type != Type.getType(stack) || !(be instanceof StorageComponentBE comp) || !(comp.hasStack() && ItemStack.isSameItemSameComponents(stack, comp.getStackWithSize(1))) || !comp.incrementStack((ServerLevel) level, pos, state))
             return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
 
-        stack.shrink(1);
+        if (!player.isCreative())
+            stack.shrink(1);
         return ItemInteractionResult.CONSUME;
+    }
+
+    @Override
+    protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
+        BlockEntity be = level.getBlockEntity(pos);
+
+        if (level.isClientSide || !(be instanceof StorageComponentBE comp) || !player.canTakeItem(comp.getStackWithSize(1)))
+            return super.useWithoutItem(state, level, pos, player, hitResult);
+
+        comp.decrementStack((ServerLevel) level, pos, state);
+        if (!player.isCreative())
+            player.addItem(comp.getStackWithSize(1));
+        return InteractionResult.CONSUME;
     }
 
     static {
@@ -153,32 +189,40 @@ public class StorageComponentBlock extends Block implements EntityBlock {
     }
 
     public enum Type implements StringRepresentable {
-        TIMBER(64),
-        TIMBER_CUT(64),
+        TIMBER(64, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_timber")),
+        TIMBER_CUT(64, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_timber_cut")),
 
-        TIMBER_PANE(16),
-        PLATE(16),
-        CHAIN_MESH(16),
-        SCALE_MESH(16),
-        SPLINT_MESH(16),
+        TIMBER_PANE(16, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_timber_pane")),
+        PLATE(16, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_plate")),
+        CHAIN_MESH(16, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_mesh_chain")),
+        SCALE_MESH(16, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_mesh_scale")),
+        SPLINT_MESH(16, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_mesh_splint")),
 
-        BAR(64),
-        MOULD(64),
-        BRICK(64),
-        FIREBRICK(64),
+        BAR(64, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_bar")),
+        MOULD(64, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_mould")),
+        BRICK(64, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_brick")),
+        FIREBRICK(64, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_firebrick")),
 
-        POT(64),
-        JAR(32),
-        PLATE_HUGE(8);
+        POT(64, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_pot")),
+
+        JUG(32, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_jug_empty")),
+
+        PLATE_HUGE(8, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_plate_huge"));
 
         private final int max;
+        private final ResourceLocation modelLocation;
 
-        Type(int max) {
+        Type(int max, ResourceLocation location) {
             this.max = max;
+            this.modelLocation = location;
         }
 
         public int getMaxStackSize() {
             return this.max;
+        }
+
+        public ResourceLocation getModelLocation() {
+            return this.modelLocation;
         }
 
         public static @Nullable Type getType(ItemStack item) {
@@ -215,7 +259,7 @@ public class StorageComponentBlock extends Block implements EntityBlock {
 
         @Override
         public @NotNull String getSerializedName() {
-            return this.name();
+            return this.name().toLowerCase();
         }
     }
 }

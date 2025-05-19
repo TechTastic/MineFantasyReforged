@@ -1,0 +1,17 @@
+{
+  "parent": "minefantasyreforged:component/placed_bar",
+  "render_type": "minecraft:cutout",
+  "transform": {
+    "rotation": [
+      0.0,
+      0.70710677,
+      0.0,
+      0.70710677
+    ],
+    "translation": [
+      0.0,
+      0.875,
+      -1.25
+    ]
+  }
+}
