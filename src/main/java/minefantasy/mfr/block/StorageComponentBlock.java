@@ -20,6 +20,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -39,17 +40,26 @@ import static minefantasy.mfr.MineFantasyReforged.MOD_ID;
 
 public class StorageComponentBlock extends Block implements EntityBlock {
     public static final EnumProperty<Type> TYPE;
-    public static final IntegerProperty SIZE;
 
     public StorageComponentBlock(Properties properties) {
-        super(properties);
+        super(properties
+                .noOcclusion()
+                .instabreak()
+                .pushReaction(PushReaction.DESTROY)
+                .noLootTable()
+        );
 
-        this.registerDefaultState(this.defaultBlockState().setValue(TYPE, Type.BAR).setValue(SIZE, 1));
+        this.registerDefaultState(this.defaultBlockState().setValue(TYPE, Type.BAR));
+    }
+
+    @Override
+    protected boolean propagatesSkylightDown(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
+        return true;
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        super.createBlockStateDefinition(builder.add(TYPE, SIZE));
+        super.createBlockStateDefinition(builder.add(TYPE));
     }
 
     @Nullable
@@ -62,7 +72,6 @@ public class StorageComponentBlock extends Block implements EntityBlock {
     protected @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         // Per Type, per Stack Size
         Type type = state.getValue(TYPE);
-        int size = state.getValue(SIZE);
         //return switch (type) {
         //    case TIMBER, TIMBER_CUT ->
         //};
@@ -141,18 +150,13 @@ public class StorageComponentBlock extends Block implements EntityBlock {
         };
     }
 
-    @Override
-    public @Nullable PushReaction getPistonPushReaction(@NotNull BlockState state) {
-        return PushReaction.DESTROY;
-    }
-
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         StorageComponentBlock.Type type = StorageComponentBlock.Type.getType(context.getItemInHand());
         if (type == null) return super.getStateForPlacement(context);
 
-        return super.getStateForPlacement(context).setValue(TYPE, type).setValue(SIZE, 1);
+        return super.getStateForPlacement(context).setValue(TYPE, type);
     }
 
     @Override
@@ -173,12 +177,13 @@ public class StorageComponentBlock extends Block implements EntityBlock {
         Type type = state.getValue(TYPE);
         BlockEntity be = level.getBlockEntity(pos);
 
-        if (level.isClientSide || type != Type.getType(stack) || !(be instanceof StorageComponentBE comp) || !(comp.hasStack() && ItemStack.isSameItemSameComponents(stack, comp.getStackWithSize(1))) || !comp.incrementStack((ServerLevel) level, pos, state))
+        if (level.isClientSide || type != Type.getType(stack) || !(be instanceof StorageComponentBE comp)
+                || !(comp.hasStack() && ItemStack.isSameItemSameComponents(stack, comp.getStack())) || !comp.incrementStack((ServerLevel) level, pos, state))
             return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
 
         if (!player.isCreative())
             stack.shrink(1);
-        return ItemInteractionResult.CONSUME;
+        return ItemInteractionResult.SUCCESS;
     }
 
     @Override
@@ -191,12 +196,16 @@ public class StorageComponentBlock extends Block implements EntityBlock {
         comp.decrementStack((ServerLevel) level, pos, state);
         if (!player.isCreative())
             player.addItem(comp.getStackWithSize(1));
-        return InteractionResult.CONSUME;
+        return InteractionResult.SUCCESS;
+    }
+
+    @Override
+    protected @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
+        return RenderShape.ENTITYBLOCK_ANIMATED;
     }
 
     static {
         TYPE = EnumProperty.create("type", Type.class);
-        SIZE = IntegerProperty.create("stack_size", 1, 64);
     }
 
     public enum Type implements StringRepresentable {

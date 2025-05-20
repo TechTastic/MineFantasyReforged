@@ -1,6 +1,8 @@
 package minefantasy.mfr;
 
+import minefantasy.mfr.block.StorageComponentBlock;
 import minefantasy.mfr.block.color.StorageComponentBlockColor;
+import minefantasy.mfr.blockentity.renderer.StorageComponentBER;
 import minefantasy.mfr.datagen.*;
 import minefantasy.mfr.init.*;
 import minefantasy.mfr.item.color.ArmorMaterialItemColor;
@@ -11,7 +13,10 @@ import minefantasy.mfr.registry.CustomMaterialRegistry;
 import minefantasy.mfr.registry.types.CustomMaterialType;
 import minefantasy.mfr.registry.types.CustomMaterialTypeRegistry;
 import net.minecraft.client.renderer.BiomeColors;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -22,6 +27,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.client.RenderTypeHelper;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -143,6 +149,8 @@ public class MineFantasyReforged {
                     ResourceLocation.withDefaultNamespace("pulling"),
                     (p_174630_, p_174631_, p_174632_, p_174633_) -> p_174632_ != null && p_174632_.isUsingItem() && p_174632_.getUseItem() == p_174630_ ? 1.0F : 0.0F
             );
+
+            BlockEntityRenderers.register(MFRBlockEntities.STORAGE_COMPONENT.get(), StorageComponentBER::new);
         }
 
         @SubscribeEvent
@@ -239,6 +247,13 @@ public class MineFantasyReforged {
             );
 
             event.register(new StorageComponentBlockColor(), MFRBlocks.STORAGE_COMPONENT.get());
+        }
+
+        @SubscribeEvent
+        public static void registerAdditional(ModelEvent.RegisterAdditional event) {
+            for (StorageComponentBlock.Type type : StorageComponentBlock.Type.values()) {
+                event.register(ModelResourceLocation.standalone(type.getModelLocation()));
+            }
         }
     }
 }

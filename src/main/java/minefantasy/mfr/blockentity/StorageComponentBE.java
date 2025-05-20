@@ -13,6 +13,7 @@ import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -32,24 +33,23 @@ public class StorageComponentBE extends BlockEntity {
 
     public boolean incrementStack(ServerLevel level, BlockPos pos, BlockState state) {
         StorageComponentBlock.Type type = state.getValue(StorageComponentBlock.TYPE);
-        int currentSize = state.getValue(StorageComponentBlock.SIZE);
 
-        if (currentSize >= type.getMaxStackSize())
+        if (this.stack.getCount() >= type.getMaxStackSize())
             return false;
 
-        level.setBlockAndUpdate(pos, state.setValue(StorageComponentBlock.SIZE, currentSize + 1));
-        //level.sendBlockUpdated(pos, state, state.setValue(StorageComponentBlock.SIZE, currentSize + 1), Block.UPDATE_CLIENTS);
+        this.stack.grow(1);
+        this.setChanged();
+        level.sendBlockUpdated(pos, state, state, Block.UPDATE_CLIENTS);
         return true;
     }
 
     public void decrementStack(ServerLevel level, BlockPos pos, BlockState state) {
-        int currentSize = state.getValue(StorageComponentBlock.SIZE);
-
-        if (currentSize == 1)
+        if (this.stack.getCount() <= 1)
             level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
         else {
-            level.setBlockAndUpdate(pos, state.setValue(StorageComponentBlock.SIZE, currentSize - 1));
-            //level.sendBlockUpdated(pos, state, state.setValue(StorageComponentBlock.SIZE, currentSize - 1), Block.UPDATE_CLIENTS);
+            this.stack.shrink(1);
+            this.setChanged();
+            level.sendBlockUpdated(pos, state, state, Block.UPDATE_CLIENTS);
         }
     }
 
@@ -59,6 +59,10 @@ public class StorageComponentBE extends BlockEntity {
 
     public boolean hasStack() {
         return this.stack != null;
+    }
+
+    public ItemStack getStack() {
+        return this.stack.copy();
     }
 
     public ItemStack getStackWithSize(int size) {

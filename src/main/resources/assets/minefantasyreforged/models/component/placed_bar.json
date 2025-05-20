@@ -1,6 +1,6 @@
 {
 	"credit": "Made with Blockbench",
-	"rendertype": "minecraft:cutout",
+	"render_type": "cutout",
 	"textures": {
 		"texture": "minefantasyreforged:block/component/placed_bar",
 		"particle": "minefantasyreforged:block/component/placed_bar"

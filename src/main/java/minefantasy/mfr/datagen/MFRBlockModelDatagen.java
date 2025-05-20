@@ -18,6 +18,7 @@ import minefantasy.mfr.init.MFRBlocks;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
+import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -157,36 +158,6 @@ public class MFRBlockModelDatagen extends BlockStateProvider {
         blockItem(MFRBlocks.STRIPPED_EBONY_LOG);
         blockItem(MFRBlocks.STRIPPED_EBONY_WOOD);
         blockFamily(MFRBlocks.EBONY_FAMILY.get());
-
-        var multiPartBuilder = getMultipartBuilder(MFRBlocks.STORAGE_COMPONENT.get());
-
-        for (int bars = 1; bars <= StorageComponentBlock.Type.BAR.getMaxStackSize(); bars++) {
-            int layer = (bars - 1) / 8;
-            int currentLayerBar = bars - (8 * layer);
-
-            float offsetX = switch (currentLayerBar) {
-                case 1, 5 -> 0f;
-                case 2, 6 -> 4f;
-                case 3, 7 -> 8f;
-                default -> 12f;
-            };
-
-            float offsetZ = (currentLayerBar > 4) ? 8f : 0f;
-
-            var barModel = models().withExistingParent(StorageComponentBlock.Type.BAR.getModelLocation() + "_" + bars, StorageComponentBlock.Type.BAR.getModelLocation())
-                    .rootTransforms()
-                    .translation(((layer % 2 == 0) ? offsetX : offsetZ) / 16, (layer * 2) / 16f, ((layer % 2 == 0) ? offsetZ : offsetX - 28) / 16)
-                    .rotation(0, (layer % 2 == 0) ? 0 : 90, 0, true)
-                    .end();
-
-            multiPartBuilder = multiPartBuilder
-                    .part()
-                    .modelFile(barModel)
-                    .addModel()
-                    .condition(StorageComponentBlock.TYPE, StorageComponentBlock.Type.BAR)
-                    .condition(StorageComponentBlock.SIZE, IntStream.rangeClosed(bars, 64).distinct().boxed().toArray(Integer[]::new))
-                    .end();
-        }
     }
 
     private void blockFamily(BlockFamily family) {

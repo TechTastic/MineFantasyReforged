@@ -121,8 +121,6 @@ public class MFRBlockLootTableDatagen extends BlockLootSubProvider {
         dropSelf(MFRBlocks.EBONY_SAPLING.get());
         dropPottedContents(MFRBlocks.POTTED_EBONY_SAPLING.get());
         blockFamily(MFRBlocks.EBONY_FAMILY.get());
-
-        this.add(MFRBlocks.STORAGE_COMPONENT.get(), block -> LootTable.lootTable().withPool(LootPool.lootPool()));
     }
 
     private void blockFamily(BlockFamily family) {
