@@ -1,5 +1,6 @@
 package minefantasy.mfr.item.color;
 
+import minefantasy.mfr.init.MFRMaterials;
 import minefantasy.mfr.registry.CustomMaterialRegistry;
 import minefantasy.mfr.util.CustomToolHelper;
 import net.minecraft.client.color.item.ItemColor;
@@ -11,6 +12,6 @@ public class OneLayerMaterialItemColor implements ItemColor {
     public int getColor(@NotNull ItemStack itemStack, int i) {
         if (i == 0)
             return CustomToolHelper.getColourFromItemStack(itemStack, i);
-        return 0xFFFFFFFF;
+        return CustomMaterialRegistry.getMaterial(MFRMaterials.ANY).getColourInt();
     }
 }

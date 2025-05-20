@@ -13,7 +13,6 @@ import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -21,7 +20,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class StorageComponentBE extends BlockEntity {
-    private ItemStack stack;
+    private ItemStack stack = ItemStack.EMPTY;
 
     public StorageComponentBE(BlockPos pos, BlockState blockState) {
         super(MFRBlockEntities.STORAGE_COMPONENT.get(), pos, blockState);
@@ -38,7 +37,8 @@ public class StorageComponentBE extends BlockEntity {
         if (currentSize >= type.getMaxStackSize())
             return false;
 
-        level.setBlock(pos, state.setValue(StorageComponentBlock.SIZE, currentSize + 1), Block.UPDATE_ALL_IMMEDIATE);
+        level.setBlockAndUpdate(pos, state.setValue(StorageComponentBlock.SIZE, currentSize + 1));
+        //level.sendBlockUpdated(pos, state, state.setValue(StorageComponentBlock.SIZE, currentSize + 1), Block.UPDATE_CLIENTS);
         return true;
     }
 
@@ -46,9 +46,11 @@ public class StorageComponentBE extends BlockEntity {
         int currentSize = state.getValue(StorageComponentBlock.SIZE);
 
         if (currentSize == 1)
-            level.setBlock(pos, Blocks.AIR.defaultBlockState(), Block.UPDATE_CLIENTS);
-        else
-            level.setBlock(pos, state.setValue(StorageComponentBlock.SIZE, currentSize - 1), Block.UPDATE_ALL_IMMEDIATE);
+            level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
+        else {
+            level.setBlockAndUpdate(pos, state.setValue(StorageComponentBlock.SIZE, currentSize - 1));
+            //level.sendBlockUpdated(pos, state, state.setValue(StorageComponentBlock.SIZE, currentSize - 1), Block.UPDATE_CLIENTS);
+        }
     }
 
     public CustomMaterial getMaterial() {
@@ -78,8 +80,7 @@ public class StorageComponentBE extends BlockEntity {
 
     @Override
     protected void saveAdditional(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider registries) {
-        if (this.stack != null)
-            tag.put("stack", this.stack.save(registries));
+        tag.put("stack", this.stack.save(registries));
 
         super.saveAdditional(tag, registries);
     }
@@ -88,7 +89,6 @@ public class StorageComponentBE extends BlockEntity {
     protected void loadAdditional(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider registries) {
         super.loadAdditional(tag, registries);
 
-        if (tag.contains("stack"))
-            this.stack = ItemStack.parse(registries, tag.getCompound("stack")).orElse(ItemStack.EMPTY);
+        this.stack = ItemStack.parse(registries, tag.getCompound("stack")).orElse(ItemStack.EMPTY);
     }
 }

@@ -162,8 +162,8 @@ public class StorageComponentBlock extends Block implements EntityBlock {
         BlockEntity be = level.getBlockEntity(pos);
         if (be instanceof StorageComponentBE comp) {
             comp.setStack(stack);
-            if (!level.isClientSide)
-                comp.setChanged();
+            comp.setChanged();
+            level.sendBlockUpdated(pos, state, state, Block.UPDATE_CLIENTS);
         }
     }
 

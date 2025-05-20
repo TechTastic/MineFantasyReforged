@@ -177,8 +177,7 @@ public class MFRBlockModelDatagen extends BlockStateProvider {
                     .rootTransforms()
                     .translation(((layer % 2 == 0) ? offsetX : offsetZ) / 16, (layer * 2) / 16f, ((layer % 2 == 0) ? offsetZ : offsetX - 28) / 16)
                     .rotation(0, (layer % 2 == 0) ? 0 : 90, 0, true)
-                    .end()
-                    .renderType("cutout");
+                    .end();
 
             multiPartBuilder = multiPartBuilder
                     .part()
