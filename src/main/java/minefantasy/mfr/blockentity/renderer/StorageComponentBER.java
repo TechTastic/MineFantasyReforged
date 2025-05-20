@@ -13,33 +13,41 @@ import net.minecraft.client.resources.model.ModelManager;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.neoforged.neoforge.client.model.data.ModelData;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.joml.Quaternionf;
 
 import java.util.HashMap;
 
 public class StorageComponentBER implements BlockEntityRenderer<StorageComponentBE> {
     private final BlockEntityRendererProvider.Context context;
-    private final HashMap<StorageComponentBlock.Type, BakedModel> models = new HashMap<>();
+    private static final HashMap<StorageComponentBlock.Type, BakedModel> MODELS = new HashMap<>();
 
     public StorageComponentBER(BlockEntityRendererProvider.Context context) {
         this.context = context;
          ModelManager manager = context.getBlockRenderDispatcher().getBlockModelShaper().getModelManager();
 
          for (StorageComponentBlock.Type type : StorageComponentBlock.Type.values()) {
-             this.models.computeIfAbsent(type, t -> manager.getModel(ModelResourceLocation.standalone(t.getModelLocation())));
+             MODELS.computeIfAbsent(type, t -> manager.getModel(ModelResourceLocation.standalone(t.getModelLocation())));
          }
     }
 
     @Override
     public void render(@NotNull StorageComponentBE storageComponentBE, float partialTick, @NotNull PoseStack poseStack,
                        @NotNull MultiBufferSource multiBufferSource, int packedLight, int packedOverlay) {
-        renderBars(storageComponentBE, partialTick, poseStack, multiBufferSource, packedLight, packedOverlay);
+        StorageComponentBlock.Type type = storageComponentBE.getBlockState().getValue(StorageComponentBlock.TYPE);
+        switch (type) {
+            case TIMBER, TIMBER_CUT -> renderTimber(storageComponentBE, storageComponentBE.getMaterial(), poseStack, multiBufferSource, packedLight, packedOverlay);
+            case TIMBER_PANE, PLATE, CHAIN_MESH, SCALE_MESH, SPLINT_MESH -> {}
+            case BAR, MOULD, BRICK, FIREBRICK -> renderBar(storageComponentBE, storageComponentBE.getMaterial(), poseStack, multiBufferSource, packedLight, packedOverlay);
+            case POT -> {}
+            case JUG -> {}
+            case PLATE_HUGE -> {}
+        }
     }
 
-    private void renderBars(@NotNull StorageComponentBE storageComponentBE, float partialTick, @NotNull PoseStack poseStack,
+    private void renderBar(@NotNull StorageComponentBE storageComponentBE, @NotNull CustomMaterial material, @NotNull PoseStack poseStack,
                             @NotNull MultiBufferSource multiBufferSource, int packedLight, int packedOverlay) {
-        BakedModel model = this.models.get(StorageComponentBlock.Type.BAR);
-        CustomMaterial material = storageComponentBE.getMaterial();
+        BakedModel model = MODELS.get(storageComponentBE.getBlockState().getValue(StorageComponentBlock.TYPE));
 
         for (int current = 1; current <= storageComponentBE.getStack().getCount(); current++) {
             int layer = (current - 1) / 8;
@@ -85,6 +93,43 @@ public class StorageComponentBER implements BlockEntityRenderer<StorageComponent
                 quat = quat.fromAxisAngleDeg(0, 1, 0, -90);
                 poseStack.rotateAround(quat, 0, 1, 0);
             }
+        }
+    }
+
+    private void renderTimber(@NotNull StorageComponentBE storageComponentBE, @NotNull CustomMaterial material, @NotNull PoseStack poseStack,
+                             @NotNull MultiBufferSource multiBufferSource, int packedLight, int packedOverlay) {
+        BakedModel model = MODELS.get(storageComponentBE.getBlockState().getValue(StorageComponentBlock.TYPE));
+
+        for (int current = 1; current <= storageComponentBE.getStack().getCount(); current++) {
+            int layer = (current - 1) / 4;
+            int plank = current - layer * 4;
+            int xOffset = switch (plank) {
+                case 1 -> -1;
+                case 2 -> 3;
+                case 3 -> 7;
+                default -> 11;
+            };
+
+            if (layer % 2 != 0)
+                xOffset++;
+
+            poseStack.translate(xOffset / 16f, layer / 16f, 0);
+
+            this.context.getBlockRenderDispatcher().getModelRenderer().renderModel(
+                    poseStack.last(),
+                    multiBufferSource.getBuffer(RenderType.TRANSLUCENT),
+                    storageComponentBE.getBlockState(),
+                    model,
+                    material.getColourARGB()[1] / 255f,
+                    material.getColourARGB()[2] / 255f,
+                    material.getColourARGB()[3] / 255f,
+                    packedLight,
+                    packedOverlay,
+                    ModelData.builder().build(),
+                    RenderType.CUTOUT
+            );
+
+            poseStack.translate(-xOffset / 16f, -layer / 16f, 0);
         }
     }
 }
