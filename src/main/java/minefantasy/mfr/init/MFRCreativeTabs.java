@@ -215,6 +215,21 @@ public class MFRCreativeTabs {
                             output.acceptAll(metals.stream().map(mat ->
                                     CustomToolHelper.constructSingleColoredLayer(MFRItems.BAR.get(),
                                             mat)).toList());
+                            output.acceptAll(metals.stream().map(mat ->
+                                    CustomToolHelper.constructSingleColoredLayer(MFRItems.PLATE.get(),
+                                            mat)).toList());
+                            output.acceptAll(metals.stream().map(mat ->
+                                    CustomToolHelper.constructSingleColoredLayer(MFRItems.PLATE_HUGE.get(),
+                                            mat)).toList());
+                            output.acceptAll(metals.stream().map(mat ->
+                                    CustomToolHelper.constructSingleColoredLayer(MFRItems.CHAIN_MESH.get(),
+                                            mat)).toList());
+                            output.acceptAll(metals.stream().map(mat ->
+                                    CustomToolHelper.constructSingleColoredLayer(MFRItems.SCALE_MESH.get(),
+                                            mat)).toList());
+                            output.acceptAll(metals.stream().map(mat ->
+                                    CustomToolHelper.constructSingleColoredLayer(MFRItems.SPLINT_MESH.get(),
+                                            mat)).toList());
 
                             output.acceptAll(woods.stream().map(mat -> CustomToolHelper
                                     .constructSingleColoredLayer(MFRItems.TIMBER.get(), mat)).toList());
@@ -222,6 +237,11 @@ public class MFRCreativeTabs {
                                     .constructSingleColoredLayer(MFRItems.TIMBER_CUT.get(), mat)).toList());
                             output.acceptAll(woods.stream().map(mat -> CustomToolHelper
                                     .constructSingleColoredLayer(MFRItems.TIMBER_PANE.get(), mat)).toList());
+
+                            output.accept(MFRItems.CLAY_POT);
+                            output.accept(MFRItems.MOULD);
+
+                            output.accept(MFRItems.FIREBRICK);
                         })
                         .title(Component.translatable("itemGroup.minefantasyreforged.materials"))
                         .withTabsBefore(GADGETS_TAB.getId())

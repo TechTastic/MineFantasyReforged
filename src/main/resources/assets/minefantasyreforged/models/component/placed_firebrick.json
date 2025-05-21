@@ -1,0 +1,23 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [64, 32],
+	"textures": {
+		"particle": "minefantasyreforged:block/component/placed_firebrick",
+		"texture": "minefantasyreforged:block/component/placed_firebrick"
+	},
+	"elements": [
+		{
+			"from": [0.5, 0, 0.5],
+			"to": [3.5, 2, 7.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [1, -2, 1]},
+			"faces": {
+				"north": {"uv": [3.5, 7, 5, 9], "texture": "#texture"},
+				"east": {"uv": [0, 7, 3.5, 9], "texture": "#texture"},
+				"south": {"uv": [8.5, 7, 10, 9], "texture": "#texture"},
+				"west": {"uv": [5, 7, 8.5, 9], "texture": "#texture"},
+				"up": {"uv": [3.5, 0, 5, 7], "texture": "#texture"},
+				"down": {"uv": [5, 0, 6.5, 7], "texture": "#texture"}
+			}
+		}
+	]
+}

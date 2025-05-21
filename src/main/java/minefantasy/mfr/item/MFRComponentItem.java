@@ -5,6 +5,8 @@ import minefantasy.mfr.block.StorageComponentBlock;
 import minefantasy.mfr.blockentity.StorageComponentBE;
 import minefantasy.mfr.init.MFRBlocks;
 import minefantasy.mfr.registry.CustomMaterialRegistry;
+import minefantasy.mfr.registry.types.CustomMaterialType;
+import minefantasy.mfr.registry.types.CustomMaterialTypeRegistry;
 import minefantasy.mfr.util.CustomToolHelper;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -35,6 +37,16 @@ public abstract class MFRComponentItem extends BlockItem implements ITieredCompo
 
     public boolean canDamage() {
         return false;
+    }
+
+    @Override
+    public CustomMaterialType getMaterialType(ItemStack item) {
+        return CustomMaterialTypeRegistry.NONE.get();
+    }
+
+    @Override
+    public @NotNull String getDescriptionId() {
+        return this.getOrCreateDescriptionId();
     }
 
     @Override

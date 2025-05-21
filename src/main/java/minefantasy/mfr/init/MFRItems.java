@@ -3,16 +3,26 @@ package minefantasy.mfr.init;
 import minefantasy.mfr.MineFantasyReforged;
 import minefantasy.mfr.constants.Tool;
 import minefantasy.mfr.item.*;
+import minefantasy.mfr.registry.CustomMaterialRegistry;
+import minefantasy.mfr.registry.types.CustomMaterialType;
+import minefantasy.mfr.registry.types.CustomMaterialTypeRegistry;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tiers;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import org.jetbrains.annotations.NotNull;
 
 public class MFRItems {
     private static final DeferredRegister.Items ITEMS;
 
     public static final DeferredItem<MetalComponentItem> BAR;
+
+    public static final DeferredItem<BowlItem> CLAY_POT;
+    public static final DeferredItem<MFRComponentItem> MOULD;
+
+    public static final DeferredItem<MFRComponentItem> FIREBRICK;
 
     public static final DeferredItem<MetalComponentItem> METAL_HUNK;
     public static final DeferredItem<MetalComponentItem> PLATE;
@@ -94,6 +104,14 @@ public class MFRItems {
 
         BAR = ITEMS.register("bar", () ->
                 new MetalComponentItem(new Item.Properties(), 1f));
+
+        CLAY_POT = ITEMS.register("clay_pot", () ->
+                new BowlItem(new Item.Properties()));
+        MOULD = ITEMS.register("ingot_mould", () ->
+                new MFRComponentItem(new Item.Properties()) {});
+
+        FIREBRICK = ITEMS.register("firebrick", () ->
+                new MFRComponentItem(new Item.Properties()) {});
 
         METAL_HUNK = ITEMS.register("metal_hunk", () ->
                 new MetalComponentItem(new Item.Properties(), 0.25f));

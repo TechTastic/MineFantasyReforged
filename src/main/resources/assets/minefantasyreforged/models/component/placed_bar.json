@@ -1,9 +1,9 @@
 {
 	"credit": "Made with Blockbench",
-	"render_type": "cutout",
+	"texture_size": [64, 32],
 	"textures": {
-		"texture": "minefantasyreforged:block/component/placed_bar",
-		"particle": "minefantasyreforged:block/component/placed_bar"
+		"particle": "minefantasyreforged:block/component/placed_bar",
+		"texture": "minefantasyreforged:block/component/placed_bar"
 	},
 	"elements": [
 		{
@@ -11,12 +11,12 @@
 			"to": [3.5, 2, 7.5],
 			"rotation": {"angle": 0, "axis": "y", "origin": [1, -2, 1]},
 			"faces": {
-				"north": {"uv": [3.5, 7, 5, 9], "tintindex": 0, "texture": "#texture"},
-				"east": {"uv": [0, 7, 3.5, 9], "tintindex": 0, "texture": "#texture"},
-				"south": {"uv": [8.5, 7, 10, 9], "tintindex": 0, "texture": "#texture"},
-				"west": {"uv": [5, 7, 8.5, 9], "tintindex": 0, "texture": "#texture"},
-				"up": {"uv": [3.5, 0, 5, 7], "tintindex": 0, "texture": "#texture"},
-				"down": {"uv": [5, 0, 6.5, 7], "tintindex": 0, "texture": "#texture"}
+				"north": {"uv": [3.5, 7, 5, 9], "texture": "#texture", "tintindex": 0},
+				"east": {"uv": [0, 7, 3.5, 9], "texture": "#texture", "tintindex": 0},
+				"south": {"uv": [8.5, 7, 10, 9], "texture": "#texture", "tintindex": 0},
+				"west": {"uv": [5, 7, 8.5, 9], "texture": "#texture", "tintindex": 0},
+				"up": {"uv": [3.5, 0, 5, 7], "texture": "#texture", "tintindex": 0},
+				"down": {"uv": [5, 0, 6.5, 7], "texture": "#texture", "tintindex": 0}
 			}
 		}
 	]

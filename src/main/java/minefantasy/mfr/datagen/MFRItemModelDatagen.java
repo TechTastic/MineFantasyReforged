@@ -38,6 +38,11 @@ public class MFRItemModelDatagen extends ItemModelProvider {
 
         basicItem(MFRItems.BAR.get());
 
+        basicItem(MFRItems.CLAY_POT.get());
+        basicItem(MFRItems.MOULD.get());
+
+        basicItem(MFRItems.FIREBRICK.get());
+
         withExistingParent(MFRItems.METAL_HUNK.getId().toString(), mcLoc("item/generated")).texture("layer0", "item/hunk");
         basicItem(MFRItems.PLATE.get());
         basicItem(MFRItems.PLATE_HUGE.get());

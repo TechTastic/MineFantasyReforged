@@ -144,8 +144,7 @@ public class StorageComponentBlock extends Block implements EntityBlock {
     public @NotNull MapColor getMapColor(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull MapColor defaultColor) {
         Type type = state.getValue(TYPE);
         return switch (type) {
-            case POT, JUG, MOULD -> MapColor.COLOR_BROWN;
-            case FIREBRICK, BRICK -> MapColor.TERRACOTTA_BROWN;
+            case POT, JUG, MOULD, FIREBRICK -> MapColor.TERRACOTTA_BROWN;
             default -> super.getMapColor(state, level, pos, defaultColor);
         };
     }
@@ -204,6 +203,11 @@ public class StorageComponentBlock extends Block implements EntityBlock {
         return RenderShape.ENTITYBLOCK_ANIMATED;
     }
 
+    @Override
+    protected void spawnDestroyParticles(@NotNull Level level, @NotNull Player player, @NotNull BlockPos pos, @NotNull BlockState state) {
+        //super.spawnDestroyParticles(level, player, pos, state);
+    }
+
     static {
         TYPE = EnumProperty.create("type", Type.class);
     }
@@ -220,7 +224,6 @@ public class StorageComponentBlock extends Block implements EntityBlock {
 
         BAR(64, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_bar")),
         MOULD(64, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_mould")),
-        BRICK(64, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_brick")),
         FIREBRICK(64, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_firebrick")),
 
         POT(64, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_pot")),
@@ -262,16 +265,12 @@ public class StorageComponentBlock extends Block implements EntityBlock {
                 return SPLINT_MESH;
             else if (item.is(MFRItems.BAR))
                 return BAR;
-            /*
             else if (item.is(MFRItems.MOULD))
                 return MOULD;
             else if (item.is(MFRItems.FIREBRICK))
                 return FIREBRICK;
-            else if (item.is(MFRItems.BRICK))
-                return BRICK;
             else if (item.is(MFRItems.CLAY_POT))
                 return POT;
-             */
             else if (item.is(MFRItems.PLATE_HUGE))
                 return PLATE_HUGE;
             return null;

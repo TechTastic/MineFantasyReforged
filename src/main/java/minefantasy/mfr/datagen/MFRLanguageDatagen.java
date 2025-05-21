@@ -180,7 +180,7 @@ public class MFRLanguageDatagen extends LanguageProvider {
         add("item.commodity_bar.name", "%1$s Bar");
         add("item.commodity_plate_huge.name", "Huge %1$s Plate");
         add("item.commodity_chain_mesh.name", "%1$s Chain Mesh");
-        add("item.commodity_scales_mesh.name", "%1$s Scales Mesh");
+        add("item.commodity_scale_mesh.name", "%1$s Scales Mesh");
         add("item.commodity_splint_mesh.name", "%1$s Splint Mesh");
         add("item.commodity_plate_heavy.name", "Heavy %1$s Plate");
         add("item.commodity_arrowhead.name", "%1$s Arrow Head");
@@ -424,7 +424,7 @@ public class MFRLanguageDatagen extends LanguageProvider {
 
         // COMMODITY
 
-        addItem(MFRItems.TIMBER, "Timber");
+        add("item.minefantasyreforged.timber", "Timber");
         add("item.jug_plant_oil.name", "Plant Oil Jug");
         add("item.plankRefined.name", "Refined Timber");
         add("item.rivet.name", "Rivets");
@@ -480,11 +480,14 @@ public class MFRLanguageDatagen extends LanguageProvider {
 
         /*
         item.persistent_component_flag.name=Placed Component Marker
-        item.ingot_mould.name=Ingot Mould
+        */
+        add("item.minefantasyreforged.ingot_mould", "Ingot Mould");
+        /*
         item.ingot_mould_filled.name=Ingot Mould
         item.ingot_mould_uncooked.name=Raw Ingot Mould
-
-        item.clay_pot.name=Clay Pot
+        */
+        add("item.minefantasyreforged.clay_pot", "Clay Pot");
+        /*
         item.clay_pot_uncooked.name=Raw Clay Pot
 
         item.jug_empty.name=Empty Jug
@@ -542,7 +545,9 @@ public class MFRLanguageDatagen extends LanguageProvider {
         item.kaolinite_dust.name=Kaolinite Dust
         item.fireclay.name=Fire Clay
         item.fireclay_brick.name=Fire Clay Brick
-        item.strong_brick.name=Fire Brick
+        */
+        add("item.minefantasyreforged.firebrick", "Fire Brick");
+        /*
 
         item.ore_copper.name=Raw Copper Ore
         item.ore_tin.name=Raw Tin Ore
