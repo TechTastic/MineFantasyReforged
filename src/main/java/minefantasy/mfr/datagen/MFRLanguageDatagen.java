@@ -478,6 +478,7 @@ public class MFRLanguageDatagen extends LanguageProvider {
 
         // COMPONENT
 
+        addBlock(MFRBlocks.STORAGE_COMPONENT, "Storage Component");
         /*
         item.persistent_component_flag.name=Placed Component Marker
         */

@@ -12,6 +12,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -25,9 +26,11 @@ import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -102,41 +105,19 @@ public class HeavyPickaxeItem extends PickaxeItem implements IToolMaterial {
         return CustomToolHelper.getCustomPrimaryMaterial(stack).getEnchantability();
     }
 
-    public static List<BlockPos> getBlocksToBeDestroyed(int range, BlockPos initalBlockPos, ServerPlayer player) {
-        List<BlockPos> positions = new ArrayList<>();
-
+    @Nullable
+    public static AABB getBlocksToBeDestroyed(int range, BlockPos initalBlockPos, ServerPlayer player) {
         BlockHitResult traceResult = player.level().clip(new ClipContext(player.getEyePosition(1f),
                 (player.getEyePosition(1f).add(player.getViewVector(1f).scale(6f))),
                 ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, player));
-        if(traceResult.getType() == HitResult.Type.MISS) {
-            return positions;
-        }
+        if(traceResult.getType() == HitResult.Type.MISS)
+            return null;
 
-        if(traceResult.getDirection() == Direction.DOWN || traceResult.getDirection() == Direction.UP) {
-            for(int x = -range; x <= range; x++) {
-                for(int y = -range; y <= range; y++) {
-                    positions.add(new BlockPos(initalBlockPos.getX() + x, initalBlockPos.getY(), initalBlockPos.getZ() + y));
-                }
-            }
-        }
-
-        if(traceResult.getDirection() == Direction.NORTH || traceResult.getDirection() == Direction.SOUTH) {
-            for(int x = -range; x <= range; x++) {
-                for(int y = -range; y <= range; y++) {
-                    positions.add(new BlockPos(initalBlockPos.getX() + x, initalBlockPos.getY() + y, initalBlockPos.getZ()));
-                }
-            }
-        }
-
-        if(traceResult.getDirection() == Direction.EAST || traceResult.getDirection() == Direction.WEST) {
-            for(int x = -range; x <= range; x++) {
-                for(int y = -range; y <= range; y++) {
-                    positions.add(new BlockPos(initalBlockPos.getX(), initalBlockPos.getY() + y, initalBlockPos.getZ() + x));
-                }
-            }
-        }
-
-        return positions;
+        return switch (traceResult.getDirection()) {
+            case DOWN, UP -> AABB.ofSize(initalBlockPos.getCenter(), range * 2 + 1, .5, range * 2 + 1);
+            case NORTH, SOUTH -> AABB.ofSize(initalBlockPos.getCenter(), range * 2 + 1, range * 2 + 1, .5);
+            case EAST, WEST -> AABB.ofSize(initalBlockPos.getCenter(), .5, range * 2 + 1, range * 2 + 1);
+        };
     }
 
     @Override

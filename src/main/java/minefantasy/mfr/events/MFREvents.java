@@ -11,6 +11,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
+import net.minecraft.world.phys.AABB;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.enchanting.GetEnchantmentLevelEvent;
@@ -27,23 +28,36 @@ public class MFREvents {
     // Don't be a jerk License
     @SubscribeEvent
     public static void onHeavyPickaxeUsage(BlockEvent.BreakEvent event) {
+        System.err.println("Event Fired!");
+
         Player player = event.getPlayer();
         ItemStack mainHandItem = player.getMainHandItem();
 
         if(mainHandItem.getItem() instanceof HeavyPickaxeItem pickaxe && player instanceof ServerPlayer serverPlayer) {
+            System.err.println("Is Heavy Pickaxe Item and ServerPlayer");
             BlockPos initialBlockPos = event.getPos();
-            if(HARVESTED_BLOCKS.contains(initialBlockPos)) {
+            if (HARVESTED_BLOCKS.contains(initialBlockPos))
                 return;
-            }
 
-            for(BlockPos pos : HeavyPickaxeItem.getBlocksToBeDestroyed(1, initialBlockPos, serverPlayer)) {
-                if(pos == initialBlockPos || !pickaxe.isCorrectToolForDrops(mainHandItem, event.getLevel().getBlockState(pos))) {
-                    continue;
+            AABB blocks = HeavyPickaxeItem.getBlocksToBeDestroyed(1, initialBlockPos, serverPlayer);
+            System.err.println("AABB gotten: " + blocks);
+            if (blocks == null)
+                return;
+
+            for (int x = (int) blocks.minX; x <= blocks.maxX; x++) {
+                for (int y = (int) blocks.minY; y <= blocks.maxY; y++) {
+                    for (int z = (int) blocks.minZ; z <= blocks.maxZ; z++) {
+                        BlockPos pos = new BlockPos(x, y, z);
+                        if(pos.equals(initialBlockPos) || !pickaxe.isCorrectToolForDrops(mainHandItem, event.getLevel().getBlockState(pos)))
+                            continue;
+
+                        System.err.println("Harvesting Block At: " + pos);
+
+                        HARVESTED_BLOCKS.add(pos);
+                        serverPlayer.gameMode.destroyBlock(pos);
+                        HARVESTED_BLOCKS.remove(pos);
+                    }
                 }
-
-                HARVESTED_BLOCKS.add(pos);
-                serverPlayer.gameMode.destroyBlock(pos);
-                HARVESTED_BLOCKS.remove(pos);
             }
         }
     }

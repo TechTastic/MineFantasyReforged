@@ -5,6 +5,7 @@ import minefantasy.mfr.blockentity.StorageComponentBE;
 import minefantasy.mfr.init.MFRItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.StringRepresentable;
