@@ -11,6 +11,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.ModelManager;
 import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
 import net.neoforged.neoforge.client.model.data.ModelData;
 import org.jetbrains.annotations.NotNull;
@@ -34,6 +35,12 @@ public class StorageComponentBER implements BlockEntityRenderer<StorageComponent
     @Override
     public void render(@NotNull StorageComponentBE storageComponentBE, float partialTick, @NotNull PoseStack poseStack,
                        @NotNull MultiBufferSource multiBufferSource, int packedLight, int packedOverlay) {
+        Direction facing = storageComponentBE.getBlockState().getValue(StorageComponentBlock.FACING);
+        var quat = new Quaternionf();
+        quat = quat.rotateTo(Direction.NORTH.getNormal().getX(), Direction.NORTH.getNormal().getY(), Direction.NORTH.getNormal().getZ(),
+                facing.getNormal().getX(), facing.getNormal().getY(), facing.getNormal().getZ());
+        poseStack.rotateAround(quat, 0.5f, 0, 0.5f);
+
         StorageComponentBlock.Type type = storageComponentBE.getBlockState().getValue(StorageComponentBlock.TYPE);
         switch (type) {
             case TIMBER, TIMBER_CUT -> renderTimber(storageComponentBE, storageComponentBE.getMaterial(), poseStack, multiBufferSource, packedLight, packedOverlay);
