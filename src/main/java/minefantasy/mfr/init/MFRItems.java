@@ -3,16 +3,11 @@ package minefantasy.mfr.init;
 import minefantasy.mfr.MineFantasyReforged;
 import minefantasy.mfr.constants.Tool;
 import minefantasy.mfr.item.*;
-import minefantasy.mfr.registry.CustomMaterialRegistry;
-import minefantasy.mfr.registry.types.CustomMaterialType;
-import minefantasy.mfr.registry.types.CustomMaterialTypeRegistry;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tiers;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import org.jetbrains.annotations.NotNull;
 
 public class MFRItems {
     private static final DeferredRegister.Items ITEMS;
@@ -20,9 +15,17 @@ public class MFRItems {
     public static final DeferredItem<MetalComponentItem> BAR;
 
     public static final DeferredItem<BowlItem> CLAY_POT;
-    public static final DeferredItem<MFRComponentItem> MOULD;
+    public static final DeferredItem<MFRComponentItem> INGOT_MOULD;
 
     public static final DeferredItem<MFRComponentItem> FIREBRICK;
+
+    public static final DeferredItem<MFRComponentItem> PLANT_OIL_JUG;
+
+    public static final DeferredItem<MFRComponentItem> PIE_TRAY;
+
+    public static final DeferredItem<MFRComponentItem> EMPTY_JUG;
+    public static final DeferredItem<MFRComponentItem> WATER_JUG;
+    public static final DeferredItem<MFRComponentItem> MILK_JUG;
 
     public static final DeferredItem<MetalComponentItem> METAL_HUNK;
     public static final DeferredItem<MetalComponentItem> PLATE;
@@ -107,10 +110,23 @@ public class MFRItems {
 
         CLAY_POT = ITEMS.register("clay_pot", () ->
                 new BowlItem(new Item.Properties()));
-        MOULD = ITEMS.register("ingot_mould", () ->
+        INGOT_MOULD = ITEMS.register("ingot_mould", () ->
                 new MFRComponentItem(new Item.Properties()) {});
 
         FIREBRICK = ITEMS.register("firebrick", () ->
+                new MFRComponentItem(new Item.Properties()) {});
+
+        PLANT_OIL_JUG = ITEMS.register("plant_oil_jug", () ->
+                new MFRComponentItem(new Item.Properties()) {});
+
+        PIE_TRAY = ITEMS.register("pie_tray", () ->
+                new MFRComponentItem(new Item.Properties()) {});
+
+        EMPTY_JUG = ITEMS.register("empty_jug", () ->
+                new MFRComponentItem(new Item.Properties()) {});
+        WATER_JUG = ITEMS.register("water_jug", () ->
+                new MFRComponentItem(new Item.Properties()) {});
+        MILK_JUG = ITEMS.register("milk_jug", () ->
                 new MFRComponentItem(new Item.Properties()) {});
 
         METAL_HUNK = ITEMS.register("metal_hunk", () ->

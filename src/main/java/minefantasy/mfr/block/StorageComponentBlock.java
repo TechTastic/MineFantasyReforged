@@ -1,5 +1,6 @@
 package minefantasy.mfr.block;
 
+import com.sun.jna.platform.win32.WinBase;
 import minefantasy.mfr.blockentity.StorageComponentBE;
 import minefantasy.mfr.init.MFRItems;
 import net.minecraft.core.BlockPos;
@@ -25,7 +26,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
@@ -144,7 +144,7 @@ public class StorageComponentBlock extends Block implements EntityBlock {
     public @NotNull MapColor getMapColor(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull MapColor defaultColor) {
         Type type = state.getValue(TYPE);
         return switch (type) {
-            case POT, JUG, MOULD, FIREBRICK -> MapColor.TERRACOTTA_BROWN;
+            case POT, PIE_TRAY, EMPTY_JUG, PLANT_OIL_JUG, WATER_JUG, MILK_JUG, MOULD, FIREBRICK -> MapColor.TERRACOTTA_BROWN;
             default -> super.getMapColor(state, level, pos, defaultColor);
         };
     }
@@ -228,9 +228,13 @@ public class StorageComponentBlock extends Block implements EntityBlock {
 
         POT(64, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_pot")),
 
-        JUG(32, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_jug_empty")),
+        EMPTY_JUG(32, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_jug_empty")),
+        PLANT_OIL_JUG(32, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_jug_plant_oil")),
+        WATER_JUG(32, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_jug_water")),
+        MILK_JUG(32, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_jug_milk")),
 
-        PLATE_HUGE(8, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_plate_huge"));
+        PLATE_HUGE(8, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_plate_huge")),
+        PIE_TRAY(8, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_tray"));
 
         private final int max;
         private final ResourceLocation modelLocation;
@@ -265,12 +269,22 @@ public class StorageComponentBlock extends Block implements EntityBlock {
                 return SPLINT_MESH;
             else if (item.is(MFRItems.BAR))
                 return BAR;
-            else if (item.is(MFRItems.MOULD))
+            else if (item.is(MFRItems.INGOT_MOULD))
                 return MOULD;
             else if (item.is(MFRItems.FIREBRICK))
                 return FIREBRICK;
             else if (item.is(MFRItems.CLAY_POT))
                 return POT;
+            else if (item.is(MFRItems.PIE_TRAY))
+                return PIE_TRAY;
+            else if (item.is(MFRItems.EMPTY_JUG))
+                return EMPTY_JUG;
+            else if (item.is(MFRItems.PLANT_OIL_JUG))
+                return PLANT_OIL_JUG;
+            else if (item.is(MFRItems.WATER_JUG))
+                return WATER_JUG;
+            else if (item.is(MFRItems.MILK_JUG))
+                return MILK_JUG;
             else if (item.is(MFRItems.PLATE_HUGE))
                 return PLATE_HUGE;
             return null;

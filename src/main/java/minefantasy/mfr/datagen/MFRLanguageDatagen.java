@@ -425,7 +425,7 @@ public class MFRLanguageDatagen extends LanguageProvider {
         // COMMODITY
 
         add("item.minefantasyreforged.timber", "Timber");
-        add("item.jug_plant_oil.name", "Plant Oil Jug");
+        add("item.minefantasyreforged.plant_oil_jug", "Plant Oil Jug");
         add("item.plankRefined.name", "Refined Timber");
         add("item.rivet.name", "Rivets");
         add("item.nail.name", "Nails");
@@ -489,12 +489,14 @@ public class MFRLanguageDatagen extends LanguageProvider {
         add("item.minefantasyreforged.clay_pot", "Clay Pot");
         /*
         item.clay_pot_uncooked.name=Raw Clay Pot
+        */
 
-        item.jug_empty.name=Empty Jug
-        item.jug_uncooked.name=Raw Clay Jug
-        item.jug_water.name=Water Jug
-        item.jug_milk.name=Milk Jug
+        add("item.minefantasyreforged.empty_jug", "Empty Jug");
+        // item.jug_uncooked.name=Raw Clay Jug
+        add("item.minefantasyreforged.water_jug", "Water Jug");
+        add("item.minefantasyreforged.milk_jug", "Milk Jug");
 
+        /*
         tile.salvage_basic.name=Basic Salvage Station
         tile.salvage_advanced.name=Advanced Salvage Station
 
@@ -1307,7 +1309,9 @@ public class MFRLanguageDatagen extends LanguageProvider {
         item.bowl_water_salt.name=Salt Water
         item.salt.name=Salt
         item.cake_tin.name=Cake Tin
-        item.pie_tray.name=Pie Tray
+        */
+        add("item.minefantasyreforged.pie_tray", "Pie Tray");
+        /*
         item.pie_tray_uncooked.name=Clay Pie Tray
         item.flour.name=Flour
         item.sugar_pot.name=Sugar Pot

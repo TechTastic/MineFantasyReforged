@@ -239,7 +239,7 @@ public class MFRCreativeTabs {
                                     .constructSingleColoredLayer(MFRItems.TIMBER_PANE.get(), mat)).toList());
 
                             output.accept(MFRItems.CLAY_POT);
-                            output.accept(MFRItems.MOULD);
+                            output.accept(MFRItems.INGOT_MOULD);
 
                             output.accept(MFRItems.FIREBRICK);
                         })
@@ -345,11 +345,14 @@ public class MFRCreativeTabs {
 
         FOOD_TAB = TABS.register("food", () ->
                 CreativeModeTab.builder()
-                        .icon(() -> CustomToolHelper.constructSingleColoredLayer(
-                                MFRItems.TIMBER.get(), MFRMaterials.OAK_WOOD))
+                        .icon(MFRItems.PIE_TRAY::toStack)
                         .displayItems((param, output) -> {
-                            //output.acceptAll(metals.stream().map(mat ->
-                            //        constructTool(MFRItems.STANDARD_PICK.get(), mat)).toList());
+
+                            output.accept(MFRItems.PIE_TRAY);
+
+                            output.accept(MFRItems.EMPTY_JUG);
+                            output.accept(MFRItems.WATER_JUG);
+                            output.accept(MFRItems.MILK_JUG);
                         })
                         .title(Component.translatable("itemGroup.minefantasyreforged.food"))
                         .withTabsBefore(ORES_TAB.getId())

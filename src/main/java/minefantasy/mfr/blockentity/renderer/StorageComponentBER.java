@@ -40,8 +40,8 @@ public class StorageComponentBER implements BlockEntityRenderer<StorageComponent
             case TIMBER_PANE, PLATE, CHAIN_MESH, SCALE_MESH, SPLINT_MESH -> renderPane(storageComponentBE, storageComponentBE.getMaterial(), poseStack, multiBufferSource, packedLight, packedOverlay);
             case BAR, MOULD, FIREBRICK -> renderBar(storageComponentBE, storageComponentBE.getMaterial(), poseStack, multiBufferSource, packedLight, packedOverlay);
             case POT -> renderPot(storageComponentBE, storageComponentBE.getMaterial(), poseStack, multiBufferSource, packedLight, packedOverlay);
-            case JUG -> {}
-            case PLATE_HUGE -> renderBigPane(storageComponentBE, storageComponentBE.getMaterial(), poseStack, multiBufferSource, packedLight, packedOverlay);
+            case EMPTY_JUG, PLANT_OIL_JUG, WATER_JUG, MILK_JUG -> renderJug(storageComponentBE, storageComponentBE.getMaterial(), poseStack, multiBufferSource, packedLight, packedOverlay);
+            case PLATE_HUGE, PIE_TRAY -> renderBigPane(storageComponentBE, storageComponentBE.getMaterial(), poseStack, multiBufferSource, packedLight, packedOverlay);
         }
     }
 
@@ -238,6 +238,42 @@ public class StorageComponentBER implements BlockEntityRenderer<StorageComponent
             );
 
             poseStack.translate(-xOffset / 16f, -layer / 4f, -zOffset / 16f);
+        }
+    }
+
+    private void renderJug(@NotNull StorageComponentBE storageComponentBE, @NotNull CustomMaterial material, @NotNull PoseStack poseStack,
+                           @NotNull MultiBufferSource multiBufferSource, int packedLight, int packedOverlay) {
+        BakedModel model = MODELS.get(storageComponentBE.getBlockState().getValue(StorageComponentBlock.TYPE));
+
+        for (int current = 1; current <= storageComponentBE.getStack().getCount(); current++) {
+            int layer = (current - 1) / 16;
+            int jug = current - layer * 16;
+            int xOffset = switch (jug) {
+                case 1, 5, 9, 13 -> 0;
+                case 2, 6, 10, 14 -> 4;
+                case 3, 7, 11, 15 -> 8;
+                default -> 12;
+            };
+
+            int zOffset = ((jug - 1) / 4) * 4;
+
+            poseStack.translate(xOffset / 16f, layer / 2f, zOffset / 16f);
+
+            this.context.getBlockRenderDispatcher().getModelRenderer().renderModel(
+                    poseStack.last(),
+                    multiBufferSource.getBuffer(RenderType.TRANSLUCENT),
+                    storageComponentBE.getBlockState(),
+                    model,
+                    material.getColourARGB()[1] / 255f,
+                    material.getColourARGB()[2] / 255f,
+                    material.getColourARGB()[3] / 255f,
+                    packedLight,
+                    packedOverlay,
+                    ModelData.builder().build(),
+                    RenderType.CUTOUT
+            );
+
+            poseStack.translate(-xOffset / 16f, -layer / 2f, -zOffset / 16f);
         }
     }
 }
