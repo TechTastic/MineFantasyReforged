@@ -193,10 +193,10 @@ public class MFRLanguageDatagen extends LanguageProvider {
         add("item.mod_haft.name", "%1$s Haft");
         add("item.mod_joints.name", "%1$s Joints");
 
-        add("component.head.name", "%1$s Head");
-        add("component.shaft.name", "%1$s Shaft");
-        add("component.grip.name", "%1$s Grip");
-        add("component.brace.name", "%1$s Brace");
+        add("attachment.head.name", "%1$s Head");
+        add("attachment.shaft.name", "%1$s Shaft");
+        add("attachment.grip.name", "%1$s Grip");
+        add("attachment.brace.name", "%1$s Brace");
 
         // MATERIAL LIST
 
@@ -408,10 +408,10 @@ public class MFRLanguageDatagen extends LanguageProvider {
 
         item.bomb_custom.desc_extended=This is a Bomb, it can be crafted at the Bomb Bench. See the MFR Research Book entries for more info.
         item.mine_custom.desc_extended=This is a Mine, it can be crafted at the Bomb Bench. See the MFR Research Book entries for more info.
-        item.bomb_component.desc_extended=This is a Bomb component, it can be used at the Bomb Bench to make Bombs/Mines. See the MFR Research Book entries for more info
+        item.bomb_component.desc_extended=This is a Bomb attachment, it can be used at the Bomb Bench to make Bombs/Mines. See the MFR Research Book entries for more info
 
         item.crossbow_custom.desc_extended=This is a Crossbow, it can be crafted at the Crossbow Bench. See the MFR Research Book entries for more info.
-        item.crossbow_component.desc_extended=This is a Crossbow component, it can be used at the Crossbow Bench to make Crossbows. See the MFR Research Book entries for more info
+        item.crossbow_component.desc_extended=This is a Crossbow attachment, it can be used at the Crossbow Bench to make Crossbows. See the MFR Research Book entries for more info
 
         recipe.bar.desc=Any Material Ingot to Material Bar
         recipe.ingot.desc=Any Material Bar to Material Ingot
@@ -587,20 +587,20 @@ public class MFRLanguageDatagen extends LanguageProvider {
 
         item.cogwork_pulley.name=Cogwork Pulley
 
-        bomb.component.name=Bomb Component
-        bomb.component.filling=Filling
-        bomb.component.bombcase=Bomb Case
-        bomb.component.minecase=Mine Case
-        bomb.component.arrow=Arrow Case
-        bomb.component.bolt=Quarrel Case
-        bomb.component.fuse=Fuse
-        bomb.component.powder=Powder
+        bomb.attachment.name=Bomb Component
+        bomb.attachment.filling=Filling
+        bomb.attachment.bombcase=Bomb Case
+        bomb.attachment.minecase=Mine Case
+        bomb.attachment.arrow=Arrow Case
+        bomb.attachment.bolt=Quarrel Case
+        bomb.attachment.fuse=Fuse
+        bomb.attachment.powder=Powder
 
-        crossbow.component.name=Crossbow Component
-        crossbow.component.stock=Stock
-        crossbow.component.mechanism=Arms
-        crossbow.component.mod=Modification
-        crossbow.component.muzzle=Muzzle
+        crossbow.attachment.name=Crossbow Component
+        crossbow.attachment.stock=Stock
+        crossbow.attachment.mechanism=Arms
+        crossbow.attachment.mod=Modification
+        crossbow.attachment.muzzle=Muzzle
 
         item.bomb_crude.name=Crude Bomb
         item.bomb_basic.name=Basic Bomb
@@ -1557,7 +1557,7 @@ knowledge.getting_started.tanning=$hTanning-$r^By now you likely would have gath
 
 knowledge.getting_started.forging=$hForging-$r^Forging is the main method of crafting. Pretty much every tool and metal object is made through this process. Start off by making a stone forge, anvil and tools. Place the anvil near the forge and some water. The artisanty tab has an entry of how forging works. Be sure to make a basic firestarter (Dry rocks-Craft-Tools), and wear an apron too!
 
-knowledge.getting_started.forging_bars=Most recipes use bars rather than ingots. A bar is an easy to forge component made from metal. Create bars from placing a hot ingot on an anvil and hammering them.
+knowledge.getting_started.forging_bars=Most recipes use bars rather than ingots. A bar is an easy to forge attachment made from metal. Create bars from placing a hot ingot on an anvil and hammering them.
 knowledge.getting_started.flux=Flux is an important purification agent for metalworks. Primarily this is used for the treatment of metals in the forging process and some alloy creation. Flux is required or hunks and plates, required for some tools and armour.^The best source of flux is limestone. Make sure to keep a look out in your travels.
 knowledge.getting_started.3=Now you need some leather strips for tools. Gather 2 copper (crafted into bars), 2 planks and 1 leather to craft a set of copper shears.
 knowledge.getting_started.4=With these shears, you can cut leather to strips on the carpenter's bench OR a tanning rack by right-clicking them on the block with leather on it.
@@ -2141,7 +2141,7 @@ knowledge.crossbows.5=To craft a crossbow: Place the desired parts in their resp
 knowledge.crossbows.6=When that's finished: you have a crossbow. Crossbows function differently to bows and can be fired immediately if the weapon is ready. Sneak and use the item to open its inventory. This must be used. You can add any bolt to the inventory of the crossbow and it will load when you use it.
 
 knowledge.crossbow_shafts=Crossbow Stocks
-knowledge.crossbow_shafts.desc=Vital component
+knowledge.crossbow_shafts.desc=Vital attachment
 knowledge.crossbow_shafts.handle=Handles are miniature stocks designed for creating hand crossbows. This small design allows fast reload speed at the cost of accuracy and recoil.
 knowledge.crossbow_shafts.stock=Stocks are full-sized versions of the Handle and are capable of firing a crossbow with less recoil. Due to their size, reduce the reload time.
 

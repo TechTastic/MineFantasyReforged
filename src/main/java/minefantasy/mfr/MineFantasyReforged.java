@@ -4,7 +4,7 @@ import minefantasy.mfr.block.StorageComponentBlock;
 import minefantasy.mfr.block.color.StorageComponentBlockColor;
 import minefantasy.mfr.blockentity.renderer.StorageComponentBER;
 import minefantasy.mfr.datagen.*;
-import minefantasy.mfr.entity.component.PlayerSkillsAttachment;
+import minefantasy.mfr.entity.attachment.PlayerSkillsAttachment;
 import minefantasy.mfr.init.*;
 import minefantasy.mfr.item.color.ArmorMaterialItemColor;
 import minefantasy.mfr.item.color.OneLayerMaterialItemColor;
@@ -14,7 +14,6 @@ import minefantasy.mfr.registry.CustomMaterialRegistry;
 import minefantasy.mfr.registry.types.CustomMaterialType;
 import minefantasy.mfr.registry.types.CustomMaterialTypeRegistry;
 import net.minecraft.client.renderer.BiomeColors;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.resources.model.ModelResourceLocation;
@@ -28,13 +27,16 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.neoforge.client.RenderTypeHelper;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
+import net.neoforged.neoforge.network.handling.IPayloadHandler;
+import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
 import net.neoforged.neoforge.registries.NewRegistryEvent;
 
@@ -46,6 +48,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
 import java.util.List;
@@ -136,8 +139,13 @@ public class MineFantasyReforged {
     }
 
     public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
-        if (!event.getEntity().hasData(MFRAttachmentComponents.PLAYER_SKILLS_ATTACHMENT_TYPE))
-            event.getEntity().setData(MFRAttachmentComponents.PLAYER_SKILLS_ATTACHMENT_TYPE, new PlayerSkillsAttachment());
+        event.getEntity().getData(MFRAttachmentComponents.PLAYER_SKILLS_ATTACHMENT_TYPE);
+    }
+
+    public void registerPayloads(RegisterPayloadHandlersEvent event) {
+        PayloadRegistrar registrar = event.registrar("1");
+        registrar.playToClient(PlayerSkillsAttachment.TYPE, PlayerSkillsAttachment.STREAM_CODEC, (attachment, context) ->
+                context.player().setData(MFRAttachmentComponents.PLAYER_SKILLS_ATTACHMENT_TYPE, attachment));
     }
 
     @EventBusSubscriber(modid = MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)

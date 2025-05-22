@@ -266,28 +266,28 @@ public class StorageComponentBlock extends Block implements EntityBlock {
     }
 
     public enum Type implements StringRepresentable {
-        TIMBER(64, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_timber")),
-        TIMBER_CUT(64, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_timber_cut")),
+        TIMBER(64, ResourceLocation.fromNamespaceAndPath(MOD_ID, "attachment/placed_timber")),
+        TIMBER_CUT(64, ResourceLocation.fromNamespaceAndPath(MOD_ID, "attachment/placed_timber_cut")),
 
-        TIMBER_PANE(16, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_timber_pane")),
-        PLATE(16, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_plate")),
-        CHAIN_MESH(16, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_mesh_chain")),
-        SCALE_MESH(16, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_mesh_scale")),
-        SPLINT_MESH(16, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_mesh_splint")),
+        TIMBER_PANE(16, ResourceLocation.fromNamespaceAndPath(MOD_ID, "attachment/placed_timber_pane")),
+        PLATE(16, ResourceLocation.fromNamespaceAndPath(MOD_ID, "attachment/placed_plate")),
+        CHAIN_MESH(16, ResourceLocation.fromNamespaceAndPath(MOD_ID, "attachment/placed_mesh_chain")),
+        SCALE_MESH(16, ResourceLocation.fromNamespaceAndPath(MOD_ID, "attachment/placed_mesh_scale")),
+        SPLINT_MESH(16, ResourceLocation.fromNamespaceAndPath(MOD_ID, "attachment/placed_mesh_splint")),
 
-        BAR(64, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_bar")),
-        MOULD(64, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_mould")),
-        FIREBRICK(64, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_firebrick")),
+        BAR(64, ResourceLocation.fromNamespaceAndPath(MOD_ID, "attachment/placed_bar")),
+        MOULD(64, ResourceLocation.fromNamespaceAndPath(MOD_ID, "attachment/placed_mould")),
+        FIREBRICK(64, ResourceLocation.fromNamespaceAndPath(MOD_ID, "attachment/placed_firebrick")),
 
-        POT(64, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_pot")),
+        POT(64, ResourceLocation.fromNamespaceAndPath(MOD_ID, "attachment/placed_pot")),
 
-        EMPTY_JUG(32, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_jug_empty")),
-        PLANT_OIL_JUG(32, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_jug_plant_oil")),
-        WATER_JUG(32, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_jug_water")),
-        MILK_JUG(32, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_jug_milk")),
+        EMPTY_JUG(32, ResourceLocation.fromNamespaceAndPath(MOD_ID, "attachment/placed_jug_empty")),
+        PLANT_OIL_JUG(32, ResourceLocation.fromNamespaceAndPath(MOD_ID, "attachment/placed_jug_plant_oil")),
+        WATER_JUG(32, ResourceLocation.fromNamespaceAndPath(MOD_ID, "attachment/placed_jug_water")),
+        MILK_JUG(32, ResourceLocation.fromNamespaceAndPath(MOD_ID, "attachment/placed_jug_milk")),
 
-        PLATE_HUGE(8, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_plate_huge")),
-        PIE_TRAY(8, ResourceLocation.fromNamespaceAndPath(MOD_ID, "component/placed_tray"));
+        PLATE_HUGE(8, ResourceLocation.fromNamespaceAndPath(MOD_ID, "attachment/placed_plate_huge")),
+        PIE_TRAY(8, ResourceLocation.fromNamespaceAndPath(MOD_ID, "attachment/placed_tray"));
 
         private final int max;
         private final ResourceLocation modelLocation;

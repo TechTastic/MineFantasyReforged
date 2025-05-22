@@ -169,7 +169,7 @@ public class MFRCreativeTabs {
 
         UTILITY_BLOCKS_TAB = TABS.register("utility_blocks", () ->
                 CreativeModeTab.builder()
-                        .icon(() -> MFRBlocks.OAK_CARPENTER.toStack())
+                        .icon(MFRBlocks.OAK_CARPENTER::toStack)
                         .displayItems((param, output) -> {
                             output.accept(MFRBlocks.OAK_CARPENTER);
                             output.accept(MFRBlocks.SPRUCE_CARPENTER);
