@@ -5,6 +5,7 @@ import minefantasy.mfr.init.MFRMaterials;
 import minefantasy.mfr.material.CustomMaterial;
 import minefantasy.mfr.registry.CustomMaterialRegistry;
 import minefantasy.mfr.util.CustomToolHelper;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
@@ -17,10 +18,7 @@ import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.PickaxeItem;
-import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.level.ClipContext;
@@ -43,12 +41,6 @@ public class HeavyPickaxeItem extends PickaxeItem implements IToolMaterial {
         super(tier, properties);
         this.efficiencyModifier = efficiencyModifier;
         this.isCustom = isCustom;
-    }
-
-    @Override
-    public @NotNull Component getName(@NotNull ItemStack stack) {
-        String unlocalName = super.getDescriptionId(stack);
-        return CustomToolHelper.getLocalisedName(stack, unlocalName);
     }
 
     @Override
@@ -82,11 +74,10 @@ public class HeavyPickaxeItem extends PickaxeItem implements IToolMaterial {
     public @NotNull ItemAttributeModifiers getDefaultAttributeModifiers(@NotNull ItemStack stack) {
         return super.getDefaultAttributeModifiers(stack)
                 .withModifierAdded(Attributes.ATTACK_DAMAGE, new AttributeModifier(
-                                Item.BASE_ATTACK_DAMAGE_ID, CustomToolHelper.getMeleeDamage(stack,
-                                getMaterial().getAttackDamageBonus()), AttributeModifier.Operation.ADD_VALUE),
+                                Item.BASE_ATTACK_DAMAGE_ID, 2f, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .withModifierAdded(Attributes.ATTACK_SPEED, new AttributeModifier(
-                                Item.BASE_ATTACK_SPEED_ID, -3f, AttributeModifier.Operation.ADD_VALUE),
+                                Item.BASE_ATTACK_SPEED_ID, -2.8f, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND);
     }
 
@@ -105,19 +96,24 @@ public class HeavyPickaxeItem extends PickaxeItem implements IToolMaterial {
         return CustomToolHelper.getCustomPrimaryMaterial(stack).getEnchantability();
     }
 
-    @Nullable
-    public static AABB getBlocksToBeDestroyed(int range, BlockPos initalBlockPos, ServerPlayer player) {
-        BlockHitResult traceResult = player.level().clip(new ClipContext(player.getEyePosition(1f),
-                (player.getEyePosition(1f).add(player.getViewVector(1f).scale(6f))),
-                ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, player));
-        if(traceResult.getType() == HitResult.Type.MISS)
-            return null;
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, @NotNull List<Component> tooltipComponents, @NotNull TooltipFlag tooltipFlag) {
+        if (isCustom)
+            CustomToolHelper.addInformation(stack, tooltipComponents);
 
-        return switch (traceResult.getDirection()) {
-            case DOWN, UP -> AABB.ofSize(initalBlockPos.getCenter(), range * 2 + 1, .5, range * 2 + 1);
-            case NORTH, SOUTH -> AABB.ofSize(initalBlockPos.getCenter(), range * 2 + 1, range * 2 + 1, .5);
-            case EAST, WEST -> AABB.ofSize(initalBlockPos.getCenter(), .5, range * 2 + 1, range * 2 + 1);
-        };
+        CustomMaterial mat = CustomToolHelper.getCustomPrimaryMaterial(stack);
+        float efficiency = mat.getHardness() > 0 ? mat.getHardness() : 1f;
+        tooltipComponents.add(Component.translatable("attribute.tool.digEfficiency.name",
+                CustomMaterialRegistry.DECIMAL_FORMAT.format(CustomToolHelper
+                        .getEfficiency(stack, efficiency, 0.5f))).withStyle(ChatFormatting.GREEN));
+
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+    }
+
+    @Override
+    public @NotNull Component getName(@NotNull ItemStack stack) {
+        String unlocalName = this.getDescriptionId(stack);
+        return CustomToolHelper.getLocalisedName(stack, unlocalName);
     }
 
     @Override
