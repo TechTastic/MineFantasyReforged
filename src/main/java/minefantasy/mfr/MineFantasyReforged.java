@@ -62,6 +62,7 @@ public class MineFantasyReforged {
 
         modEventBus.addListener(this::registerDatapackRegistries);
         modEventBus.addListener(this::registerRegistries);
+        modEventBus.addListener(this::registerPayloads);
         modEventBus.addListener(this::onGatherData);
         modEventBus.addListener(this::commonSetup);
 
