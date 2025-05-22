@@ -4,6 +4,7 @@ import minefantasy.mfr.block.StorageComponentBlock;
 import minefantasy.mfr.block.color.StorageComponentBlockColor;
 import minefantasy.mfr.blockentity.renderer.StorageComponentBER;
 import minefantasy.mfr.datagen.*;
+import minefantasy.mfr.entity.component.PlayerSkillsAttachment;
 import minefantasy.mfr.init.*;
 import minefantasy.mfr.item.color.ArmorMaterialItemColor;
 import minefantasy.mfr.item.color.OneLayerMaterialItemColor;
@@ -32,6 +33,7 @@ import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
 import net.neoforged.neoforge.registries.NewRegistryEvent;
@@ -61,10 +63,12 @@ public class MineFantasyReforged {
         modEventBus.addListener(this::commonSetup);
 
         NeoForge.EVENT_BUS.addListener(this::onLevelLoad);
+        NeoForge.EVENT_BUS.addListener(this::onPlayerJoin);
 
         CustomMaterialTypeRegistry.register(modEventBus);
 
         MFRDataComponents.register(modEventBus);
+        MFRAttachmentComponents.register(modEventBus);
         MFRBlocks.register(modEventBus);
         MFRItems.register(modEventBus);
         MFRBlockEntities.register(modEventBus);
@@ -129,6 +133,11 @@ public class MineFantasyReforged {
                         LootContextParamSets.BLOCK)), lookup));
         gen.addProvider(event.includeServer(),
                 new MFRBiomeTagsDatagen(packOutput, lookup, fileHelper));
+    }
+
+    public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
+        if (!event.getEntity().hasData(MFRAttachmentComponents.PLAYER_SKILLS_ATTACHMENT_TYPE))
+            event.getEntity().setData(MFRAttachmentComponents.PLAYER_SKILLS_ATTACHMENT_TYPE, new PlayerSkillsAttachment());
     }
 
     @EventBusSubscriber(modid = MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
