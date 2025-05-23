@@ -195,7 +195,7 @@ public class MFRItems {
         STANDARD_PICK = ITEMS.register("standard_pick", () ->
                 new MFRPickaxeItem(Tiers.IRON, new Item.Properties(), 1f, true));
         STANDARD_AXE = ITEMS.register("standard_axe", () ->
-                new MFRAxeItem(Tiers.IRON, new Item.Properties(), true));
+                new MFRAxeItem(Tiers.IRON, new Item.Properties(), 1f, true));
         STANDARD_SHOVEL = ITEMS.register("standard_spade", () ->
                 new MFRShovelItem(Tiers.IRON, new Item.Properties(), true));
         STANDARD_HOE = ITEMS.register("standard_hoe", () ->
