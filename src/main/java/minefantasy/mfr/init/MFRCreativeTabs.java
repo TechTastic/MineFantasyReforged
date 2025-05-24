@@ -60,7 +60,7 @@ public class MFRCreativeTabs {
                             output.acceptAll(metals.stream().map(mat ->
                                     constructTool(MFRItems.STANDARD_AXE.get(), mat)).toList());
                             output.acceptAll(metals.stream().map(mat ->
-                                    constructTool(MFRItems.STANDARD_SHOVEL.get(), mat)).toList());
+                                    MFRItems.STANDARD_SHOVEL.get().construct(mat)).toList());
                             output.acceptAll(metals.stream().map(mat ->
                                     constructTool(MFRItems.STANDARD_HOE.get(), mat)).toList());
                         })

@@ -24,7 +24,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class HeavyPickaxeItem extends PickaxeItem implements IToolMaterial {
@@ -86,7 +85,8 @@ public class HeavyPickaxeItem extends PickaxeItem implements IToolMaterial {
     public @NotNull ItemAttributeModifiers getDefaultAttributeModifiers(@NotNull ItemStack stack) {
         return super.getDefaultAttributeModifiers(stack)
                 .withModifierAdded(Attributes.ATTACK_DAMAGE, new AttributeModifier(
-                                Item.BASE_ATTACK_DAMAGE_ID, 2f, AttributeModifier.Operation.ADD_VALUE),
+                                Item.BASE_ATTACK_DAMAGE_ID, 2f + CustomToolHelper.getMeleeDamage(stack, this.getMaterial().getAttackDamageBonus()),
+                                AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .withModifierAdded(Attributes.ATTACK_SPEED, new AttributeModifier(
                                 Item.BASE_ATTACK_SPEED_ID, -2.8f, AttributeModifier.Operation.ADD_VALUE),

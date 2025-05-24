@@ -36,8 +36,8 @@ public class HandpickItem extends PickaxeItem implements IToolMaterial {
     public @NotNull ItemAttributeModifiers getDefaultAttributeModifiers(@NotNull ItemStack stack) {
         return super.getDefaultAttributeModifiers(stack)
                 .withModifierAdded(Attributes.ATTACK_DAMAGE, new AttributeModifier(
-                                Item.BASE_ATTACK_DAMAGE_ID, CustomToolHelper.getMeleeDamage(stack,
-                                getMaterial().getAttackDamageBonus()), AttributeModifier.Operation.ADD_VALUE),
+                                Item.BASE_ATTACK_DAMAGE_ID, 1f + CustomToolHelper.getMeleeDamage(stack, this.getMaterial().getAttackDamageBonus()),
+                                AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .withModifierAdded(Attributes.ATTACK_SPEED, new AttributeModifier(
                                 Item.BASE_ATTACK_SPEED_ID, -3f, AttributeModifier.Operation.ADD_VALUE),

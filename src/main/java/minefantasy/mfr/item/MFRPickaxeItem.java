@@ -68,7 +68,8 @@ public class MFRPickaxeItem extends PickaxeItem implements IToolMaterial {
     public @NotNull ItemAttributeModifiers getDefaultAttributeModifiers(@NotNull ItemStack stack) {
         return super.getDefaultAttributeModifiers(stack)
                 .withModifierAdded(Attributes.ATTACK_DAMAGE, new AttributeModifier(
-                                Item.BASE_ATTACK_DAMAGE_ID, 2f, AttributeModifier.Operation.ADD_VALUE),
+                                Item.BASE_ATTACK_DAMAGE_ID, 2f,
+                                AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .withModifierAdded(Attributes.ATTACK_SPEED, new AttributeModifier(
                                 Item.BASE_ATTACK_SPEED_ID, -2.8f, AttributeModifier.Operation.ADD_VALUE),
@@ -106,7 +107,6 @@ public class MFRPickaxeItem extends PickaxeItem implements IToolMaterial {
                         name).withStyle(ChatFormatting.GREEN), true);
         }
 
-        // TODO: Inform player about mine-ability of block
         return super.useOn(context);
     }
 
@@ -134,7 +134,7 @@ public class MFRPickaxeItem extends PickaxeItem implements IToolMaterial {
         float efficiency = mat.getHardness() > 0 ? mat.getHardness() : 1f;
         tooltipComponents.add(Component.translatable("attribute.tool.digEfficiency.name",
                 CustomMaterialRegistry.DECIMAL_FORMAT.format(CustomToolHelper
-                        .getEfficiency(stack, efficiency, 0.5f))).withStyle(ChatFormatting.GREEN));
+                        .getEfficiency(stack, efficiency, this.getEfficiencyModifier() / 2f))).withStyle(ChatFormatting.GREEN));
 
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
     }
