@@ -3,8 +3,10 @@ package minefantasy.mfr.events;
 import minefantasy.mfr.MineFantasyReforged;
 import minefantasy.mfr.item.HandpickItem;
 import minefantasy.mfr.item.HeavyPickaxeItem;
+import minefantasy.mfr.item.LumberAxeItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
@@ -33,36 +35,61 @@ public class MFREvents {
     // Don't be a jerk License
     @SubscribeEvent
     public static void onAOEToolUsage(BlockEvent.BreakEvent event) {
-        Player player = event.getPlayer();
-        ItemStack mainHandItem = player.getMainHandItem();
+        if (!(event.getLevel() instanceof ServerLevel level))
+            return;
+        if (!(event.getPlayer() instanceof ServerPlayer player))
+            return;
+        ItemStack stack = player.getMainHandItem();
 
-        if(mainHandItem.getItem() instanceof HeavyPickaxeItem pickaxe && player instanceof ServerPlayer serverPlayer) {
-            BlockPos initialBlockPos = event.getPos();
-            if (HARVESTED_BLOCKS.contains(initialBlockPos))
-                return;
+        if(stack.getItem() instanceof HeavyPickaxeItem)
+            onHeavyPickaxeUsage(level, event.getPos(), stack, player);
+        if (stack.getItem() instanceof LumberAxeItem)
+            onLumberAxeUsage(level, event.getPos(), stack, player);
+    }
 
-            AABB blocks = getBlocksToBeDestroyed(1, initialBlockPos, serverPlayer);
-            if (blocks == null)
-                return;
+    private static void onHeavyPickaxeUsage(ServerLevel level, BlockPos initialBlockPos, ItemStack stack, ServerPlayer player) {
+        if (HARVESTED_BLOCKS.contains(initialBlockPos))
+            return;
 
-            for (int x = (int) blocks.minX; x < blocks.maxX; x++) {
-                for (int y = (int) blocks.minY; y < blocks.maxY; y++) {
-                    for (int z = (int) blocks.minZ; z < blocks.maxZ; z++) {
-                        BlockPos pos = new BlockPos(x, y, z);
-                        if(pos.equals(initialBlockPos) || !pickaxe.isCorrectToolForDrops(mainHandItem, event.getLevel().getBlockState(pos)))
-                            continue;
+        AABB blocks = getAOEToBeDestroyed(1, initialBlockPos, player);
+        if (blocks == null)
+            return;
 
-                        HARVESTED_BLOCKS.add(pos);
-                        serverPlayer.gameMode.destroyBlock(pos);
-                        HARVESTED_BLOCKS.remove(pos);
-                    }
+        for (int x = (int) blocks.minX; x < blocks.maxX; x++) {
+            for (int y = (int) blocks.minY; y < blocks.maxY; y++) {
+                for (int z = (int) blocks.minZ; z < blocks.maxZ; z++) {
+                    BlockPos pos = new BlockPos(x, y, z);
+                    if(pos.equals(initialBlockPos) || !stack.isCorrectToolForDrops(level.getBlockState(pos)))
+                        continue;
+
+                    HARVESTED_BLOCKS.add(pos);
+                    player.gameMode.destroyBlock(pos);
+                    HARVESTED_BLOCKS.remove(pos);
+                }
+            }
+        }
+    }
+
+    private static void onLumberAxeUsage(ServerLevel level, BlockPos initialBlockPos, ItemStack stack, ServerPlayer player) {
+        AABB blocks = AABB.ofSize(initialBlockPos.getCenter(), 3, 3, 3);
+
+        for (int x = (int) blocks.minX; x < blocks.maxX; x++) {
+            for (int y = (int) blocks.minY; y < blocks.maxY; y++) {
+                for (int z = (int) blocks.minZ; z < blocks.maxZ; z++) {
+                    BlockPos pos = new BlockPos(x, y, z);
+                    if(HARVESTED_BLOCKS.contains(pos) || pos.equals(initialBlockPos) || !stack.isCorrectToolForDrops(level.getBlockState(pos)))
+                        continue;
+
+                    HARVESTED_BLOCKS.add(pos);
+                    player.gameMode.destroyBlock(pos);
+                    HARVESTED_BLOCKS.remove(pos);
                 }
             }
         }
     }
 
     @Nullable
-    public static AABB getBlocksToBeDestroyed(int range, BlockPos initalBlockPos, ServerPlayer player) {
+    private static AABB getAOEToBeDestroyed(int range, BlockPos initalBlockPos, ServerPlayer player) {
         BlockHitResult traceResult = player.level().clip(new ClipContext(player.getEyePosition(1f),
                 (player.getEyePosition(1f).add(player.getViewVector(1f).scale(player.getAttributeValue(Attributes.BLOCK_INTERACTION_RANGE)))),
                 ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, player));
